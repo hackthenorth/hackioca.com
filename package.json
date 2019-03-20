@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "react-scripts-ts start",
+    "lint": "tslint --project tsconfig.json --fix && stylelint src",
+    "lint:css": "stylelint src",
     "test": "jest --config jestconfig.json --watch",
     "build": "tsc",
     "deploy": "echo 'Deploy target not configured'",
@@ -12,7 +14,8 @@
   "dependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-scripts-ts": "^4.0.8"
+    "react-scripts-ts": "^4.0.8",
+    "styled-components": "^4.1.3"
   },
   "devDependencies": {
     "@types/enzyme": "^3.9.1",
@@ -22,12 +25,23 @@
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.2",
     "@types/react-test-renderer": "^16.8.1",
+    "@types/styled-components": "^4.1.12",
     "babel": "^6.23.0",
     "babel-jest": "^24.5.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
+    "prettier": "1.16.4",
     "react-test-renderer": "^16.8.4",
+    "stylelint": "^9.10.1",
+    "stylelint-config-recommended": "^2.1.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.5.2",
     "ts-jest": "^24.0.0",
+    "tslint": "^5.14.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^3.6.0",
     "typescript": "^3.3.3333"
   },
   "browserslist": [
