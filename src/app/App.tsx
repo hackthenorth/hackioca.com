@@ -1,9 +1,12 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { SiteContextProvider } from 'src/utils/siteContext';
 
-class App extends React.Component {
-  public render(): ReactNode {
-    return <div className="App">Hello World!</div>;
-  }
-}
+
+const App = () => (
+  <SiteContextProvider>
+      <div className="App">Hello World!</div>
+  </SiteContextProvider>
+);
+
 
 export default App;
