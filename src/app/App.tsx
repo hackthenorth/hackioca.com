@@ -1,7 +1,7 @@
-import * as React from "react";
+import React, { ReactNode } from "react";
 
 class App extends React.Component {
-  public render() {
+  public render(): ReactNode {
     return <div className="App">Hello World!</div>;
   }
 }

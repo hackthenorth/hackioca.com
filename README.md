@@ -2,9 +2,12 @@
 
 ### Includes
  - Create React App w/ TypeScript
- - Storybook, Jest & Enzyme for docs & testing if we need it
+ - Jest & Enzyme for docs & testing if we need it
  - `styled-components` for styling
- - Linting with tslint, stylelint, prettier
+ - Linting with eslint, stylelint, prettier
+
+### To set up:
+ - Storybook for docs and testing if we need it
  - Context API w/ reducer for global state
  - CircleCI config
  - react-helmet
@@ -14,6 +17,6 @@
  2. `npm install`
  3. Done lol
 
-###Development
+### Development
  - Execute:
-   - `npm run test` 
+   - `npm run test`
