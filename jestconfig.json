@@ -1,0 +1,22 @@
+{
+  "testRegex": "(/test/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+  "testEnvironment": "jsdom",
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "/build/"
+  ],
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "jsx",
+    "ts",
+    "tsx"
+  ],
+  "globals": {
+    "ts-jest": {
+      "tsConfig": "tsconfig.json"
+    }
+  },
+  "preset": "ts-jest/presets/js-with-babel",
+  "testMatch": null
+}
