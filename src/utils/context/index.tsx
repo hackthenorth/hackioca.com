@@ -1,7 +1,8 @@
 import React, { createContext, useReducer } from "react";
+import methods, { Methods } from "./methods";
 
 
-interface State {
+interface State extends Methods {
   // basically our spec for what we want to store in global state
 };
 
@@ -13,7 +14,9 @@ interface StateUpdate {
 
 // The initial state and also the state returned by SiteContext
 // if there is no parent Provider.
-const INITIAL_STATE: State = {};
+const INITIAL_STATE: State = {
+  ...methods
+};
 
 
 // The reducer for the state. Resolves actions to return a new copy of
