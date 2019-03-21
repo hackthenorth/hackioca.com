@@ -1,17 +1,6 @@
 import React, { createContext, useReducer, useContext } from "react";
-import methods, { Methods } from "./methods";
-import * as ACTIONS from "./actions";
-
-
-interface State extends Methods {
-  // basically our spec for what we want to store in global state
-  helloWorld: string;
-};
-
-interface StateUpdate {
-  type: string;
-  data?: object | string; // not sure what the most encompassing type here is
-};
+import methods from "./methods";
+import { ACTIONS, State, StateUpdate } from "./types";
 
 
 // The initial state and also the state returned by SiteContext

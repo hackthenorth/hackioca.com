@@ -23,10 +23,6 @@
     "@typescript-eslint/indent": ["error", 2],
     "react/jsx-uses-react": 1
   },
-  "env": {
-    "browser": true,
-    "es6": true
-  },
   "settings": {
     "react": {
       "version":  "detect"
