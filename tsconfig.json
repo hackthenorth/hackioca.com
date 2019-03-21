@@ -10,7 +10,7 @@
     ],
     "sourceMap": true,
     "allowJs": true,
-    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": "src",
