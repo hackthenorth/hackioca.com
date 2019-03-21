@@ -1,9 +1,10 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useContext } from "react";
 import methods, { Methods } from "./methods";
-
+import * as ACTIONS from "./actions";
 
 interface State extends Methods {
   // basically our spec for what we want to store in global state
+  helloWorld: string;
 };
 
 interface StateUpdate {
@@ -15,23 +16,24 @@ interface StateUpdate {
 // The initial state and also the state returned by SiteContext
 // if there is no parent Provider.
 const INITIAL_STATE: State = {
-  ...methods
+  ...methods,
+  helloWorld: "Hello World!",
 };
 
 
 // The reducer for the state. Resolves actions to return a new copy of
 // the state since we want state to stay immutable.
-const siteReducer = (state: State, action: StateUpdate) => {
+const siteReducer = (state: State, action: StateUpdate): State => {
   switch (action.type) {
-    case "RESET":
+    case ACTIONS.RESET:
       return INITIAL_STATE;
 
     // What a state update from an action would look like
-    // case "SOME_STATE_UPDATE":
-    //   return {
-    //     ...state,
-    //     someField: action.data.updatedSomeField
-    //   }
+    case ACTIONS.UPDATE_HELLO_WORLD:
+      return {
+        ...state,
+        helloWorld: action.data as string
+      }
 
     default:
       return state;
@@ -40,7 +42,7 @@ const siteReducer = (state: State, action: StateUpdate) => {
 
 
 // Context for the site.
-const SiteContext: React.Context<State> = createContext(INITIAL_STATE);
+const SiteContext: React.Context<{ state: State; dispatch: React.Dispatch<StateUpdate>; }> = createContext({ state: INITIAL_STATE, dispatch: () => {} });
 export default SiteContext;
 
 
@@ -60,18 +62,23 @@ export const SiteContextProvider = ({ children }: { children: React.ReactNode })
 };
 
 
+// This is just a utility custom hook so we don't have to import SiteContext
+// every time we want to use it.
+export const useSiteContext = () => useContext(SiteContext);
+
+
 // Maps the state in SiteContext to props that the wrapped
 // component will receive.
 // Similar to redux's connect function.
 // Kind of obselete with the useContext hook, but useful without hooks.
 export const connectSiteContext = (
-  mapContextStateToProps = (data: object) => data
+  mapContextStateToProps = (data: State) => data
 ) => <P extends object>(
     Component: React.ComponentType<P>
   ) => (
       props: any
     ) => (
         <SiteContextConsumer>
-            {data => <Component {...mapContextStateToProps(data)} {...props} />}
+            {data => <Component {...mapContextStateToProps(data.state)} {...props} />}
         </SiteContextConsumer>
       );

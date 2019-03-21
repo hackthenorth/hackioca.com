@@ -1,10 +1,11 @@
 import React from "react";
-import { SiteContextProvider } from 'src/utils/siteContext';
+import { SiteContextProvider } from 'src/utils/context';
 
+import HelloWorld from "./components/helloworld";
 
 const App = () => (
   <SiteContextProvider>
-      <div className="App">Hello World!</div>
+      <HelloWorld />
   </SiteContextProvider>
 );
 
