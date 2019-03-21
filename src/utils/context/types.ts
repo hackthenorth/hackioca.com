@@ -1,8 +1,8 @@
 import { Methods } from "./methods";
 
 export enum ACTIONS {
-  RESET = "RESET",
-  UPDATE_HELLO_WORLD = "UPDATE_HELLO_WORLD",
+  RESET,
+  UPDATE_HELLO_WORLD, // string enums not needed, can use reverse mapping
 }
 
 export interface State extends Methods {
@@ -11,6 +11,6 @@ export interface State extends Methods {
 };
 
 export interface StateUpdate {
-  type: string;
+  type: ACTIONS;
   data?: object | string; // not sure what the most encompassing type here is
 };

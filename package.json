@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "react-scripts-ts start",
-    "lint": "eslint --ext .jsx,.js,.tsx,.ts src/ --fix && stylelint src",
+    "lint": "npm run lint:ts && npm run lint:css",
+    "lint:ts": "eslint --ext .jsx,.js,.tsx,.ts src/ --fix",
     "lint:css": "stylelint src",
     "test": "jest --config jestconfig.json --watch",
     "build": "tsc",
