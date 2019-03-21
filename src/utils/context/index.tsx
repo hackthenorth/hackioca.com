@@ -2,6 +2,7 @@ import React, { createContext, useReducer, useContext } from "react";
 import methods, { Methods } from "./methods";
 import * as ACTIONS from "./actions";
 
+
 interface State extends Methods {
   // basically our spec for what we want to store in global state
   helloWorld: string;
@@ -62,15 +63,14 @@ export const SiteContextProvider = ({ children }: { children: React.ReactNode })
 };
 
 
-// This is just a utility custom hook so we don't have to import SiteContext
-// every time we want to use it.
+// A utility custom hook so we don't have to import SiteContext
+// every time we want to use it - a little bit cleaner.
 export const useSiteContext = () => useContext(SiteContext);
 
 
 // Maps the state in SiteContext to props that the wrapped
-// component will receive.
-// Similar to redux's connect function.
-// Kind of obselete with the useContext hook, but useful without hooks.
+// component will receive, similar to redux's connect function.
+// Kind of obsolete with the useContext hook, but useful without hooks.
 export const connectSiteContext = (
   mapContextStateToProps = (data: State) => data
 ) => <P extends object>(
