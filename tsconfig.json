@@ -21,7 +21,16 @@
     "importHelpers": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "types": [
+      "enzyme",
+      "enzyme-adapter-react-16",
+      "jest",
+      "react",
+      "react-dom",
+      "react-test-renderer",
+      "styled-components"
+    ]
   },
   "exclude": [
     "node_modules",
