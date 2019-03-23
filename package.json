@@ -1,5 +1,5 @@
 {
-  "name": "bobahackz",
+  "name": "hackioca",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "lint": "eslint --ext .jsx,.js,.tsx,.ts src/ --fix && stylelint src",
     "lint:css": "stylelint src",
     "test": "jest --config jestconfig.json --watch",
-    "build": "tsc",
+    "build": "react-scripts-ts build",
     "deploy": "echo 'Deploy target not configured'",
     "eject": "react-scripts-ts eject"
   },
