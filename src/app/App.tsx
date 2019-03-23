@@ -4,7 +4,7 @@ import { BobaProvider } from "src/utils/context/boba";
 
 const App: React.FC<{}> = () => (
   <BobaProvider>
-      <HelloWorldTestState />
+    <HelloWorldTestState />
   </BobaProvider>
 );
 
