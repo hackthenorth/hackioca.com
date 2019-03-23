@@ -1,9 +1,11 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import HelloWorldTestState from "src/app/components/HelloWorldTestState";
+import { BobaProvider } from "src/utils/context/boba";
 
-class App extends React.Component {
-  public render(): ReactNode {
-    return <div className="App">Hello World!</div>;
-  }
-}
+const App: React.FC<{}> = () => (
+  <BobaProvider>
+      <HelloWorldTestState />
+  </BobaProvider>
+);
 
 export default App;
