@@ -1,51 +1,37 @@
 import React, { useState, createContext, useContext } from "react";
+import { Flavor, Topping, flavors, toppings } from "src/siteData";
 
-const flavours: ReadonlyArray<Flavour> = [
-  "milk",
-  "matcha",
-  "taro",
-  "mango",
-  "strawberry"
-];
-type Flavour = "strawberry" | "mango" | "milk" | "matcha" | "taro";
-
-const toppings: ReadonlyArray<Topping> = [
-  "tapioca",
-  "grass jelly",
-  "aloe vera",
-  "red bean",
-  "pudding"
-];
-type Topping = "tapioca" | "grass jelly" | "aloe vera" | "red bean" | "pudding";
-
-interface BobaState {
-  flavour: Flavour;
+export interface BobaState {
+  flavor: Flavor;
   topping: Topping;
-  updateFlavour: (newFlavour: Flavour) => void;
+  updateFlavor: (newFlavor: Flavor) => void;
   updateTopping: (newTopping: Topping) => void;
 }
 
-export { flavours, toppings, Flavour, Topping, BobaState };
-
 export const BobaContext: React.Context<BobaState> = createContext({
-  flavour: flavours[0],
-  topping: toppings[1],
-  updateFlavour: () => {},
+  flavor: flavors[0],
+  topping: toppings[0],
+  updateFlavor: () => {},
   updateTopping: () => {}
 });
 
 export const useBobaContext = () => useContext(BobaContext);
 
-export const BobaProvider = ({ children }: { children: React.ReactNode }) => {
-  const randomFlavour = flavours[Math.floor(Math.random() * flavours.length)];
-  const randomTopping = toppings[Math.floor(Math.random() * toppings.length)];
-  const [flavour, updateFlavour] = useState(randomFlavour);
+const randomFlavor = flavors[Math.floor(Math.random() * flavors.length)];
+const randomTopping = toppings[Math.floor(Math.random() * toppings.length)];
+
+export const BobaProvider: React.FC = ({
+  children
+}: {
+  children: React.ReactNode;
+}) => {
+  const [flavor, updateFlavor] = useState(randomFlavor);
   const [topping, updateTopping] = useState(randomTopping);
 
   const bobaState: BobaState = {
-    flavour,
+    flavor,
     topping,
-    updateFlavour,
+    updateFlavor,
     updateTopping
   };
 
