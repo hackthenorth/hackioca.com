@@ -57,7 +57,7 @@ const Image = styled.img`
 const About: React.FC = () => (
   <Wrapper>
     <div>
-      <Header> about </Header>
+      <Header>{copy.about.title}</Header>
       <Section>
         <Paragraph>{copy.about.desc}</Paragraph>
         <Image src="images/boiling_boba_about.gif" />
