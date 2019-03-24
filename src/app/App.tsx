@@ -18,8 +18,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
   }
 
   body {
@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const App: React.FC<{}> = (): JSX.Element => (
+const App: React.FC = () => (
   <BobaProvider>
     <About />
     <GlobalStyle />
