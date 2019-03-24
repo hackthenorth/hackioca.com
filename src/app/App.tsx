@@ -1,5 +1,6 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
+import { BobaProvider } from "src/utils/context/boba";
 
 import About from "src/components/About";
 
@@ -31,9 +32,9 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App: React.FC<{}> = (): JSX.Element => (
-  <>
+  <BobaProvider>
     <About />
     <GlobalStyle />
-  </>
+  </BobaProvider>
 );
 export default App;

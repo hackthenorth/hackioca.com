@@ -1,13 +1,14 @@
 {
-  "name": "bobahackz",
+  "name": "hackioca",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "react-scripts-ts start",
-    "lint": "eslint --ext .jsx,.js,.tsx,.ts src/ --fix && stylelint src",
+    "lint": "npm run lint:ts && npm run lint:css",
+    "lint:ts": "eslint --ext .jsx,.js,.tsx,.ts src/ --fix",
     "lint:css": "stylelint src",
     "test": "jest --config jestconfig.json --watch",
-    "build": "tsc",
+    "build": "react-scripts-ts build",
     "deploy": "echo 'Deploy target not configured'",
     "eject": "react-scripts-ts eject"
   },
