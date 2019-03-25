@@ -27,7 +27,7 @@ const Quote = styled.p`
   margin-right: auto;
 `;
 
-const Profile = styled.img`
+const Photo = styled.img`
   position: absolute;
   margin-left: 80px;
   margin-top: 100px;
@@ -36,22 +36,22 @@ const Profile = styled.img`
   border: 5px solid #51192c;
 `;
 
-const Image = styled.img`
+const Background = styled.img`
   width: 100px;
   margin: 0 60px;
 `;
 
 interface JudgeProps {
   bgPath: string;
-  picturePath: string;
+  photoPath: string;
   name: string;
   quote: string;
 }
 
 const Judge = (props: JudgeProps) => (
   <Wrapper>
-    <Profile src={`images/judges/${props.picturePath}`} />
-    <Image src={`images/judges/${props.bgPath}`} />
+    <Photo src={`images/judges/${props.photoPath}`} />
+    <Background src={`images/judges/${props.bgPath}`} />
     <Name>{props.name}</Name>
     <Quote>&quot;{props.quote} is my favourite.&quot;</Quote>
   </Wrapper>

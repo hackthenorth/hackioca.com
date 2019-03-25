@@ -29,19 +29,19 @@ const Judges = () => (
     <Wrapper>
       <Judge
         bgPath="judge_cups_matcha.svg"
-        picturePath="barack_bobama.png"
+        photoPath="barack_bobama.png"
         name={copy.judges.barack.name}
         quote={copy.judges.barack.quote}
       />
       <Judge
         bgPath="judge_cups_milktea.svg"
-        picturePath="boba_fett.png"
+        photoPath="boba_fett.png"
         name={copy.judges.boba.name}
         quote={copy.judges.boba.quote}
       />
       <Judge
         bgPath="judge_cups_strawberry.svg"
-        picturePath="matcha_zuckerberg.png"
+        photoPath="matcha_zuckerberg.png"
         name={copy.judges.mark.name}
         quote={copy.judges.mark.quote}
       />
@@ -49,13 +49,13 @@ const Judges = () => (
     <Wrapper>
       <Judge
         bgPath="judge_cups_taro.svg"
-        picturePath="michael_buble_tea.png"
+        photoPath="michael_buble_tea.png"
         name={copy.judges.michael.name}
         quote={copy.judges.michael.quote}
       />
       <Judge
         bgPath="judge_cups-mango.svg"
-        picturePath="oolong_musk.png"
+        photoPath="oolong_musk.png"
         name={copy.judges.elon.name}
         quote={copy.judges.elon.quote}
       />
