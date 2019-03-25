@@ -12,7 +12,7 @@ const Wrapper = styled.div`
     `}
 `;
 
-const Title = styled.h3`
+const Name = styled.h3`
   font-weight: 700;
   margin: 10px 0 5px 0;
 `;
@@ -52,7 +52,7 @@ const Judge = (props: JudgeProps) => (
   <Wrapper>
     <Profile src={`images/judges/${props.picturePath}`} />
     <Image src={`images/judges/${props.bgPath}`} />
-    <Title>{props.name}</Title>
+    <Name>{props.name}</Name>
     <Quote>&quot;{props.quote} is my favourite.&quot;</Quote>
   </Wrapper>
 );
