@@ -1,0 +1,66 @@
+import React from "react";
+import styled from "styled-components";
+import copy from "src/copy";
+import media from "src/utils/media";
+
+import Judge from "src/components/Judge";
+
+const Header = styled.h1`
+  font-family: "Bubbleboddy";
+  font-size: 48px;
+  color: #000000;
+  text-align: center;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+
+  ${media.phone`
+    flex-direction: column;
+    margin: 0;
+    `}
+`;
+
+const Judges = () => (
+  <>
+    <Header>{copy.judges.title}</Header>
+    <Wrapper>
+      <Judge
+        bgPath="judge_cups_matcha.svg"
+        picturePath="barack_bobama.png"
+        name={copy.judges.barack.name}
+        quote={copy.judges.barack.quote}
+      />
+      <Judge
+        bgPath="judge_cups_milktea.svg"
+        picturePath="boba_fett.png"
+        name={copy.judges.boba.name}
+        quote={copy.judges.boba.quote}
+      />
+      <Judge
+        bgPath="judge_cups_strawberry.svg"
+        picturePath="matcha_zuckerberg.png"
+        name={copy.judges.mark.name}
+        quote={copy.judges.mark.quote}
+      />
+    </Wrapper>
+    <Wrapper>
+      <Judge
+        bgPath="judge_cups_taro.svg"
+        picturePath="michael_buble_tea.png"
+        name={copy.judges.michael.name}
+        quote={copy.judges.michael.quote}
+      />
+      <Judge
+        bgPath="judge_cups-mango.svg"
+        picturePath="oolong_musk.png"
+        name={copy.judges.elon.name}
+        quote={copy.judges.elon.quote}
+      />
+    </Wrapper>
+  </>
+);
+
+export default Judges;
