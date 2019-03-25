@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: "Raleway";
     font-weight: 400;
-    src: url("/fonts/Raleway-Light.tff") format("truetype");
+    src: url("/fonts/Raleway-Light.ttf") format("truetype");
   }
 
   html {
