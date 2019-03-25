@@ -14,7 +14,7 @@ const sizes: DisplaySizes = {
 
 const media = Object.keys(sizes).reduce((acc, label) => {
   acc[label] = (literals: TemplateStringsArray, ...args: []) => css`
-    @media (max-width: ${sizes[label] / 16}em) {
+    @media (max-width: ${sizes[label]}px) {
       ${css(literals, ...args)}
     }
   `;
