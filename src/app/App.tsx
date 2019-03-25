@@ -2,25 +2,30 @@ import React from "react";
 import { createGlobalStyle } from "styled-components";
 import { BobaProvider } from "src/utils/context/boba";
 
-import About from "src/components/About";
 
-const GlobalStyle = createGlobalStyle`
+import FontBubbleBoddy from "src/static/fonts/Bubbleboddy-FatTrial.ttf";
+import Raleway from "src/static/fonts/Raleway-Light.ttf";
+
+
+import Hero from "src/app/sections/Hero";
+
+const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: "Bubbleboddy";
     font-weight: 700;
-    src: url("/fonts/Bubbleboddy-FatTrial.ttf") format("truetype");
+    src: url(${FontBubbleBoddy}) format("truetype");
   }
 
   @font-face {
     font-family: "Raleway";
     font-weight: 400;
-    src: url("/fonts/Raleway-Light.tff") format("truetype");
+    src: url(${Raleway}) format("truetype");
   }
 
   html {
     margin: 0;
     padding: 0;
-    
+
     box-sizing: border-box;
   }
 
@@ -35,8 +40,11 @@ const GlobalStyle = createGlobalStyle`
 
 const App: React.FC = () => (
   <BobaProvider>
-    <About />
-    <GlobalStyle />
+      <GlobalStyles />
+
+      <Hero />
   </BobaProvider>
 );
+
+
 export default App;

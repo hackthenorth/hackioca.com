@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import copy from "src/copy";
+import copy from "src/siteCopy";
 import media from "src/utils/media";
 
 const Wrapper = styled.div`
@@ -30,7 +30,7 @@ const Header = styled.h1`
 `;
 
 const Paragraph = styled.p`
-  font-family: "Raleway";
+  font-family: Raleway, sans-serif;
   font-size: 16px;
   line-height: 1.5em;
   color: #51192c;

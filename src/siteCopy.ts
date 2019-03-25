@@ -1,4 +1,10 @@
 export default {
+  hero: {
+    title: "Hackioca",
+    subtitle: "A Qualitea Hackathon",
+    eventDate: "April 28 - 30, 2019",
+    eventLoc: "Taipei 101"
+  },
   about: {
     title: "about",
     desc:
