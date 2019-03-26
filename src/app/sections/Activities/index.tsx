@@ -9,6 +9,10 @@ const Title = styled.h1`
   font-size: 48px;
   color: #000;
   text-align: center;
+
+  ${media.phone`
+    font-size: 40px;
+  `}
 `;
 
 const Container = styled.div`
@@ -45,6 +49,14 @@ const Activity = styled.div`
   ${media.phone`
     width: 100%;
     text-align: center;
+
+    h4 {
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 18px;
+    }
   `}
 `;
 
