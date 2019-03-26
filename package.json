@@ -13,10 +13,10 @@
     "eject": "react-scripts-ts eject"
   },
   "dependencies": {
+    "nuka-carousel": "^4.5.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts-ts": "^4.0.8",
-    "react-swipeable": "^5.1.0",
     "styled-components": "^4.1.3"
   },
   "devDependencies": {

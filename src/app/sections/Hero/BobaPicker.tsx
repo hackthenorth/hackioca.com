@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useSwipeable } from 'react-swipeable'; // https://github.com/dogfessional/react-swipeable/issues/125
+import Carousel from 'nuka-carousel';
 
 import { useBobaContext } from "src/utils/context/boba";
 import { flavors, toppings, Flavor, Topping } from "src/siteData";
 
 import ImgChevron from "src/static/images/chevron_up.svg";
-import ImgBobaPlaceholder from "src/static/images/hero/hero_mango_boba.svg";
-
+import ImgBobaPlaceholder from "src/static/images/hero/placeholder_cup.svg";
+import ImgToppingGrassJelly from "src/static/images/hero/toppings/grass_jelly.svg";
+import ImgToppingTapioca from "src/static/images/hero/toppings/tapioca.svg";
+import ImgToppingRedBean from "src/static/images/hero/toppings/red_bean.svg";
+import ImgToppingPudding from "src/static/images/hero/toppings/pudding.svg";
+import ImgToppingAloeVera from "src/static/images/hero/toppings/aloe_vera.svg";
 
 /* HELPER FUNCTIONS */
-const TOPPING_CHANGE_THRESHOLD = 100;
-
 const isTopping = (option: Topping | Flavor): boolean => toppings.indexOf(option as Topping) >= 0;
 
 // https://stackoverflow.com/questions/50924952/typescript-has-no-compatible-call-signatures
@@ -54,7 +56,8 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const Boba = styled.div`
+
+const BobaSelection = styled.div`
   width: 375px;
   height: 375px;
   position: relative;
@@ -76,19 +79,41 @@ const Boba = styled.div`
     border-radius: 50%;
   }
 
-  & img {
-    max-width: 95%;
-    max-height: 95%;
+  & img.cup {
+    max-width: 350px;
+    max-height: 350px;
     position: relative;
+    margin: auto;
 
-    z-index: 1;
     grid-row: 1;
     grid-column: 1;
-
-    will-change: transform;
   }
 `;
 
+
+const BobaCarousel = styled(Carousel)`
+  position: relative;
+
+  z-index: 1;
+  grid-row: 1;
+  grid-column: 1;
+
+  ${'' /* & ul.slider-list {
+    width: inherit !important;
+  } */}
+`;
+
+
+const ToppingImg = styled.img`
+  max-width: 150px;
+  max-height: 150px;
+  margin: auto;
+  position: relative;
+
+  &:active, &:focus {
+    outline: none;
+  }
+`;
 
 const Picker = styled.div`
   display: flex;
@@ -105,6 +130,7 @@ const PickerOption = styled.div<{ selected: boolean }>`
   border: 3px solid white;
 
   cursor: pointer;
+
   transition: opacity 200ms ease-in-out;
   opacity: ${props => props.selected ? 1 : 0.6};
 
@@ -114,11 +140,21 @@ const PickerOption = styled.div<{ selected: boolean }>`
 `;
 
 
-const Arrow = styled.img`
+const Arrow = styled.img<{ down?: true; }>`
   max-width: 30px;
   max-height: 30px;
 
   margin: 0 auto;
+
+  ${props => props.down && 'transform: rotate(180deg);'}
+
+  cursor: pointer;
+
+  transition: opacity 200ms ease-in-out;
+  opacity: 0.6;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 
@@ -126,25 +162,10 @@ const Arrow = styled.img`
 const BobaPicker: React.FC = () => {
 
   const { flavor: selectedFlavor, topping: selectedTopping, updateFlavor, updateTopping } = useBobaContext();
-  const [ swipedDeltaX, updateDeltaX ] = useState(0);
-  const swipeStyles = { transform: `translateX(${swipedDeltaX}px)` };
   const shownFlavors = filterShownOptions(selectedFlavor) as Flavor[];
   const shownToppings = filterShownOptions(selectedTopping) as Topping[];
-  const handlers = useSwipeable({
-    onSwipedLeft: (eventData: any) => console.log(eventData),
-    onSwipedRight: (eventData: any) => console.log(eventData),
-    onSwiping: (eventData: any) => updateDeltaX(prevDeltaX => (prevDeltaX + (eventData.deltaX * -0.1))),
-    preventDefaultTouchmoveEvent: true,
-    delta: 2,
-    trackMouse: true
-  });
 
-  useEffect(() => {
-    if(Math.abs(swipedDeltaX) > TOPPING_CHANGE_THRESHOLD) {
-      updateTopping(shiftOptionBy(selectedTopping, 1) as Topping);
-      updateDeltaX(0);
-    }
-  }, [swipedDeltaX]);
+
 
   return (
     <Container>
@@ -155,20 +176,34 @@ const BobaPicker: React.FC = () => {
                     {flavor}
                 </PickerOption>
             ))}
-            <Arrow src={ImgChevron} onClick={() => updateFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)} />
+            <Arrow src={ImgChevron} down onClick={() => updateFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)} />
         </Picker>
-        <Boba {...handlers}>
-            <img src={ImgBobaPlaceholder} style={swipeStyles} />
-        <div className="circleBg" />
-      </Boba>
-      <Picker>
-        <Arrow src={ImgChevron} onClick={() => updateTopping(shiftOptionBy(selectedTopping, -1) as Topping)} />
-        {shownToppings.map(topping => (
-          <PickerOption onClick={() => updateTopping(topping)} selected={topping === selectedTopping}>
-            {topping}
-          </PickerOption>
-        ))}
-        <Arrow src={ImgChevron} onClick={() => updateTopping(shiftOptionBy(selectedTopping, 1) as Topping)} />
+        <BobaSelection>
+            <div className="circleBg"/>
+            <img className="cup" src={ImgBobaPlaceholder} />
+            <BobaCarousel
+                wrapAround
+                withoutControls
+                width="350px"
+                initialSlideHeight={350}
+                slideIndex={toppings.indexOf(selectedTopping)}
+                afterSlide={slideIndex => updateTopping(toppings[slideIndex])}
+            >
+                <ToppingImg src={ImgToppingTapioca} />
+                <ToppingImg src={ImgToppingGrassJelly} />
+                <ToppingImg src={ImgToppingAloeVera} />
+                <ToppingImg src={ImgToppingRedBean} />
+                <ToppingImg src={ImgToppingPudding} />
+            </BobaCarousel>
+        </BobaSelection>
+        <Picker>
+            <Arrow src={ImgChevron} onClick={() => updateTopping(shiftOptionBy(selectedTopping, -1) as Topping)} />
+            {shownToppings.map(topping => (
+                <PickerOption onClick={() => updateTopping(topping)} selected={topping === selectedTopping}>
+                    {topping}
+                </PickerOption>
+            ))}
+            <Arrow src={ImgChevron} down onClick={() => updateTopping(shiftOptionBy(selectedTopping, 1) as Topping)} />
       </Picker>
     </Container>
   );
