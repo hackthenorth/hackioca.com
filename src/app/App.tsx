@@ -7,6 +7,7 @@ import Judges from "src/app/sections/Judges";
 import About from "src/app/sections/About";
 import FAQ from "src/app/sections/FAQ";
 import Prizes from "src/app/sections/Prizes";
+import Activities from "src/app/sections/Activities";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -65,6 +66,7 @@ const App: React.FC = () => (
     <Schedule />
     <Judges />
     <Prizes />
+    <Activities />
     <FAQ />
     <GlobalStyle />
   </BobaProvider>

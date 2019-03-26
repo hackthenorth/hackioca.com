@@ -154,19 +154,23 @@ export default {
     body: [
       {
         activity: "Boba Ball Pit",
-        desc: "Come blow off some steam in our giant tapioca ball pit! If you get stuck, you can eat your way out."
+        desc:
+          "Come blow off some steam in our giant tapioca ball pit! If you get stuck, you can eat your way out."
       },
       {
         activity: "Bubble Soccer",
-        desc: "Soccer with a twist: step inside a giant inflatable bubble and get some physical activity!"
+        desc:
+          "Soccer with a twist: step inside a giant inflatable bubble and get some physical activity!"
       },
       {
         activity: "Do Your Homework that's Due Tomorrow",
-        desc: "We know you have to do it. You know you have to do it. Come procrastinate with all the other procrastinators together."
+        desc:
+          "We know you have to do it. You know you have to do it. Come procrastinate with all the other procrastinators together."
       },
       {
         activity: "Find Your Boba Bae",
-        desc: "Mix and mingle with those who share your passion for all things boba. Strike up a conversation with someone and see if you’re a matcha!"
+        desc:
+          "Mix and mingle with those who share your passion for all things boba. Strike up a conversation with someone and see if you’re a matcha!"
       }
     ]
   }
