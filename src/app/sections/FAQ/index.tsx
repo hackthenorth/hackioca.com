@@ -58,8 +58,8 @@ const QuestionSet = styled.div`
 `;
 
 interface FaqQuestion {
-  question: string,
-  answer: string
+  question: string;
+  answer: string;
 }
 
 const left: FaqQuestion[] = [];
@@ -69,27 +69,23 @@ copy.faq.body.forEach((e, i) => (i % 2 ? right : left).push(e));
 
 const Left = (
   <Column>
-    {
-      left.map(({ question, answer }) => (
-        <QuestionSet key={question}>
-          <h4>{question}</h4>
-          <p>{answer}</p>
-        </QuestionSet>
-      ))
-    }
+    {left.map(({ question, answer }) => (
+      <QuestionSet key={question}>
+        <h4>{question}</h4>
+        <p>{answer}</p>
+      </QuestionSet>
+    ))}
   </Column>
 );
 
 const Right = (
   <Column>
-    {
-      right.map(({ question, answer }) => (
-        <QuestionSet key={question}>
-          <h4>{question}</h4>
-          <p>{answer}</p>
-        </QuestionSet>
-      ))
-    }
+    {right.map(({ question, answer }) => (
+      <QuestionSet key={question}>
+        <h4>{question}</h4>
+        <p>{answer}</p>
+      </QuestionSet>
+    ))}
   </Column>
 );
 
@@ -97,8 +93,8 @@ const FAQ: React.FC = () => (
   <div id="faq">
     <Title>{copy.faq.title}</Title>
     <Body>
-      { Left }
-      { Right }
+      {Left}
+      {Right}
     </Body>
   </div>
 );
