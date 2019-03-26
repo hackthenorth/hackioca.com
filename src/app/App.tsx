@@ -4,9 +4,10 @@ import { BobaProvider } from "src/utils/context/boba";
 
 import Schedule from "src/app/sections/Schedule";
 import Judges from "src/app/sections/Judges";
-import About from "src/app/sections/About";
 import FAQ from "src/app/sections/FAQ";
 import Prizes from "src/app/sections/Prizes";
+import Workshops from "src/app/sections/Workshops";
+import About from "src/app/sections/About";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -64,6 +65,7 @@ const App: React.FC = () => (
     <About />
     <Schedule />
     <Judges />
+    <Workshops />
     <Prizes />
     <FAQ />
     <GlobalStyle />
