@@ -65,7 +65,7 @@ interface FaqQuestion {
 const left: FaqQuestion[] = [];
 const right: FaqQuestion[] = [];
 
-copy.faq.body.map((e, i) => (i % 2 ? right : left).push(e));
+copy.faq.body.forEach((e, i) => (i % 2 ? right : left).push(e));
 
 const Left = (
   <Column>
