@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
+
+interface SectionWrapperProps {
+  className?: string;
+}
+
+
 const Container = styled.section`
-  width: 100vw;
-  display: flex;
 `;
 
-const SectionWrapper: React.FC = ({ children }) => (
-  <Container className="section">{children}</Container>
+const SectionWrapper: React.FC<SectionWrapperProps> = ({ className, children }) => (
+  <Container className={className}>{children}</Container>
 );
 
 export default SectionWrapper;
