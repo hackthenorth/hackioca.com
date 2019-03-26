@@ -148,5 +148,34 @@ export default {
         prize: "Prize: 4 new insta followers"
       }
     ]
+  },
+  workshops: {
+    title: "workshops",
+    body: [
+      {
+        workshop: "Binary Tea Algorithms",
+        desc: "This workshop is a tea-rrific way to brush up on a common topic in those technical algorithm interviews!"
+      },
+      {
+        workshop: "Intro to Perl",
+        desc: "Ever wonder what perl is? Add some texture to your programming skill set and find out!"
+      },
+      {
+        workshop: "How to conduct Quali-tea Assurance (QA)",
+        desc: "Ever had a bad cup of boba? This workshop will teach you how to keep your service or product at its best quali-tea for every customer."
+      },
+      {
+        workshop: "Intro to kuberne-tea-s",
+        desc: "By the end of this workshop, you’ll barely be able to contain your excitement to try kuberne-tea-s out!"
+      },
+      {
+        workshop: "H-TEA-TEA-P",
+        desc: "Spill all the tea! Format as well as transmit your messages across the web."
+      },
+      {
+        workshop: "CoffeeScript",
+        desc: "Get your day going with this hyper fast paced, stimulating introduction to CoffeeScript. Note: due to it not being a boba drink, coffee will not be provided or permitted at the workshop or the hackathon."
+      }
+    ]
   }
 };
