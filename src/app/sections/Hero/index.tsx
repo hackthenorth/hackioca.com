@@ -57,22 +57,20 @@ const HeroDesc = styled.div`
 
 
 
-
-
 const HeroSection: React.FC = () => (
   <HeroWrapper>
-      <div>
-          <BobaPicker />
+    <div>
+      <BobaPicker />
 
-          <HeroTitle>{siteCopy.hero.title}</HeroTitle>
-          <HeroDesc>
-              <div className="subtitle">{siteCopy.hero.subtitle}</div>
-              <div className="details">{siteCopy.hero.eventDate}</div>
-              <div className="details">{siteCopy.hero.eventLoc}</div>
-          </HeroDesc>
+      <HeroTitle>{siteCopy.hero.title}</HeroTitle>
+      <HeroDesc>
+        <div className="subtitle">{siteCopy.hero.subtitle}</div>
+        <div className="details">{siteCopy.hero.eventDate}</div>
+        <div className="details">{siteCopy.hero.eventLoc}</div>
+      </HeroDesc>
 
-          <MailingListSignup />
-      </div>
+      <MailingListSignup />
+    </div>
   </HeroWrapper>
 );
 

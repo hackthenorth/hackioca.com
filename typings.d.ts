@@ -7,3 +7,5 @@ declare module "*.bmp"
 declare module "*.tiff"
 
 declare module "*.ttf"
+
+declare module "react-swipeable"
