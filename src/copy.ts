@@ -163,7 +163,7 @@ export default {
           "Soccer with a twist: step inside a giant inflatable bubble and get some physical activity!"
       },
       {
-        activity: "Do Your Homework that's Due Tomorrow",
+        activity: "Do your homework that’s due tomorrow",
         desc:
           "We know you have to do it. You know you have to do it. Come procrastinate with all the other procrastinators together."
       },

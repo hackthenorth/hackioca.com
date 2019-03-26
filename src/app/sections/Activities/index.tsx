@@ -4,6 +4,11 @@ import styled from "styled-components";
 import copy from "src/copy";
 import media from "src/utils/media";
 
+const ActivityContainer = styled.div`
+  max-width: 1440px;
+  margin: 0 auto;
+`;
+
 const Title = styled.h1`
   font-family: "Bubbleboddy";
   font-size: 48px;
@@ -15,11 +20,11 @@ const Title = styled.h1`
   `}
 `;
 
-const Container = styled.div`
+const BodyContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 0 9%;
+  padding: 0 129px;
 
   ${media.phone`
     padding: 0 25px;
@@ -27,7 +32,7 @@ const Container = styled.div`
 `;
 
 const Activity = styled.div`
-  font-family: Raleway;
+  font-family: "Raleway";
   color: #51192c;
   margin-bottom: 32px;
   width: 47.3%;
@@ -61,21 +66,21 @@ const Activity = styled.div`
 `;
 
 const Body = (
-  <Container>
+  <BodyContainer>
     {copy.activities.body.map(({ activity, desc }) => (
-      <Activity>
+      <Activity key={activity}>
         <h4>{activity}</h4>
         <p>{desc}</p>
       </Activity>
     ))}
-  </Container>
+  </BodyContainer>
 );
 
 const Activities: React.FC = () => (
-  <div id="activities">
+  <ActivityContainer id="activities">
     <Title>{copy.activities.title}</Title>
     {Body}
-  </div>
+  </ActivityContainer>
 );
 
 export default React.memo(Activities);
