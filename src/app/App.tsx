@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 import { BobaProvider } from "src/utils/context/boba";
 
 import About from "src/components/About";
+import Schedule from "src/components/Schedule";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -14,7 +15,25 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: "Raleway";
     font-weight: 400;
-    src: url("/fonts/Raleway-Light.tff") format("truetype");
+    src: url("/fonts/Raleway-Light.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Raleway";
+    font-weight: 500;
+    src: url("/fonts/Raleway-Medium.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Raleway";
+    font-weight: 600;
+    src: url("/fonts/Raleway-Semibold.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Raleway";
+    font-weight: 700;
+    src: url("/fonts/Raleway-Bold.ttf") format("truetype");
   }
 
   html {
@@ -34,6 +53,7 @@ const GlobalStyle = createGlobalStyle`
 const App: React.FC = () => (
   <BobaProvider>
     <About />
+    <Schedule />
     <GlobalStyle />
   </BobaProvider>
 );
