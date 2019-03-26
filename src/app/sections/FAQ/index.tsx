@@ -39,7 +39,7 @@ const QuestionSet = styled.div`
   margin-bottom: 32px;
 
   h4 {
-    font-weight: bold;
+    font-weight: 700;
     line-height: 45px;
     font-size: 32px;
     margin-top: 0;
@@ -49,7 +49,7 @@ const QuestionSet = styled.div`
   p {
     font-weight: 500;
     font-size: 16px;
-    line-height: 34px;
+    line-height: 24px;
   }
 
   ${media.phone`
@@ -57,28 +57,50 @@ const QuestionSet = styled.div`
   `}
 `;
 
+interface FaqQuestion {
+  question: string,
+  answer: string
+}
+
+const left: FaqQuestion[] = [];
+const right: FaqQuestion[] = [];
+
+copy.faq.body.map((e, i) => (i % 2 ? right : left).push(e));
+
+const Left = (
+  <Column>
+    {
+      left.map(({ question, answer }) => (
+        <QuestionSet key={question}>
+          <h4>{question}</h4>
+          <p>{answer}</p>
+        </QuestionSet>
+      ))
+    }
+  </Column>
+);
+
+const Right = (
+  <Column>
+    {
+      right.map(({ question, answer }) => (
+        <QuestionSet key={question}>
+          <h4>{question}</h4>
+          <p>{answer}</p>
+        </QuestionSet>
+      ))
+    }
+  </Column>
+);
+
 const FAQ: React.FC = () => (
   <div id="faq">
     <Title>{copy.faq.title}</Title>
     <Body>
-      <Column>
-        {copy.faq.body.left.map(({ question, answer }, i) => (
-          <QuestionSet key={`question-left-${i}`}>
-            <h4>{question}</h4>
-            <p>{answer}</p>
-          </QuestionSet>
-        ))}
-      </Column>
-      <Column>
-        {copy.faq.body.right.map(({ question, answer }, i) => (
-          <QuestionSet key={`question-right-${i}`}>
-            <h4>{question}</h4>
-            <p>{answer}</p>
-          </QuestionSet>
-        ))}
-      </Column>
+      { Left }
+      { Right }
     </Body>
   </div>
 );
 
-export default FAQ;
+export default React.memo(FAQ);
