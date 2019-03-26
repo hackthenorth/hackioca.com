@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 interface ActivityProps {
-  name: string;
+  title: string;
   time: string;
 }
 
@@ -12,7 +12,7 @@ const Wrapper = styled.li`
 
 const Activity = (props: ActivityProps) => (
   <Wrapper>
-    <span>{props.name}</span>
+    <span>{props.title}</span>
     <span>{props.time}</span>
   </Wrapper>
 );

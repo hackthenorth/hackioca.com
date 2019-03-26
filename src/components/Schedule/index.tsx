@@ -75,27 +75,27 @@ const Schedule = () => (
       <Title>{copy.schedule.dayOne.title}</Title>
       <Activites>
         <Activity
-          name={copy.schedule.dayOne.registration.title}
+          title={copy.schedule.dayOne.registration.title}
           time={copy.schedule.dayOne.registration.time}
         />
         <Activity
-          name={copy.schedule.dayOne.dinner.title}
+          title={copy.schedule.dayOne.dinner.title}
           time={copy.schedule.dayOne.dinner.time}
         />
         <Activity
-          name={copy.schedule.dayOne.workshopOne.title}
+          title={copy.schedule.dayOne.workshopOne.title}
           time={copy.schedule.dayOne.workshopOne.time}
         />
         <Activity
-          name={copy.schedule.dayOne.opening.title}
+          title={copy.schedule.dayOne.opening.title}
           time={copy.schedule.dayOne.opening.time}
         />
         <Activity
-          name={copy.schedule.dayOne.activityOne.title}
+          title={copy.schedule.dayOne.activityOne.title}
           time={copy.schedule.dayOne.activityOne.time}
         />
         <Activity
-          name={copy.schedule.dayOne.workshopTwo.title}
+          title={copy.schedule.dayOne.workshopTwo.title}
           time={copy.schedule.dayOne.workshopTwo.time}
         />
       </Activites>
@@ -105,43 +105,43 @@ const Schedule = () => (
       <Title>{copy.schedule.dayTwo.title}</Title>
       <Activites>
         <Activity
-          name={copy.schedule.dayTwo.snackOne.title}
+          title={copy.schedule.dayTwo.snackOne.title}
           time={copy.schedule.dayTwo.snackOne.time}
         />
         <Activity
-          name={copy.schedule.dayTwo.workshopOne.title}
+          title={copy.schedule.dayTwo.workshopOne.title}
           time={copy.schedule.dayTwo.workshopOne.time}
         />
         <Activity
-          name={copy.schedule.dayTwo.workshopTwo.title}
+          title={copy.schedule.dayTwo.workshopTwo.title}
           time={copy.schedule.dayTwo.workshopTwo.time}
         />
         <Activity
-          name={copy.schedule.dayTwo.breakfast.title}
+          title={copy.schedule.dayTwo.breakfast.title}
           time={copy.schedule.dayTwo.breakfast.time}
         />
         <Activity
-          name={copy.schedule.dayTwo.workshopThree.title}
+          title={copy.schedule.dayTwo.workshopThree.title}
           time={copy.schedule.dayTwo.workshopThree.time}
         />
         <Activity
-          name={copy.schedule.dayTwo.lunch.title}
+          title={copy.schedule.dayTwo.lunch.title}
           time={copy.schedule.dayTwo.lunch.time}
         />
         <Activity
-          name={copy.schedule.dayTwo.activityOne.title}
+          title={copy.schedule.dayTwo.activityOne.title}
           time={copy.schedule.dayTwo.activityOne.time}
         />
         <Activity
-          name={copy.schedule.dayTwo.snackTwo.title}
+          title={copy.schedule.dayTwo.snackTwo.title}
           time={copy.schedule.dayTwo.snackTwo.time}
         />
         <Activity
-          name={copy.schedule.dayTwo.dinner.title}
+          title={copy.schedule.dayTwo.dinner.title}
           time={copy.schedule.dayTwo.dinner.time}
         />
         <Activity
-          name={copy.schedule.dayTwo.activityTwo.title}
+          title={copy.schedule.dayTwo.activityTwo.title}
           time={copy.schedule.dayTwo.activityTwo.time}
         />
       </Activites>
@@ -151,31 +151,31 @@ const Schedule = () => (
       <Title>{copy.schedule.dayThree.title}</Title>
       <Activites>
         <Activity
-          name={copy.schedule.dayThree.snackOne.title}
+          title={copy.schedule.dayThree.snackOne.title}
           time={copy.schedule.dayThree.snackOne.time}
         />
         <Activity
-          name={copy.schedule.dayThree.workshopOne.title}
+          title={copy.schedule.dayThree.workshopOne.title}
           time={copy.schedule.dayThree.workshopOne.time}
         />
         <Activity
-          name={copy.schedule.dayThree.workshopTwo.title}
+          title={copy.schedule.dayThree.workshopTwo.title}
           time={copy.schedule.dayThree.workshopTwo.time}
         />
         <Activity
-          name={copy.schedule.dayThree.judging.title}
+          title={copy.schedule.dayThree.judging.title}
           time={copy.schedule.dayThree.judging.time}
         />
         <Activity
-          name={copy.schedule.dayThree.activityOne.title}
+          title={copy.schedule.dayThree.activityOne.title}
           time={copy.schedule.dayThree.activityOne.time}
         />
         <Activity
-          name={copy.schedule.dayThree.lunch.title}
+          title={copy.schedule.dayThree.lunch.title}
           time={copy.schedule.dayThree.lunch.time}
         />
         <Activity
-          name={copy.schedule.dayThree.closing.title}
+          title={copy.schedule.dayThree.closing.title}
           time={copy.schedule.dayThree.closing.time}
         />
       </Activites>
