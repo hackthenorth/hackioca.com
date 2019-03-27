@@ -2,14 +2,16 @@ import { css, ThemedCssFunction } from "styled-components";
 
 interface DisplaySizes {
   phone: number;
+  tablet: number;
 }
 
-interface MediaTemplates {
-  phone: ThemedCssFunction<object>;
-}
+type MediaTemplates = {
+  [key in keyof DisplaySizes]: ThemedCssFunction<object>
+};
 
 const sizes: DisplaySizes = {
-  phone: 700
+  phone: 700,
+  tablet: 1024
 };
 
 const media = Object.keys(sizes).reduce((acc, label) => {
