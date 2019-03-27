@@ -11,11 +11,11 @@ export default {
       quote: "Classic Roasted Milk Tea"
     },
     boba: {
-      name: "Bobba Fett",
+      name: "Boba Fett",
       quote: "Passion Fruit Green Tea"
     },
     elon: {
-      name: "Olong Musk",
+      name: "Oolong Musk",
       quote: "Oolong Milk Tea"
     },
     mark: {
@@ -23,7 +23,7 @@ export default {
       quote: "Matcha Red Bean Milk Tea"
     },
     michael: {
-      name: "Michael Buble Tea",
+      name: "Michael Bublé Tea",
       quote: "Wintermelon Iced Tea, half sweet"
     }
   }

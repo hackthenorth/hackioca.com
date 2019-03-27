@@ -18,13 +18,11 @@ const Name = styled.h3`
 `;
 
 const Quote = styled.p`
-  margin-top: 0;
+  margin: 0 auto;
   font-style: italic;
   font-size: 14px;
   line-height: 1.5em;
   width: 150px;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 const Photo = styled.img`

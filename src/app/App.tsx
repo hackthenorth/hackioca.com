@@ -15,20 +15,20 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: "Raleway";
     font-weight: 300;
-    src: url("/fonts/Raleway-Light.tff") format("truetype");
+    src: url("/fonts/Raleway-Light.ttf") format("truetype");
   }
 
   @font-face {
     font-family: "Raleway";
     font-weight: 400;
-    src: url("/fonts/Raleway-Regular.tff") format("truetype");
+    src: url("/fonts/Raleway-Regular.ttf") format("truetype");
   }
 
 
   @font-face {
     font-family: "Raleway";
     font-weight: 700;
-    src: url("/fonts/Raleway-Bold.tff") format("truetype");
+    src: url("/fonts/Raleway-Bold.ttf") format("truetype");
   }
 
   html {
