@@ -3,7 +3,6 @@ import { createGlobalStyle } from "styled-components";
 import { BobaProvider } from "src/utils/context/boba";
 
 import About from "src/components/About";
-import MarketingDemo from 'src/components/MarketingDemo';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -35,7 +34,6 @@ const GlobalStyle = createGlobalStyle`
 const App: React.FC = () => (
   <BobaProvider>
     <About />
-    <MarketingDemo />
     <GlobalStyle />
   </BobaProvider>
 );
