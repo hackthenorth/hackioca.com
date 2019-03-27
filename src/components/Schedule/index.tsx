@@ -68,36 +68,42 @@ const Activities = styled.ul`
   }
 `;
 
-const Schedule = () => (
+const dayOneActivities = copy.schedule.dayOne.events.map(
+  ({ title, time }, i) => (
+    <Activity key={`dayOne-event-${i}`} title={title} time={time} />
+  )
+);
+
+const dayTwoActivities = copy.schedule.dayTwo.events.map(
+  ({ title, time }, i) => (
+    <Activity key={`dayTwo-event-${i}`} title={title} time={time} />
+  )
+);
+
+const dayThreeActivities = copy.schedule.dayThree.events.map(
+  ({ title, time }, i) => (
+    <Activity key={`dayThree-event-${i}`} title={title} time={time} />
+  )
+);
+
+const Schedule = React.memo(() => (
   <Wrapper id="schedule">
     <Header>{copy.schedule.title}</Header>
     <Chalkboard>
       <Title>{copy.schedule.dayOne.title}</Title>
-      <Activities>
-        {copy.schedule.dayOne.events.map(({ title, time }, i) => (
-          <Activity key={`dayOne-event-${i}`} title={title} time={time} />
-        ))}
-      </Activities>
+      <Activities>{dayOneActivities}</Activities>
     </Chalkboard>
 
     <Chalkboard>
       <Title>{copy.schedule.dayTwo.title}</Title>
-      <Activities>
-        {copy.schedule.dayTwo.events.map(({ title, time }, i) => (
-          <Activity key={`dayTwo-event-${i}`} title={title} time={time} />
-        ))}
-      </Activities>
+      <Activities>{dayTwoActivities}</Activities>
     </Chalkboard>
 
     <Chalkboard>
       <Title>{copy.schedule.dayThree.title}</Title>
-      <Activities>
-        {copy.schedule.dayThree.events.map(({ title, time }, i) => (
-          <Activity key={`dayThree-event-${i}`} title={title} time={time} />
-        ))}
-      </Activities>
+      <Activities>{dayThreeActivities}</Activities>
     </Chalkboard>
   </Wrapper>
-);
+));
 
 export default Schedule;
