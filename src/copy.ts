@@ -7,7 +7,7 @@ export default {
   marketing: {
     michal: "HIIIII CHRIS <3 ",
     chris: "It's Chris 🔥",
-    katherine: "It's Katherine 👀",
+    katherine: "It's Katherine :pregnant emoji:",
     kristine: "It's Kristine 🤠"
   }
 };
