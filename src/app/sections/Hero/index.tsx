@@ -54,9 +54,6 @@ const HeroDesc = styled.div`
 
 
 
-
-
-
 const HeroSection: React.FC = () => (
   <HeroWrapper>
     <div>

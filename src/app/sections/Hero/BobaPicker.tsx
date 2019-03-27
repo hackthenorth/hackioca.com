@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Carousel from 'nuka-carousel';
-
+import Carousel from "nuka-carousel";
+import media from "src/utils/media";
 import { useBobaContext } from "src/utils/context/boba";
 import { flavors, toppings, Flavor, Topping } from "src/siteData";
 
@@ -12,6 +12,12 @@ import ImgToppingTapioca from "src/static/images/hero/toppings/tapioca.svg";
 import ImgToppingRedBean from "src/static/images/hero/toppings/red_bean.svg";
 import ImgToppingPudding from "src/static/images/hero/toppings/pudding.svg";
 import ImgToppingAloeVera from "src/static/images/hero/toppings/aloe_vera.svg";
+
+import ImgFlavorMilk from "src/static/images/hero/flavors/milk.svg";
+import ImgToppingStrawberry from "src/static/images/hero/flavors/strawberry.svg";
+import ImgToppingMango from "src/static/images/hero/flavors/mango.svg";
+import ImgToppingMatcha from "src/static/images/hero/flavors/matcha.svg";
+import ImgToppingTaro from "src/static/images/hero/flavors/taro.svg";
 
 /* HELPER FUNCTIONS */
 const isTopping = (option: Topping | Flavor): boolean => toppings.indexOf(option as Topping) >= 0;
@@ -90,6 +96,37 @@ const BobaSelection = styled.div`
   }
 `;
 
+const FlavorChoice = styled.div`
+  position: relative;
+  margin: auto;
+
+  grid-row: 1;
+  grid-column: 1;
+
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+  cursor: pointer;
+
+
+  & img {
+    max-width: 350px;
+    max-height: 350px;
+    position: relative;
+    margin: auto;
+
+    grid-row: 1;
+    grid-column: 1;
+
+    transition: opacity 250ms ease-in-out;
+    opacity: 0;
+    &.show {
+      opacity: 1;
+    }
+  }
+`;
+
 
 const BobaCarousel = styled(Carousel)`
   position: relative;
@@ -98,13 +135,26 @@ const BobaCarousel = styled(Carousel)`
   grid-row: 1;
   grid-column: 1;
 
-  ${'' /* & ul.slider-list {
-    width: inherit !important;
-  } */}
+  & div.slider-frame {
+    overflow: visible !important;
+  }
+
+
+  & ul.slider-list li.slider-slide {
+
+    & img {
+      transition: opacity 200ms ease-in-out;
+      opacity: 0;
+    }
+
+    &.slide-visible img {
+      opacity: 1;
+    }
+  }
 `;
 
 
-const ToppingImg = styled.img`
+const ToppingChoice = styled.img`
   max-width: 150px;
   max-height: 150px;
   margin: auto;
@@ -120,6 +170,10 @@ const Picker = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   margin: 20px auto;
+
+  ${media.phone`
+    display: none;
+  `}
 `;
 
 const PickerOption = styled.div<{ selected: boolean }>`
@@ -181,6 +235,13 @@ const BobaPicker: React.FC = () => {
         <BobaSelection>
             <div className="circleBg"/>
             <img className="cup" src={ImgBobaPlaceholder} />
+            <FlavorChoice className="flavor" onClick={() => updateFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)}>
+                <img src={ImgFlavorMilk} className={(selectedFlavor === "milk") ? "show" : ""} />
+                <img src={ImgToppingStrawberry} className={(selectedFlavor === "strawberry") ? "show" : ""} />
+                <img src={ImgToppingMango} className={(selectedFlavor === "mango") ? "show" : ""} />
+                <img src={ImgToppingMatcha} className={(selectedFlavor === "matcha") ? "show" : ""} />
+                <img src={ImgToppingTaro} className={(selectedFlavor === "taro") ? "show" : ""} />
+            </FlavorChoice>
             <BobaCarousel
                 wrapAround
                 withoutControls
@@ -189,11 +250,11 @@ const BobaPicker: React.FC = () => {
                 slideIndex={toppings.indexOf(selectedTopping)}
                 afterSlide={slideIndex => updateTopping(toppings[slideIndex])}
             >
-                <ToppingImg src={ImgToppingTapioca} />
-                <ToppingImg src={ImgToppingGrassJelly} />
-                <ToppingImg src={ImgToppingAloeVera} />
-                <ToppingImg src={ImgToppingRedBean} />
-                <ToppingImg src={ImgToppingPudding} />
+                <ToppingChoice src={ImgToppingTapioca} />
+                <ToppingChoice src={ImgToppingGrassJelly} />
+                <ToppingChoice src={ImgToppingAloeVera} />
+                <ToppingChoice src={ImgToppingRedBean} />
+                <ToppingChoice src={ImgToppingPudding} />
             </BobaCarousel>
         </BobaSelection>
         <Picker>
