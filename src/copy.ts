@@ -117,5 +117,8 @@ export default {
         answer: "We’ll have a place for you to enjoy a nice bubble bath."
       }
     ]
+  },
+  sponsors: {
+    title: "sponsors"
   }
 };
