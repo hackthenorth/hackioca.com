@@ -46,13 +46,13 @@ interface JudgeProps {
   quote: string;
 }
 
-const Judge = (props: JudgeProps) => (
+const Judge = React.memo((props: JudgeProps) => (
   <Wrapper>
     <Photo src={`images/judges/${props.photoPath}`} />
     <Background src={`images/judges/${props.bgPath}`} />
     <Name>{props.name}</Name>
     <Quote>&quot;{props.quote} is my favourite.&quot;</Quote>
   </Wrapper>
-);
+));
 
 export default Judge;

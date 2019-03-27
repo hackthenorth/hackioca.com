@@ -23,7 +23,7 @@ const Wrapper = styled.div`
     `}
 `;
 
-const Judges = () => (
+const Judges = React.memo(() => (
   <>
     <Header>{copy.judges.title}</Header>
     <Wrapper>
@@ -61,6 +61,6 @@ const Judges = () => (
       />
     </Wrapper>
   </>
-);
+));
 
 export default Judges;
