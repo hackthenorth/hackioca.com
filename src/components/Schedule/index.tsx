@@ -68,22 +68,16 @@ const Activities = styled.ul`
   }
 `;
 
-const dayOneActivities = copy.schedule.dayOne.events.map(
-  ({ title, time }, i) => (
-    <Activity key={`dayOne-event-${i}`} title={title} time={time} />
-  )
-);
+const dayOneActivities = copy.schedule.dayOne.events.map(({ title, time }) => (
+  <Activity key={title} title={title} time={time} />
+));
 
-const dayTwoActivities = copy.schedule.dayTwo.events.map(
-  ({ title, time }, i) => (
-    <Activity key={`dayTwo-event-${i}`} title={title} time={time} />
-  )
-);
+const dayTwoActivities = copy.schedule.dayTwo.events.map(({ title, time }) => (
+  <Activity key={title} title={title} time={time} />
+));
 
 const dayThreeActivities = copy.schedule.dayThree.events.map(
-  ({ title, time }, i) => (
-    <Activity key={`dayThree-event-${i}`} title={title} time={time} />
-  )
+  ({ title, time }) => <Activity key={title} title={title} time={time} />
 );
 
 const Schedule = React.memo(() => (
