@@ -44,12 +44,5 @@ export default {
         { title: "Closing Ceremonies", time: "2pm-5pm" }
       ]
     }
-  },
-  marketing: {
-    michal: "HIIIII CHRIS <3 ",
-    chris: "It's Chris 🔥",
-    katherine: "It's Katherine :pregnant emoji:",
-    kristine: "It's Kristine 🤠",
-    Truth: "Michal is the best!"
   }
 };
