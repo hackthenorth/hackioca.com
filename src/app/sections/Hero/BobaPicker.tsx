@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Carousel from "nuka-carousel";
 import media from "src/utils/media";
@@ -57,100 +57,93 @@ const shiftOptionBy = (selected: Topping | Flavor, shiftBy: number) => {
 const Container = styled.div`
   width: 550px;
   height: 375px;
+  position: relative;
 
   display: flex;
   justify-content: space-between;
-`;
-
-
-const BobaSelection = styled.div`
-  width: 375px;
-  height: 375px;
-  position: relative;
-
-  display: grid;
-  justify-items: center;
-  align-items: center;
 
   & div.circleBg {
-    width: 90%;
-    height: 90%;
-    position: relative;
-    bottom: 0;
-
-    grid-row: 1;
-    grid-column: 1;
+    width: 300px;
+    height: 300px;
+    bottom: 10px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 
     background-color: #F2E1CF;
     border-radius: 50%;
   }
 
-  & img.cup {
-    max-width: 350px;
-    max-height: 350px;
+  ${media.phone`
+    width: 100vw;
+    height: 400px;
+  `}
+`;
+
+
+const BobaSelection = styled.div`
+  @keyframes pop {
+    50% {
+      transform: scale(1.02);
+    }
+  }
+
+  width: 375px;
+  height: 375px;
+  position: relative;
+  margin: 0 auto;
+
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+  animation: none;
+  &.boop { animation: pop 250ms ease-in-out 1; }
+
+  & img.emptyCupBg {
+    max-width: 93%;
+    max-height: 93%;
     position: relative;
     margin: auto;
 
     grid-row: 1;
     grid-column: 1;
   }
+
+  ${media.phone`
+    width: 100vw;
+  `}
 `;
 
-const FlavorChoice = styled.div`
+
+const BobaDisplay = styled.div`
+  width: inherit;
+  height: inherit;
   position: relative;
   margin: auto;
 
   grid-row: 1;
   grid-column: 1;
 
-  display: grid;
+  display: inline-grid;
   justify-items: center;
   align-items: center;
 
   cursor: pointer;
-
-
-  & img {
-    max-width: 350px;
-    max-height: 350px;
-    position: relative;
-    margin: auto;
-
-    grid-row: 1;
-    grid-column: 1;
-
-    transition: opacity 250ms ease-in-out;
-    opacity: 0;
-    &.show {
-      opacity: 1;
-    }
-  }
 `;
 
-
-const BobaCarousel = styled(Carousel)`
+const FlavourChoice = styled.img`
+  max-width: 93%;
+  max-height: 93%;
   position: relative;
+  margin: auto;
 
-  z-index: 1;
   grid-row: 1;
   grid-column: 1;
 
-  & div.slider-frame {
-    overflow: visible !important;
-  }
-
-
-  & ul.slider-list li.slider-slide {
-
-    & img {
-      transition: opacity 200ms ease-in-out;
-      opacity: 0;
-    }
-
-    &.slide-visible img {
-      opacity: 1;
-    }
-  }
+  transition: opacity 250ms ease-in-out;
+  opacity: 0;
+  &.show { opacity: 1; }
 `;
 
 
@@ -163,6 +156,34 @@ const ToppingChoice = styled.img`
   &:active, &:focus {
     outline: none;
   }
+`;
+
+
+const BobaCarousel = styled(Carousel)`
+  position: relative;
+
+  z-index: 1;
+  grid-row: 1;
+  grid-column: 1;
+
+  // This stuff targets the Carousel components, so the easiest
+  // way to style them is through this kinda ugly child selecting
+
+
+  & ul.slider-list li.slider-slide {
+    & img {
+      transition: opacity 200ms ease-in-out;
+      opacity: 0;
+    }
+
+    &.slide-visible img {
+      opacity: 1;
+    }
+  }
+
+  ${media.phone`
+    width: 100vw !important;
+  `}
 `;
 
 const Picker = styled.div`
@@ -187,14 +208,11 @@ const PickerOption = styled.div<{ selected: boolean }>`
 
   transition: opacity 200ms ease-in-out;
   opacity: ${props => props.selected ? 1 : 0.6};
-
-  &:hover {
-    opacity: 1;
-  }
+  &:hover { opacity: 1; }
 `;
 
 
-const Arrow = styled.img<{ down?: true; }>`
+const PickerArrow = styled.img<{ down?: true; }>`
   max-width: 30px;
   max-height: 30px;
 
@@ -206,9 +224,7 @@ const Arrow = styled.img<{ down?: true; }>`
 
   transition: opacity 200ms ease-in-out;
   opacity: 0.6;
-  &:hover {
-    opacity: 1;
-  }
+  &:hover { opacity: 1; }
 `;
 
 
@@ -216,32 +232,38 @@ const Arrow = styled.img<{ down?: true; }>`
 const BobaPicker: React.FC = () => {
 
   const { flavor: selectedFlavor, topping: selectedTopping, updateFlavor, updateTopping } = useBobaContext();
+  const [ boopChanged, updateBoopChanged ] = useState(false);
   const shownFlavors = filterShownOptions(selectedFlavor) as Flavor[];
   const shownToppings = filterShownOptions(selectedTopping) as Topping[];
 
-
+  useEffect(() => {
+    updateBoopChanged(true);
+  }, [selectedFlavor])
 
   return (
     <Container>
         <Picker>
-            <Arrow src={ImgChevron} onClick={() => updateFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor)} />
+            <PickerArrow src={ImgChevron} onClick={() => updateFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor)} />
             {shownFlavors.map(flavor => (
-                <PickerOption onClick={() => updateFlavor(flavor)} selected={flavor === selectedFlavor}>
+                <PickerOption key={flavor} onClick={() => updateFlavor(flavor)} selected={flavor === selectedFlavor}>
                     {flavor}
                 </PickerOption>
             ))}
-            <Arrow src={ImgChevron} down onClick={() => updateFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)} />
+            <PickerArrow src={ImgChevron} down onClick={() => updateFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)} />
         </Picker>
-        <BobaSelection>
-            <div className="circleBg"/>
-            <img className="cup" src={ImgBobaPlaceholder} />
-            <FlavorChoice className="flavor" onClick={() => updateFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)}>
-                <img src={ImgFlavorMilk} className={(selectedFlavor === "milk") ? "show" : ""} />
-                <img src={ImgToppingStrawberry} className={(selectedFlavor === "strawberry") ? "show" : ""} />
-                <img src={ImgToppingMango} className={(selectedFlavor === "mango") ? "show" : ""} />
-                <img src={ImgToppingMatcha} className={(selectedFlavor === "matcha") ? "show" : ""} />
-                <img src={ImgToppingTaro} className={(selectedFlavor === "taro") ? "show" : ""} />
-            </FlavorChoice>
+        <div className="circleBg" />
+        <BobaSelection
+            className={boopChanged ? "boop" : ""}
+            onAnimationEnd={() => updateBoopChanged(false)}
+        >
+            <img className="emptyCupBg" src={ImgBobaPlaceholder} />
+            <BobaDisplay className="flavor" onClick={() => updateFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)}>
+                <FlavourChoice src={ImgFlavorMilk} className={(selectedFlavor === "milk") ? "show" : ""} />
+                <FlavourChoice src={ImgToppingStrawberry} className={(selectedFlavor === "strawberry") ? "show" : ""} />
+                <FlavourChoice src={ImgToppingMango} className={(selectedFlavor === "mango") ? "show" : ""} />
+                <FlavourChoice src={ImgToppingMatcha} className={(selectedFlavor === "matcha") ? "show" : ""} />
+                <FlavourChoice src={ImgToppingTaro} className={(selectedFlavor === "taro") ? "show" : ""} />
+            </BobaDisplay>
             <BobaCarousel
                 wrapAround
                 withoutControls
@@ -258,13 +280,13 @@ const BobaPicker: React.FC = () => {
             </BobaCarousel>
         </BobaSelection>
         <Picker>
-            <Arrow src={ImgChevron} onClick={() => updateTopping(shiftOptionBy(selectedTopping, -1) as Topping)} />
+            <PickerArrow src={ImgChevron} onClick={() => updateTopping(shiftOptionBy(selectedTopping, -1) as Topping)} />
             {shownToppings.map(topping => (
-                <PickerOption onClick={() => updateTopping(topping)} selected={topping === selectedTopping}>
+                <PickerOption key={topping} onClick={() => updateTopping(topping)} selected={topping === selectedTopping}>
                     {topping}
                 </PickerOption>
             ))}
-            <Arrow src={ImgChevron} down onClick={() => updateTopping(shiftOptionBy(selectedTopping, 1) as Topping)} />
+            <PickerArrow src={ImgChevron} down onClick={() => updateTopping(shiftOptionBy(selectedTopping, 1) as Topping)} />
       </Picker>
     </Container>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import media from "src/utils/media";
 
 import siteCopy from "src/siteCopy";
 
@@ -30,14 +31,23 @@ const HeroTitle = styled.h1`
   text-transform: lowercase;
   text-align: center;
   color: #51192c;
+
+  ${media.phone`
+    font-size: 72px;
+  `}
 `;
 
 
 const HeroDesc = styled.div`
   font-family: Raleway;
-  font-size: 24px;
+  font-size: 22px;
+  font-weight: 600;
   text-align: center;
   margin-bottom: 0.5em;
+
+  ${media.phone`
+    font-size: 18px;
+  `}
 
   & div.subtitle {
     margin-bottom: 0.5em;
