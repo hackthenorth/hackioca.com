@@ -24,8 +24,8 @@ const Wrapper = styled.div`
 `;
 
 const Judges = () => (
-  <>
-    <Header id="judges">{copy.judges.title}</Header>
+  <div id="judges">
+    <Header>{copy.judges.title}</Header>
     <Wrapper>
       <Judge
         bgPath="judge_cups_matcha.svg"
@@ -60,7 +60,7 @@ const Judges = () => (
         quote={copy.judges.elon.quote}
       />
     </Wrapper>
-  </>
+  </div>
 );
 
 export default React.memo(Judges);
