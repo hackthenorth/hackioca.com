@@ -45,6 +45,30 @@ export default {
       ]
     }
   },
+  judges: {
+    title: "judges",
+    suffix: "is my favourite.",
+    barack: {
+      name: "Barack Bobama",
+      quote: "Classic Roasted Milk Tea"
+    },
+    boba: {
+      name: "Boba Fett",
+      quote: "Passion Fruit Green Tea"
+    },
+    elon: {
+      name: "Oolong Musk",
+      quote: "Oolong Milk Tea"
+    },
+    mark: {
+      name: "Matcha Zuckerberg",
+      quote: "Matcha Red Bean Milk Tea"
+    },
+    michael: {
+      name: "Michael Bublé Tea",
+      quote: "Wintermelon Iced Tea, half sweet"
+    }
+  },
   faq: {
     title: "faq",
     body: [
