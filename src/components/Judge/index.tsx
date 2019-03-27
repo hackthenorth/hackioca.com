@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import copy from "src/copy";
 import media from "src/utils/media";
 
 const Wrapper = styled.div`
@@ -46,13 +47,15 @@ interface JudgeProps {
   quote: string;
 }
 
-const Judge = React.memo((props: JudgeProps) => (
+const Judge = (props: JudgeProps) => (
   <Wrapper>
     <Photo src={`images/judges/${props.photoPath}`} />
     <Background src={`images/judges/${props.bgPath}`} />
     <Name>{props.name}</Name>
-    <Quote>&quot;{props.quote} is my favourite.&quot;</Quote>
+    <Quote>
+      &quot;{props.quote} {copy.judges.suffix}&quot;
+    </Quote>
   </Wrapper>
-));
+);
 
-export default Judge;
+export default React.memo(Judge);

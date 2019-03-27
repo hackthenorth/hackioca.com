@@ -23,9 +23,9 @@ const Wrapper = styled.div`
     `}
 `;
 
-const Judges = React.memo(() => (
+const Judges = () => (
   <>
-    <Header>{copy.judges.title}</Header>
+    <Header id="judges">{copy.judges.title}</Header>
     <Wrapper>
       <Judge
         bgPath="judge_cups_matcha.svg"
@@ -61,6 +61,6 @@ const Judges = React.memo(() => (
       />
     </Wrapper>
   </>
-));
+);
 
-export default Judges;
+export default React.memo(Judges);

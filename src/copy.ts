@@ -6,6 +6,7 @@ export default {
   },
   judges: {
     title: "judges",
+    suffix: "is my favourite.",
     barack: {
       name: "Barack Bobama",
       quote: "Classic Roasted Milk Tea"
