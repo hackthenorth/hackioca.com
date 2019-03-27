@@ -26,5 +26,12 @@ export default {
       name: "Michael Bublé Tea",
       quote: "Wintermelon Iced Tea, half sweet"
     }
+  },
+  marketing: {
+    michal: "HIIIII CHRIS <3 ",
+    chris: "It's Chris 🔥",
+    katherine: "It's Katherine :pregnant emoji:",
+    kristine: "It's Kristine 🤠",
+    Truth: "Michal is the best!"
   }
 };

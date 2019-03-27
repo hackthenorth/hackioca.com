@@ -4,6 +4,7 @@ import { BobaProvider } from "src/utils/context/boba";
 
 import About from "src/components/About";
 import Judges from "src/components/Judges";
+import MarketingDemo from "src/components/MarketingDemo";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -23,7 +24,6 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     src: url("/fonts/Raleway-Regular.ttf") format("truetype");
   }
-
 
   @font-face {
     font-family: "Raleway";
@@ -49,6 +49,7 @@ const App: React.FC = () => (
   <BobaProvider>
     <About />
     <Judges />
+    <MarketingDemo />
     <GlobalStyle />
   </BobaProvider>
 );
