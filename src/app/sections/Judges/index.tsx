@@ -3,7 +3,7 @@ import styled from "styled-components";
 import copy from "src/copy";
 import media from "src/utils/media";
 
-import Judge from "src/components/Judge";
+import Judge from "src/app/components/Judge";
 
 const Header = styled.h1`
   font-family: "Bubbleboddy";
