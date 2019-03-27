@@ -117,5 +117,36 @@ export default {
         answer: "We’ll have a place for you to enjoy a nice bubble bath."
       }
     ]
+  },
+  prizes: {
+    title: "prizes",
+    prizes: [
+      {
+        title: "Best not exactly boba hack",
+        desc:
+          "For that one drink at the bubble tea place that isn’t actually bubble tea",
+        prize: "Prize: a pat on the back and a sticker"
+      },
+      {
+        title: "Degenerate Hack",
+        desc: "For the hack that disappoints your parents",
+        prize: "Prize: tissue box"
+      },
+      {
+        title: "0% sugar hack",
+        desc: "The best health hack",
+        prize: "Prize: A bag of apples"
+      },
+      {
+        title: "The regular (classic milk tea)",
+        desc: "Awarded to the most basic and overused hackathon ideas",
+        prize: "Prize: Golden Boba Straw"
+      },
+      {
+        title: "Most insTEAworthy",
+        desc: "Best design hack",
+        prize: "Prize: 4 new insta followers"
+      }
+    ]
   }
 };
