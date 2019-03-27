@@ -2,10 +2,8 @@ import React from "react";
 import { createGlobalStyle } from "styled-components";
 import { BobaProvider } from "src/utils/context/boba";
 
-
 import FontBubbleBoddy from "src/static/fonts/Bubbleboddy-FatTrial.ttf";
 import Raleway from "src/static/fonts/Raleway-Light.ttf";
-
 
 import Hero from "src/app/sections/Hero";
 
@@ -40,11 +38,10 @@ const GlobalStyles = createGlobalStyle`
 
 const App: React.FC = () => (
   <BobaProvider>
-      <GlobalStyles />
+    <GlobalStyles />
 
-      <Hero />
+    <Hero />
   </BobaProvider>
 );
-
 
 export default App;

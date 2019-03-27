@@ -20,7 +20,6 @@ const HeroWrapper = styled(SectionWrapper)`
   }
 `;
 
-
 const HeroTitle = styled.h1`
   margin: auto;
 
@@ -36,7 +35,6 @@ const HeroTitle = styled.h1`
     font-size: 72px;
   `}
 `;
-
 
 const HeroDesc = styled.div`
   font-family: Raleway;
@@ -61,8 +59,6 @@ const HeroDesc = styled.div`
     color: #51192c;
   }
 `;
-
-
 
 const HeroSection: React.FC = () => (
   <HeroWrapper>
