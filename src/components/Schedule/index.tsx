@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const Header = styled.h1`
   font-family: "Bubbleboddy";
   font-size: 48px;
-  color: #000000;
+  color: #000;
   text-align: center;
 `;
 
@@ -41,7 +41,7 @@ const Title = styled.h3`
   margin-bottom: 0;
 `;
 
-const Activites = styled.ul`
+const Activities = styled.ul`
   font-weight: 400;
   padding: 0;
   overflow-x: hidden;
@@ -69,116 +69,33 @@ const Activites = styled.ul`
 `;
 
 const Schedule = () => (
-  <Wrapper>
+  <Wrapper id="schedule">
     <Header>{copy.schedule.title}</Header>
     <Chalkboard>
       <Title>{copy.schedule.dayOne.title}</Title>
-      <Activites>
-        <Activity
-          title={copy.schedule.dayOne.registration.title}
-          time={copy.schedule.dayOne.registration.time}
-        />
-        <Activity
-          title={copy.schedule.dayOne.dinner.title}
-          time={copy.schedule.dayOne.dinner.time}
-        />
-        <Activity
-          title={copy.schedule.dayOne.workshopOne.title}
-          time={copy.schedule.dayOne.workshopOne.time}
-        />
-        <Activity
-          title={copy.schedule.dayOne.opening.title}
-          time={copy.schedule.dayOne.opening.time}
-        />
-        <Activity
-          title={copy.schedule.dayOne.activityOne.title}
-          time={copy.schedule.dayOne.activityOne.time}
-        />
-        <Activity
-          title={copy.schedule.dayOne.workshopTwo.title}
-          time={copy.schedule.dayOne.workshopTwo.time}
-        />
-      </Activites>
+      <Activities>
+        {copy.schedule.dayOne.events.map(({ title, time }, i) => (
+          <Activity key={`dayOne-event-${i}`} title={title} time={time} />
+        ))}
+      </Activities>
     </Chalkboard>
 
     <Chalkboard>
       <Title>{copy.schedule.dayTwo.title}</Title>
-      <Activites>
-        <Activity
-          title={copy.schedule.dayTwo.snackOne.title}
-          time={copy.schedule.dayTwo.snackOne.time}
-        />
-        <Activity
-          title={copy.schedule.dayTwo.workshopOne.title}
-          time={copy.schedule.dayTwo.workshopOne.time}
-        />
-        <Activity
-          title={copy.schedule.dayTwo.workshopTwo.title}
-          time={copy.schedule.dayTwo.workshopTwo.time}
-        />
-        <Activity
-          title={copy.schedule.dayTwo.breakfast.title}
-          time={copy.schedule.dayTwo.breakfast.time}
-        />
-        <Activity
-          title={copy.schedule.dayTwo.workshopThree.title}
-          time={copy.schedule.dayTwo.workshopThree.time}
-        />
-        <Activity
-          title={copy.schedule.dayTwo.lunch.title}
-          time={copy.schedule.dayTwo.lunch.time}
-        />
-        <Activity
-          title={copy.schedule.dayTwo.activityOne.title}
-          time={copy.schedule.dayTwo.activityOne.time}
-        />
-        <Activity
-          title={copy.schedule.dayTwo.snackTwo.title}
-          time={copy.schedule.dayTwo.snackTwo.time}
-        />
-        <Activity
-          title={copy.schedule.dayTwo.dinner.title}
-          time={copy.schedule.dayTwo.dinner.time}
-        />
-        <Activity
-          title={copy.schedule.dayTwo.activityTwo.title}
-          time={copy.schedule.dayTwo.activityTwo.time}
-        />
-      </Activites>
+      <Activities>
+        {copy.schedule.dayTwo.events.map(({ title, time }, i) => (
+          <Activity key={`dayTwo-event-${i}`} title={title} time={time} />
+        ))}
+      </Activities>
     </Chalkboard>
 
     <Chalkboard>
       <Title>{copy.schedule.dayThree.title}</Title>
-      <Activites>
-        <Activity
-          title={copy.schedule.dayThree.snackOne.title}
-          time={copy.schedule.dayThree.snackOne.time}
-        />
-        <Activity
-          title={copy.schedule.dayThree.workshopOne.title}
-          time={copy.schedule.dayThree.workshopOne.time}
-        />
-        <Activity
-          title={copy.schedule.dayThree.workshopTwo.title}
-          time={copy.schedule.dayThree.workshopTwo.time}
-        />
-        <Activity
-          title={copy.schedule.dayThree.judging.title}
-          time={copy.schedule.dayThree.judging.time}
-        />
-        <Activity
-          title={copy.schedule.dayThree.activityOne.title}
-          time={copy.schedule.dayThree.activityOne.time}
-        />
-        <Activity
-          title={copy.schedule.dayThree.lunch.title}
-          time={copy.schedule.dayThree.lunch.time}
-        />
-        <Activity
-          title={copy.schedule.dayThree.closing.title}
-          time={copy.schedule.dayThree.closing.time}
-        />
-      </Activites>
+      <Activities>
+        {copy.schedule.dayThree.events.map(({ title, time }, i) => (
+          <Activity key={`dayThree-event-${i}`} title={title} time={time} />
+        ))}
+      </Activities>
     </Chalkboard>
   </Wrapper>
 );
