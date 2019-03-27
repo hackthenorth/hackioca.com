@@ -31,6 +31,7 @@ const Header = styled.h1`
 
 const Paragraph = styled.p`
   font-family: "Raleway";
+  font-weight: 400;
   font-size: 16px;
   line-height: 1.5em;
   color: #51192c;
