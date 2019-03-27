@@ -80,7 +80,7 @@ const dayThreeActivities = copy.schedule.dayThree.events.map(
   ({ title, time }) => <Activity key={title} title={title} time={time} />
 );
 
-const Schedule = React.memo(() => (
+const Schedule = () => (
   <Wrapper id="schedule">
     <Header>{copy.schedule.title}</Header>
     <Chalkboard>
@@ -98,6 +98,6 @@ const Schedule = React.memo(() => (
       <Activities>{dayThreeActivities}</Activities>
     </Chalkboard>
   </Wrapper>
-));
+);
 
-export default Schedule;
+export default React.memo(Schedule);

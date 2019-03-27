@@ -10,11 +10,11 @@ const Wrapper = styled.li`
   margin-bottom: 15px;
 `;
 
-const Activity = React.memo((props: ActivityProps) => (
+const Activity = (props: ActivityProps) => (
   <Wrapper>
     <span>{props.title}</span>
     <span>{props.time}</span>
   </Wrapper>
-));
+);
 
-export default Activity;
+export default React.memo(Activity);
