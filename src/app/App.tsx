@@ -6,7 +6,7 @@ import FontBubbleBoddy from "src/static/fonts/Bubbleboddy-FatTrial.ttf";
 import FontRalewayLight from "src/static/fonts/Raleway-Light.ttf";
 import FontRalewayRegular from "src/static/fonts/Raleway-Regular.ttf";
 import FontRalewayMedium from "src/static/fonts/Raleway-Medium.ttf";
-import FontRalewaySemibold from "src/static/fonts/Raleway-Semibold.ttf";
+import FontRalewaySemibold from "src/static/fonts/Raleway-SemiBold.ttf";
 import FontRalewayBold from "src/static/fonts/Raleway-Bold.ttf";
 
 import Schedule from "src/app/sections/Schedule";
