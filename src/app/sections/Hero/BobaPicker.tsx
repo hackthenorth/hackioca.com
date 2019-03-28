@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Carousel from "nuka-carousel";
+import ReactTooltip from 'react-tooltip';
+
 import media from "src/utils/media";
 import { useBobaContext } from "src/utils/context/boba";
-import { flavors, toppings, Flavor, Topping } from "src/siteData";
+import { flavors, toppings, Flavor, Topping } from "src/data";
+import copy from "src/copy";
 
 import ImgChevron from "src/static/images/chevron_up.svg";
 import ImgBobaPlaceholder from "src/static/images/hero/placeholder_cup.svg";
@@ -40,46 +43,21 @@ const isTopping = (option: Topping | Flavor): boolean =>
 // const chooseRandomFlavor = () => flavors[Math.floor(Math.random() * flavors.length)];
 
 const findOptionImg = (option: Topping | Flavor) => {
-  let returnImg;
-
   switch (option) {
-    case "milk":
-      returnImg = ImgFlavorOptionMilk;
-      break;
-    case "strawberry":
-      returnImg = ImgFlavorOptionStrawberry;
-      break;
-    case "mango":
-      returnImg = ImgFlavorOptionMango;
-      break;
-    case "matcha":
-      returnImg = ImgFlavorOptionMatcha;
-      break;
-    case "taro":
-      returnImg = ImgFlavorOptionTaro;
-      break;
+    case "milk":        return ImgFlavorOptionMilk;
+    case "strawberry":  return ImgFlavorOptionStrawberry;
+    case "mango":       return ImgFlavorOptionMango;
+    case "matcha":      return ImgFlavorOptionMatcha;
+    case "taro":        return ImgFlavorOptionTaro;
 
-    case "grass_jelly":
-      returnImg = ImgToppingOptionGrassJelly;
-      break;
-    case "tapioca":
-      returnImg = ImgToppingOptionTapioca;
-      break;
-    case "pudding":
-      returnImg = ImgToppingOptionPudding;
-      break;
-    case "aloe_vera":
-      returnImg = ImgToppingOptionAloeVera;
-      break;
-    case "red_bean":
-      returnImg = ImgToppingOptionRedBean;
-      break;
+    case "grass_jelly": return ImgToppingOptionGrassJelly;
+    case "tapioca":     return ImgToppingOptionTapioca;
+    case "pudding":     return ImgToppingOptionPudding;
+    case "aloe_vera":   return ImgToppingOptionAloeVera;
+    case "red_bean":    return ImgToppingOptionRedBean;
 
-    default:
-      returnImg = ImgFlavorOptionTaro;
+    default:            return ImgFlavorOptionTaro;
   }
-
-  return returnImg;
 };
 
 // https://stackoverflow.com/questions/50924952/typescript-has-no-compatible-call-signatures
@@ -151,7 +129,7 @@ const Container = styled.div`
 const BobaSelection = styled.div`
   @keyframes pop {
     50% {
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
   }
 
@@ -165,9 +143,7 @@ const BobaSelection = styled.div`
   align-items: center;
 
   animation: none;
-  &.boop {
-    animation: pop 250ms ease-in-out 1;
-  }
+  &.boop { animation: pop 200ms ease-in-out 1; }
 
   & img.emptyCupBg {
     max-width: 93%;
@@ -200,14 +176,18 @@ const BobaDisplay = styled.div`
   cursor: pointer;
 `;
 
-const FlavourChoice = styled.img`
-  max-width: 93%;
-  max-height: 93%;
+const FlavorChoice = styled.img`
+  max-width: 350px;
+  max-height: 350px;
   position: relative;
   margin: auto;
 
   grid-row: 1;
   grid-column: 1;
+
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  user-drag: none;
 
   transition: opacity 400ms ease-in-out;
   opacity: 0;
@@ -217,10 +197,15 @@ const FlavourChoice = styled.img`
 `;
 
 const ToppingChoice = styled.img`
-  max-width: 150px;
-  max-height: 150px;
+  max-width: 350px;
+  max-height: 350px;
   margin: auto;
   position: relative;
+
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  user-drag: none;
+  cursor: pointer;
 
   &:active,
   &:focus {
@@ -235,10 +220,14 @@ const BobaCarousel = styled(Carousel)`
   grid-row: 1;
   grid-column: 1;
 
+  -webkit-tap-highlight-color: transparent;
+
+
   // This stuff targets the Carousel components, so the easiest
   // way to style them is through this kinda ugly child selecting
 
   & ul.slider-list li.slider-slide {
+
     & img {
       transition: opacity 200ms ease-in-out;
       opacity: 0;
@@ -307,6 +296,18 @@ const PickerArrow = styled.img<{ down?: true }>`
   }
 `;
 
+
+const PickerTooltip = styled(ReactTooltip)`
+  font-family: Bubbleboddy;
+  font-size: 16px;
+  background: none !important;
+
+  &:before, &:after {
+    display: none;
+  }
+  ${'' /* opacity: 0.5 !important; */}
+`;
+
 /* MAIN COMPONENT */
 const BobaPicker: React.FC = () => {
   const {
@@ -349,102 +350,100 @@ const BobaPicker: React.FC = () => {
 
   return (
     <Container>
-      <Picker>
-        <PickerArrow
-          src={ImgChevron}
-          onClick={() =>
-            changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor)
-          }
-        />
-        {shownFlavors.map(flavor => (
-          <PickerOption
-            key={flavor}
-            onClick={() => changeFlavor(flavor)}
-            selected={flavor === selectedFlavor}
-          >
-            <img src={findOptionImg(flavor)} />
-          </PickerOption>
-        ))}
-        <PickerArrow
-          src={ImgChevron}
-          down
-          onClick={() =>
-            changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
-          }
-        />
-      </Picker>
-      <div className="circleBg" />
-      <BobaSelection
-        className={boopChanged ? "boop" : ""}
-        onAnimationEnd={() => updateBoopChanged(false)}
-      >
-        <img className="emptyCupBg" src={ImgBobaPlaceholder} />
-        <BobaDisplay
-          className="flavor"
-          onClick={() =>
-            changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
-          }
+        <Picker>
+            <PickerArrow
+                src={ImgChevron}
+                onClick={() =>
+                    changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor)
+                }
+            />
+            {shownFlavors.map(flavor => (
+                <PickerOption
+                    key={flavor}
+                    onClick={() => changeFlavor(flavor)}
+                    selected={flavor === selectedFlavor}
+                    data-tip={copy.hero.flavors[flavor]}
+                >
+                    <img src={findOptionImg(flavor)} />
+                </PickerOption>
+            ))}
+            <PickerArrow
+                src={ImgChevron}
+                down
+                onClick={() =>
+                    changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
+                }
+            />
+        </Picker>
+        <div className="circleBg" />
+        <BobaSelection
+            className={boopChanged ? "boop" : ""}
+            onAnimationEnd={() => updateBoopChanged(false)}
         >
-          <FlavourChoice
-            src={ImgFlavorMilk}
-            className={selectedFlavor === "milk" ? "show" : ""}
-          />
-          <FlavourChoice
-            src={ImgFlavorStrawberry}
-            className={selectedFlavor === "strawberry" ? "show" : ""}
-          />
-          <FlavourChoice
-            src={ImgFlavorMango}
-            className={selectedFlavor === "mango" ? "show" : ""}
-          />
-          <FlavourChoice
-            src={ImgFlavorMatcha}
-            className={selectedFlavor === "matcha" ? "show" : ""}
-          />
-          <FlavourChoice
-            src={ImgFlavorTaro}
-            className={selectedFlavor === "taro" ? "show" : ""}
-          />
-        </BobaDisplay>
-        <BobaCarousel
-          wrapAround
-          withoutControls
-          width="350px"
-          initialSlideHeight={350}
-          slideIndex={toppings.indexOf(selectedTopping)}
-          afterSlide={slideIndex => changeTopping(toppings[slideIndex])}
-        >
-          <ToppingChoice src={ImgToppingTapioca} />
-          <ToppingChoice src={ImgToppingGrassJelly} />
-          <ToppingChoice src={ImgToppingAloeVera} />
-          <ToppingChoice src={ImgToppingRedBean} />
-          <ToppingChoice src={ImgToppingPudding} />
-        </BobaCarousel>
-      </BobaSelection>
-      <Picker>
-        <PickerArrow
-          src={ImgChevron}
-          onClick={() =>
-            changeTopping(shiftOptionBy(selectedTopping, -1) as Topping)
-          }
-        />
-        {shownToppings.map(topping => (
-          <PickerOption
-            key={topping}
-            onClick={() => changeTopping(topping)}
-            selected={topping === selectedTopping}
-          >
-            <img src={findOptionImg(topping)} />
-          </PickerOption>
-        ))}
-        <PickerArrow
-          src={ImgChevron}
-          down
-          onClick={() =>
-            changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)
-          }
-        />
-      </Picker>
+            <img className="emptyCupBg" src={ImgBobaPlaceholder} />
+            <BobaDisplay className="flavor">
+                <FlavorChoice
+                    src={ImgFlavorMilk}
+                    className={selectedFlavor === "milk" ? "show" : ""}
+                />
+                <FlavorChoice
+                    src={ImgFlavorStrawberry}
+                    className={selectedFlavor === "strawberry" ? "show" : ""}
+                />
+                <FlavorChoice
+                    src={ImgFlavorMango}
+                    className={selectedFlavor === "mango" ? "show" : ""}
+                />
+                <FlavorChoice
+                    src={ImgFlavorMatcha}
+                    className={selectedFlavor === "matcha" ? "show" : ""}
+                />
+                <FlavorChoice
+                    src={ImgFlavorTaro}
+                    className={selectedFlavor === "taro" ? "show" : ""}
+                />
+            </BobaDisplay>
+            <BobaCarousel
+                wrapAround
+                withoutControls
+                width="350px"
+                initialSlideHeight={350}
+                slideIndex={toppings.indexOf(selectedTopping)}
+                afterSlide={slideIndex => changeTopping(toppings[slideIndex])}
+            >
+                <ToppingChoice src={ImgToppingTapioca} onClick={() => changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)} />
+                <ToppingChoice src={ImgToppingGrassJelly} onClick={() => changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)} />
+                <ToppingChoice src={ImgToppingAloeVera} onClick={() => changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)} />
+                <ToppingChoice src={ImgToppingRedBean} onClick={() => changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)} />
+                <ToppingChoice src={ImgToppingPudding} onClick={() => changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)} />
+            </BobaCarousel>
+        </BobaSelection>
+        <Picker>
+            <PickerArrow
+                src={ImgChevron}
+                onClick={() =>
+                    changeTopping(shiftOptionBy(selectedTopping, -1) as Topping)
+                }
+            />
+            {shownToppings.map(topping => (
+                <PickerOption
+                    key={topping}
+                    onClick={() => changeTopping(topping)}
+                    selected={topping === selectedTopping}
+                    data-tip={copy.hero.toppings[topping]}
+                >
+                    <img src={findOptionImg(topping)} />
+                </PickerOption>
+            ))}
+            <PickerArrow
+                src={ImgChevron}
+                down
+                onClick={() =>
+                    changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)
+                }
+            />
+        </Picker>
+        <PickerTooltip type="light" />
     </Container>
   );
 };

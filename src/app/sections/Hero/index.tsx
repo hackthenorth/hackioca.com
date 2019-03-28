@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import media from "src/utils/media";
 
-import siteCopy from "src/siteCopy";
+import copy from "src/copy";
 
 import MailingListSignup from "src/app/components/MailingListSignup";
 import SectionWrapper from "src/app/components/SectionWrapper";
@@ -62,14 +62,14 @@ const HeroDesc = styled.div`
 
 const HeroSection: React.FC = () => (
   <HeroWrapper>
-    <div>
-      <BobaPicker />
+      <div>
+          <BobaPicker />
 
-      <HeroTitle>{siteCopy.hero.title}</HeroTitle>
-      <HeroDesc>
-        <div className="subtitle">{siteCopy.hero.subtitle}</div>
-        <div className="details">{siteCopy.hero.eventDate}</div>
-        <div className="details">{siteCopy.hero.eventLoc}</div>
+          <HeroTitle>{copy.hero.title}</HeroTitle>
+          <HeroDesc>
+              <div className="subtitle">{copy.hero.subtitle}</div>
+              <div className="details">{copy.hero.eventDate}</div>
+              <div className="details">{copy.hero.eventLoc}</div>
       </HeroDesc>
 
       <MailingListSignup />

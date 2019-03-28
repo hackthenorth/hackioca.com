@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 import { BobaProvider } from "src/utils/context/boba";
 
 import FontBubbleBoddy from "src/static/fonts/Bubbleboddy-FatTrial.ttf";
-import Raleway from "src/static/fonts/Raleway-Light.ttf";
+import FontRaleway from "src/static/fonts/Raleway-Light.ttf";
 
 import Hero from "src/app/sections/Hero";
 
@@ -17,7 +17,7 @@ const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: "Raleway";
     font-weight: 400;
-    src: url(${Raleway}) format("truetype");
+    src: url(${FontRaleway}) format("truetype");
   }
 
   html {

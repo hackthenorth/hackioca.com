@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import copy from "src/siteCopy";
+import copy from "src/copy";
 import media from "src/utils/media";
 
 const Wrapper = styled.div`
@@ -19,7 +19,7 @@ const Section = styled.div`
 `;
 
 const Header = styled.h1`
-  font-family: "Bubbleboddy";
+  font-family: Bubbleboddy;
   font-size: 48px;
   color: #000000;
   margin-bottom: 5px;

@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
-import { Flavor, Topping, flavors, toppings } from "src/siteData";
+import { Flavor, Topping, flavors, toppings } from "src/data";
 
 export interface BobaState {
   flavor: Flavor;
