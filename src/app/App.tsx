@@ -39,19 +39,19 @@ const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: "Raleway";
     font-weight: 500;
-    src: url(${FontWalewayMedium}) format("truetype");
+    src: url(${FontRalewayMedium}) format("truetype");
   }
 
   @font-face {
     font-family: "Raleway";
     font-weight: 600;
-    src: url(${FontWalewaySemibold}) format("truetype");
+    src: url(${FontRalewaySemibold}) format("truetype");
   }
 
   @font-face {
     font-family: "Raleway";
     font-weight: 700;
-    src: url(${FontWalewayBold}) format("truetype");
+    src: url(${FontRalewayBold}) format("truetype");
   }
 
   html {

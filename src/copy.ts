@@ -16,7 +16,7 @@ export default {
       milk: "Milk Tea",
       matcha: "Matcha",
       taro: "Taro",
-      strawberry: "Strawberry" 
+      strawberry: "Strawberry"
     }
   },
   about: {
