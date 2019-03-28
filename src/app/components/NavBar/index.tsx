@@ -36,6 +36,7 @@ const NavBarContainer = styled.nav`
   padding: 0 55px;
   display: flex;
   align-items: center;
+  z-index: 10;
 `;
 
 const LogoContainer = styled.div`
@@ -93,7 +94,7 @@ const NavBar: React.FC = () => (
   <NavBarContainer>
     <a href="#">
       <LogoContainer>
-        <Logo src={"/images/logo_dark.svg"} />
+        <Logo src={"/images/navbar/logo_dark.svg"} />
       </LogoContainer>
     </a>
     <LinksContainer>
