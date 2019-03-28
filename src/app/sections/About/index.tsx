@@ -19,7 +19,7 @@ const Section = styled.div`
 `;
 
 const Header = styled.h1`
-  font-family: Bubbleboddy;
+  font-family: "Bubbleboddy";
   font-size: 48px;
   color: #000000;
   margin-bottom: 5px;
@@ -30,7 +30,8 @@ const Header = styled.h1`
 `;
 
 const Paragraph = styled.p`
-  font-family: Raleway, sans-serif;
+  font-family: "Raleway";
+  font-weight: 400;
   font-size: 16px;
   line-height: 1.5em;
   color: #51192c;

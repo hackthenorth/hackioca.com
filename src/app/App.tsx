@@ -3,7 +3,17 @@ import { createGlobalStyle } from "styled-components";
 import { BobaProvider } from "src/utils/context/boba";
 
 import FontBubbleBoddy from "src/static/fonts/Bubbleboddy-FatTrial.ttf";
-import FontRaleway from "src/static/fonts/Raleway-Light.ttf";
+import FontRalewayLight from "src/static/fonts/Raleway-Light.ttf";
+import FontRalewayRegular from "src/static/fonts/Raleway-Regular.ttf";
+import FontRalewayMedium from "src/static/fonts/Raleway-Medium.ttf";
+import FontRalewaySemibold from "src/static/fonts/Raleway-Semibold.ttf";
+import FontRalewayBold from "src/static/fonts/Raleway-Bold.ttf";
+
+import Schedule from "src/app/sections/Schedule";
+import Judges from "src/app/sections/Judges";
+import About from "src/app/sections/About";
+import FAQ from "src/app/sections/FAQ";
+import Prizes from "src/app/sections/Prizes";
 
 import Hero from "src/app/sections/Hero";
 
@@ -16,8 +26,32 @@ const GlobalStyles = createGlobalStyle`
 
   @font-face {
     font-family: "Raleway";
+    font-weight: 300;
+    src: url(${FontRalewayLight}) format("truetype");
+  }
+
+  @font-face {
+    font-family: "Raleway";
     font-weight: 400;
-    src: url(${FontRaleway}) format("truetype");
+    src: url(${FontRalewayRegular}) format("truetype");
+  }
+
+  @font-face {
+    font-family: "Raleway";
+    font-weight: 500;
+    src: url(${FontWalewayMedium}) format("truetype");
+  }
+
+  @font-face {
+    font-family: "Raleway";
+    font-weight: 600;
+    src: url(${FontWalewaySemibold}) format("truetype");
+  }
+
+  @font-face {
+    font-family: "Raleway";
+    font-weight: 700;
+    src: url(${FontWalewayBold}) format("truetype");
   }
 
   html {
@@ -41,6 +75,11 @@ const App: React.FC = () => (
     <GlobalStyles />
 
     <Hero />
+    <About />
+    <Schedule />
+    <Judges />
+    <Prizes />
+    <FAQ />
   </BobaProvider>
 );
 
