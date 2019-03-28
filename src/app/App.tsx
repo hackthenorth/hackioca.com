@@ -16,7 +16,6 @@ import About from "src/app/sections/About";
 import FAQ from "src/app/sections/FAQ";
 import Prizes from "src/app/sections/Prizes";
 
-
 const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: "Bubbleboddy";

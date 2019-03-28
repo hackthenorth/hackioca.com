@@ -356,6 +356,9 @@ const BobaPicker: React.FC = () => {
     if (userInteracted) updateBoopChanged(true);
   }, [userInteracted, selectedFlavor]);
 
+  // Update the tooltips after flavor/topping selection changed
+  useEffect(() => ReactTooltip.rebuild(), [selectedFlavor, selectedTopping]);
+
   return (
     <Container>
       <Picker>
