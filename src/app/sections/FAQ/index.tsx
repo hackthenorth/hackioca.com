@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import copy from "src/copy";
 import media from "src/utils/media";
+import Anchor from 'src/components/Anchor';
 
 const Body = styled.div`
   display: flex;
@@ -90,7 +91,8 @@ const Right = (
 );
 
 const FAQ: React.FC = () => (
-  <div id="faq">
+  <div>
+    <Anchor id="faq" />
     <Title>{copy.faq.title}</Title>
     <Body>
       {Left}

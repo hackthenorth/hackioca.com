@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import copy from "src/copy";
 import media from "src/utils/media";
+import Anchor from 'src/components/Anchor';
 
 const ActivityContainer = styled.div`
   max-width: 1440px;
@@ -77,7 +78,8 @@ const Body = (
 );
 
 const Activities: React.FC = () => (
-  <ActivityContainer id="activities">
+  <ActivityContainer>
+    <Anchor id="activities" />
     <Title>{copy.activities.title}</Title>
     {Body}
   </ActivityContainer>

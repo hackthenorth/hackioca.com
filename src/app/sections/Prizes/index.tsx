@@ -4,6 +4,7 @@ import Title from "src/components/Title";
 import copy from "src/copy";
 import Prize from "./prize";
 import media from "src/utils/media";
+import Anchor from 'src/components/Anchor';
 
 const Section = styled.div`
   width: 800px;
@@ -26,7 +27,8 @@ const prizeList = copy.prizes.prizes.map(prize => (
 ));
 
 const Prizes: React.FC = () => (
-  <Section id="Prizes">
+  <Section>
+    <Anchor id="prizes" />
     <Title>{copy.prizes.title}</Title>
     <Container>{prizeList}</Container>
   </Section>
