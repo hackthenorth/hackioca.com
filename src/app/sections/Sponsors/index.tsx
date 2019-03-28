@@ -58,13 +58,13 @@ const Sponsors = () => (
   <div id="sponsors">
     <Header>{copy.sponsors.title}</Header>
     <Wrapper>
-      <Item src="../images/sponsors/aliboba.png" />
-      <Item src="../images/sponsors/chatime.png" />
-      <Item src="../images/sponsors/coco.png" />
-      <Item src="../images/sponsors/ibm.png" />
-      <Item offset src="../images/sponsors/lactaid.png" />
-      <Item src="../images/sponsors/t-combinator.png" />
-      <Item offset src="../images/sponsors/tea-mobile.png" />
+      <Item src="/images/sponsors/aliboba.png" />
+      <Item src="/images/sponsors/chatime.png" />
+      <Item src="/images/sponsors/coco.png" />
+      <Item src="/images/sponsors/ibm.png" />
+      <Item offset src="/images/sponsors/lactaid.png" />
+      <Item src="/images/sponsors/t-combinator.png" />
+      <Item offset src="/images/sponsors/tea-mobile.png" />
     </Wrapper>
   </div>
 );

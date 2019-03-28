@@ -49,8 +49,8 @@ interface JudgeProps {
 
 const Judge = (props: JudgeProps) => (
   <Wrapper>
-    <Photo src={`../images/judges/${props.photoPath}`} />
-    <Background src={`../images/judges/${props.bgPath}`} />
+    <Photo src={`/images/judges/${props.photoPath}`} />
+    <Background src={`/images/judges/${props.bgPath}`} />
     <Name>{props.name}</Name>
     <Quote>
       &quot;{props.quote} {copy.judges.suffix}&quot;
