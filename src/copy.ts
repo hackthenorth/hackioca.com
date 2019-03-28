@@ -118,6 +118,18 @@ export default {
       }
     ]
   },
+  sponsors: {
+    title: "sponsors",
+    companies: [
+      "aliboba",
+      "chatime",
+      "coco",
+      "ibm",
+      "lactaid",
+      "t-combinator",
+      "tea-mobile"
+    ]
+  },
   prizes: {
     title: "prizes",
     prizes: [
