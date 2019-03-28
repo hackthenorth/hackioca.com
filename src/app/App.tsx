@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 import { BobaProvider } from "src/utils/context/boba";
+import styled from "styled-components";
 
 import Hero from "src/app/sections/Hero";
 import Schedule from "src/app/sections/Schedule";
