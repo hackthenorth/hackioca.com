@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import copy from "src/copy";
 import media from "src/utils/media";
+import Anchor from 'src/components/Anchor';
 
 const WorkshopContainer = styled.div`
   max-width: 1440px;
@@ -71,7 +72,8 @@ const Body = (
 );
 
 const Workshops: React.FC = () => (
-  <WorkshopContainer id="workshops">
+  <WorkshopContainer>
+    <Anchor id="workshops" />
     <Title>{copy.workshops.title}</Title>
     {Body}
   </WorkshopContainer>

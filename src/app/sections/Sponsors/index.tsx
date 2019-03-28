@@ -4,6 +4,7 @@ import copy from "src/copy";
 import media from "src/utils/media";
 
 import Title from "src/components/Title";
+import Anchor from 'src/components/Anchor';
 
 const Wrapper = styled.div`
   display: grid;
@@ -56,7 +57,8 @@ const Item = styled.img<ItemProps>`
 `;
 
 const Sponsors = () => (
-  <div id="sponsors">
+  <div>
+    <Anchor id="sponsors" />
     <Title>{copy.sponsors.title}</Title>
     <Wrapper>
       {copy.sponsors.companies.map(company => (
