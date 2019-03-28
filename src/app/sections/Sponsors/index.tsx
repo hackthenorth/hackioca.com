@@ -3,12 +3,7 @@ import styled from "styled-components";
 import copy from "src/copy";
 import media from "src/utils/media";
 
-const Header = styled.h1`
-  font-family: "Bubbleboddy";
-  font-size: 48px;
-  color: #000;
-  text-align: center;
-`;
+import Title from "src/components/Title";
 
 const Wrapper = styled.div`
   display: grid;
@@ -35,10 +30,14 @@ const Item = styled.img<ItemProps>`
   width: 125px;
   text-align: center;
   grid-column: span 2;
-  margin-top: ${props => (props.offset ? "-50px" : "0")};
 
   &:nth-child(5) {
     grid-column: 2 / span 2;
+    margin-top: -50px;
+  }
+
+  &:nth-child(7) {
+    margin-top: -50px;
   }
 
   ${media.phone`
@@ -47,24 +46,22 @@ const Item = styled.img<ItemProps>`
 
     &:nth-child(5) {
         grid-column: span 1;
+        margin-top: 0;
     }
     &:nth-child(7) {
         grid-column: span 2;
+        margin-top: 0;
     }
     `}
 `;
 
 const Sponsors = () => (
   <div id="sponsors">
-    <Header>{copy.sponsors.title}</Header>
+    <Title>{copy.sponsors.title}</Title>
     <Wrapper>
-      <Item src="/images/sponsors/aliboba.png" />
-      <Item src="/images/sponsors/chatime.png" />
-      <Item src="/images/sponsors/coco.png" />
-      <Item src="/images/sponsors/ibm.png" />
-      <Item offset src="/images/sponsors/lactaid.png" />
-      <Item src="/images/sponsors/t-combinator.png" />
-      <Item offset src="/images/sponsors/tea-mobile.png" />
+      {copy.sponsors.companies.map(company => (
+        <Item key={company} src={`/images/sponsors/${company}.png`} />
+      ))}
     </Wrapper>
   </div>
 );
