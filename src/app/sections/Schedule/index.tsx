@@ -3,12 +3,14 @@ import copy from "src/copy";
 import media from "src/utils/media";
 import styled from "styled-components";
 
+import Shapes from "src/components/Shapes";
 import Activity from "src/components/Activity";
-import Anchor from 'src/components/Anchor';
-import Title from 'src/components/Title';
+import Anchor from "src/components/Anchor";
+import Title from "src/components/Title";
 
 const Wrapper = styled.div`
   padding: 0 15px;
+  position: relative;
 `;
 
 const Chalkboard = styled.div`
@@ -79,6 +81,24 @@ const Schedule = () => (
   <Wrapper>
     <Anchor id="schedule" />
     <Title>{copy.schedule.title}</Title>
+    <Shapes
+      shapes={[
+        { top: 12, left: 10, scale: 0.5, angle: 60 },
+        { top: 25, left: 15, scale: 0.75, angle: 120 },
+        { top: 45, left: 7, scale: 0.9, angle: 30 },
+        { top: 60, left: 18, scale: 0.8, angle: 90 },
+        { top: 80, left: 5, scale: 0.5, angle: 120 }
+      ]}
+    />
+    <Shapes
+      shapes={[
+        { top: 10, left: 80, scale: 1, angle: 90 },
+        { top: 35, left: 90, scale: 0.75, angle: 10 },
+        { top: 55, left: 80, scale: 0.75, angle: 40 },
+        { top: 65, left: 75, scale: 0.3, angle: 60 },
+        { top: 85, left: 95, scale: 0.5, angle: 80 }
+      ]}
+    />
     <Chalkboard>
       <ChalkboardTitle>{copy.schedule.dayOne.title}</ChalkboardTitle>
       <Activities>{dayOneActivities}</Activities>

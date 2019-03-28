@@ -3,9 +3,21 @@ import styled from "styled-components";
 import copy from "src/copy";
 import media from "src/utils/media";
 
+import Shapes from "src/components/Shapes";
 import Judge from "src/components/Judge";
-import Anchor from 'src/components/Anchor';
-import Title from 'src/components/Title';
+import Anchor from "src/components/Anchor";
+import Title from "src/components/Title";
+
+const Header = styled.h1`
+  font-family: "Bubbleboddy";
+  font-size: 48px;
+  color: #000000;
+  text-align: center;
+`;
+
+const Container = styled.div`
+  position: relative;
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,9 +31,28 @@ const Wrapper = styled.div`
 `;
 
 const Judges = () => (
-  <div>
+  <Container>
     <Anchor id="judges" />
     <Title>{copy.judges.title}</Title>
+    <Shapes
+      shapes={[
+        { top: 12, left: 10, scale: 0.5, angle: 60 },
+        { top: 25, left: 15, scale: 0.75, angle: 120 },
+        { top: 45, left: 7, scale: 0.9, angle: 30 },
+        { top: 60, left: 18, scale: 0.8, angle: 90 },
+        { top: 80, left: 5, scale: 0.5, angle: 120 }
+      ]}
+    />
+    <Shapes
+      shapes={[
+        { top: 10, left: 80, scale: 1, angle: 90 },
+        { top: 35, left: 90, scale: 0.75, angle: 10 },
+        { top: 55, left: 80, scale: 0.75, angle: 40 },
+        { top: 65, left: 75, scale: 0.3, angle: 60 },
+        { top: 85, left: 95, scale: 0.5, angle: 80 }
+      ]}
+    />
+    <Header>{copy.judges.title}</Header>
     <Wrapper>
       <Judge
         bgPath="judge_cups_matcha.svg"
@@ -56,7 +87,7 @@ const Judges = () => (
         quote={copy.judges.elon.quote}
       />
     </Wrapper>
-  </div>
+  </Container>
 );
 
 export default React.memo(Judges);

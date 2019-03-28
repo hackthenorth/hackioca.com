@@ -11,7 +11,7 @@ type MediaTemplates = {
 
 const sizes: DisplaySizes = {
   phone: 700,
-  tablet: 1024
+  tablet: 900
 };
 
 const media = Object.keys(sizes).reduce((acc, label) => {
