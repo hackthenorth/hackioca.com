@@ -61,7 +61,7 @@ const About: React.FC = () => (
       <Header>{copy.about.title}</Header>
       <Section>
         <Paragraph>{copy.about.desc}</Paragraph>
-        <Image src="images/boiling_boba_about.gif" />
+        <Image src="/images/boiling_boba_about.gif" />
       </Section>
     </div>
   </Wrapper>
