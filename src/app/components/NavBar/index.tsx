@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 // import media from "src/utils/media";
 
+import NavLinks from "./navLinks";
 import SocialLink from "./socialLink";
 
-const SECTIONS = ["about", "schedule", "judges", "workshops", "sponsors", "faq"];
+const SECTIONS = [
+  "about",
+  "schedule",
+  "judges",
+  "workshops",
+  "sponsors",
+  "faq"
+];
+
 const SOCIAL_LINKS = [
   {
     name: "facebook",
@@ -45,21 +54,8 @@ const LogoContainer = styled.div`
   align-items: center;
   width: 65px;
   height: 65px;
-  background: #F8F8F8;
+  background: #f8f8f8;
   border-radius: 50%;
-`;
-
-const NavLinkContainer = styled.div`
-  display: flex;
-  width: 569px;
-  justify-content: space-between;
-  margin-right: 32px;
-`;
-
-const NavLink = styled.a`
-  color: #fff;
-  text-decoration: none;
-  font-size: 24px;
 `;
 
 const Logo = styled.img`
@@ -78,30 +74,95 @@ const LinksContainer = styled.div`
   margin-left: auto;
 `;
 
-const navlinks = (
-  <NavLinkContainer>
-    {SECTIONS.map((section) => (
-      <NavLink key={section} href={`#${section}`}>{section}</NavLink>
-    ))}
-  </NavLinkContainer>
-)
+const HamburgerMenu = styled.img`
+  width: 33px;
+`;
 
 const socialLinks = SOCIAL_LINKS.map(link => (
   <SocialLink key={link.name} {...link} />
 ));
 
-const NavBar: React.FC = () => (
-  <NavBarContainer>
-    <a href="#">
-      <LogoContainer>
-        <Logo src={"/images/navbar/logo_dark.svg"} />
-      </LogoContainer>
-    </a>
-    <LinksContainer>
-      {navlinks}
-      <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
-    </LinksContainer>
-  </NavBarContainer>
-);
+const MobileMenu = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #333;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 11;
+`;
+
+const CloseContainer = styled.a`
+  position: absolute;
+  top: 40px;
+  right: 40px;
+`;
+
+const CloseIcon = styled.img`
+  width: 26px;
+`;
+
+const useWindowWidth = () => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const handleWindowResize = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  });
+
+  return width;
+};
+
+const NavBar: React.FC = () => {
+  const mobile = useWindowWidth() <= 700 ? true : false;
+  const [showMobileMenu, toggleMobileMenu] = useState(false);
+
+  // console.log(mobile);
+  // console.log(showMobileMenu);
+
+  return (
+    <>
+      <NavBarContainer>
+        <a href="#">
+          <LogoContainer>
+            <Logo src={"/images/navbar/logo_dark.svg"} />
+          </LogoContainer>
+        </a>
+        <LinksContainer>
+          {mobile ? (
+            <a href="#" onClick={() => toggleMobileMenu(true)}>
+              <HamburgerMenu src={`/images/navbar/hamburger.svg`} alt="menu" />
+            </a>
+          ) : (
+            <>
+              <NavLinks sections={SECTIONS} clickHandler={toggleMobileMenu} />
+              <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
+            </>
+          )}
+        </LinksContainer>
+        {showMobileMenu && (
+          <MobileMenu>
+            <CloseContainer href="#" onClick={() => toggleMobileMenu(false)}>
+              <CloseIcon src={`/images/navbar/cross.svg`} />
+            </CloseContainer>
+            <NavLinks sections={SECTIONS} clickHandler={toggleMobileMenu} />
+            <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
+          </MobileMenu>
+        )}
+      </NavBarContainer>
+    </>
+  );
+};
 
 export default NavBar;
