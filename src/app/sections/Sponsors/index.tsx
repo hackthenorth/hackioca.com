@@ -23,6 +23,7 @@ const Wrapper = styled.div`
     max-width: 350px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    grid-gap: 20px;
     `}
 `;
 
@@ -57,13 +58,13 @@ const Sponsors = () => (
   <div id="sponsors">
     <Header>{copy.sponsors.title}</Header>
     <Wrapper>
-      <Item src="../images/test1.png" />
-      <Item src="../images/test6.png" />
-      <Item src="../images/test5.png" />
-      <Item src="../images/test7.png" />
-      <Item offset src="../images/test2.png" />
-      <Item src="../images/test4.png" />
-      <Item offset src="../images/test3.png" />
+      <Item src="../images/sponsors/aliboba.png" />
+      <Item src="../images/sponsors/chatime.png" />
+      <Item src="../images/sponsors/coco.png" />
+      <Item src="../images/sponsors/ibm.png" />
+      <Item offset src="../images/sponsors/lactaid.png" />
+      <Item src="../images/sponsors/t-combinator.png" />
+      <Item offset src="../images/sponsors/tea-mobile.png" />
     </Wrapper>
   </div>
 );

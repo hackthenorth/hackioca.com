@@ -64,8 +64,8 @@ const App: React.FC = () => (
     <About />
     <Schedule />
     <Judges />
-    <FAQ />
     <Sponsors />
+    <FAQ />
     <GlobalStyle />
   </BobaProvider>
 );
