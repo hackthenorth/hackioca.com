@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 interface SectionWrapperProps {
   className?: string;
+  children: React.ReactNode;
 }
 
 const Container = styled.section``;

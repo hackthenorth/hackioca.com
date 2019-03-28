@@ -20,7 +20,9 @@ export const useBobaContext = () => useContext(BobaContext);
 const randomFlavor = flavors[Math.floor(Math.random() * flavors.length)];
 const randomTopping = toppings[Math.floor(Math.random() * toppings.length)];
 
-export const BobaProvider: React.FC = ({ children }) => {
+export const BobaProvider: React.FC<{ children: React.ReactNode }> = ({
+  children
+}) => {
   const [flavor, updateFlavor] = useState(randomFlavor);
   const [topping, updateTopping] = useState(randomTopping);
 

@@ -9,13 +9,13 @@ import FontRalewayMedium from "src/static/fonts/Raleway-Medium.ttf";
 import FontRalewaySemibold from "src/static/fonts/Raleway-SemiBold.ttf";
 import FontRalewayBold from "src/static/fonts/Raleway-Bold.ttf";
 
+import Hero from "src/app/sections/Hero";
 import Schedule from "src/app/sections/Schedule";
 import Judges from "src/app/sections/Judges";
 import About from "src/app/sections/About";
 import FAQ from "src/app/sections/FAQ";
 import Prizes from "src/app/sections/Prizes";
 
-import Hero from "src/app/sections/Hero";
 
 const GlobalStyles = createGlobalStyle`
   @font-face {

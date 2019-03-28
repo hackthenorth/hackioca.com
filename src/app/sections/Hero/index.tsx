@@ -4,8 +4,8 @@ import media from "src/utils/media";
 
 import copy from "src/copy";
 
-import MailingListSignup from "src/app/components/MailingListSignup";
-import SectionWrapper from "src/app/components/SectionWrapper";
+import MailingListSignup from "src/components/MailingListSignup";
+import SectionWrapper from "src/components/SectionWrapper";
 import BobaPicker from "./BobaPicker";
 
 const HeroWrapper = styled(SectionWrapper)`
@@ -77,4 +77,4 @@ const HeroSection: React.FC = () => (
   </HeroWrapper>
 );
 
-export default HeroSection;
+export default React.memo(HeroSection);

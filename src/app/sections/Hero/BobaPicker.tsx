@@ -35,11 +35,13 @@ import ImgFlavorMango from "src/static/images/hero/display/flavors/mango.svg";
 import ImgFlavorMatcha from "src/static/images/hero/display/flavors/matcha.svg";
 import ImgFlavorTaro from "src/static/images/hero/display/flavors/taro.svg";
 
-/* HELPER FUNCTIONS */
-const isTopping = (option: Topping | Flavor): boolean =>
+/* HELPERS */
+type ToppingOrFlavor = Topping | Flavor;
+
+const isTopping = (option: ToppingOrFlavor): option is Topping =>
   toppings.indexOf(option as Topping) >= 0;
 
-const findOptionImg = (option: Topping | Flavor) => {
+const findOptionImg = (option: ToppingOrFlavor) => {
   switch (option) {
     case "milk":
       return ImgFlavorOptionMilk;
@@ -69,19 +71,17 @@ const findOptionImg = (option: Topping | Flavor) => {
 };
 
 // https://stackoverflow.com/questions/50924952/typescript-has-no-compatible-call-signatures
-const filterShownOptions = (
-  selected: Topping | Flavor
-): (Topping | Flavor)[] => {
-  let resultArr = (isTopping(selected) ? [...toppings] : [...flavors]) as (
-    | Topping
-    | Flavor)[];
+const filterShownOptions = (selected: ToppingOrFlavor): (ToppingOrFlavor)[] => {
+  let resultArr: (ToppingOrFlavor)[] = isTopping(selected)
+    ? [...toppings]
+    : [...flavors];
   const posInArr = resultArr.indexOf(selected);
 
-  if (posInArr == 0) {
+  if (posInArr === 0) {
     resultArr = resultArr
       .slice(resultArr.length - 1, resultArr.length)
       .concat(resultArr.slice(0, 2));
-  } else if (posInArr == resultArr.length - 1) {
+  } else if (posInArr === resultArr.length - 1) {
     resultArr = resultArr
       .slice(resultArr.length - 2, resultArr.length)
       .concat(resultArr.slice(0, 1));
@@ -92,7 +92,7 @@ const filterShownOptions = (
   return resultArr;
 };
 
-const shiftOptionBy = (selected: Topping | Flavor, shiftBy: number) => {
+const shiftOptionBy = (selected: ToppingOrFlavor, shiftBy: number) => {
   let newIndex =
     (isTopping(selected)
       ? toppings.indexOf(selected as Topping)

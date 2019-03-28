@@ -9,7 +9,6 @@ const Container = styled.div`
   height: 100px;
   margin: auto;
 
-  // remove everything below this when component is finished
   background-color: white;
   ${media.phone`
     width: 90vw;

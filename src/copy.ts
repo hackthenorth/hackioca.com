@@ -6,10 +6,10 @@ export default {
     eventLoc: "Taipei 101",
     toppings: {
       tapioca: "Tapioca",
-      red_bean: "Red Bean",
-      grass_jelly: "Grass Jelly",
+      red_bean: "Red Bean", // eslint-disable-line @typescript-eslint/camelcase
+      grass_jelly: "Grass Jelly", // eslint-disable-line @typescript-eslint/camelcase
       pudding: "Pudding",
-      aloe_vera: "Aloe Vera"
+      aloe_vera: "Aloe Vera" // eslint-disable-line @typescript-eslint/camelcase
     },
     flavors: {
       mango: "Mango",
