@@ -14,7 +14,7 @@ import OptionPicker from "./OptionPicker";
 /* HELPERS */
 type ToppingOrFlavor = Topping | Flavor;
 
-const ENABLE_AUTO_FLAVOR_SWITCH = false;
+const ENABLE_AUTO_FLAVOR_SWITCH = true;
 
 const isTopping = (option: ToppingOrFlavor): option is Topping =>
   toppings.indexOf(option as Topping) >= 0;
