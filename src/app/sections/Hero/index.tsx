@@ -10,7 +10,7 @@ import BobaCustomizer from "./BobaCustomizer";
 import Shapes from "src/components/Shapes";
 
 const HeroWrapper = styled(SectionWrapper)`
-  height: 100vh;
+  margin: 75px auto;
   position: relative;
 
   display: flex;
@@ -43,9 +43,10 @@ const HeroDesc = styled.div`
   font-size: 22px;
   font-weight: 500;
   text-align: center;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 
   ${media.phone`
+    margin-bottom: 1.5em;
     font-size: 18px;
   `}
 

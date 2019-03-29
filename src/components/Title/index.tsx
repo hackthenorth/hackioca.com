@@ -1,5 +1,5 @@
 import styled, { StyledComponent } from "styled-components";
-import media from 'src/utils/media';
+import media from "src/utils/media";
 
 const Title: StyledComponent<"h1", {}> = styled.h1`
   font-family: "Bubbleboddy";

@@ -4,7 +4,7 @@ import copy from "src/copy";
 import media from "src/utils/media";
 
 import Title from "src/components/Title";
-import Anchor from 'src/components/Anchor';
+import Anchor from "src/components/Anchor";
 
 const Wrapper = styled.div`
   display: grid;

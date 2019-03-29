@@ -1,4 +1,6 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { QueryParamProvider } from "use-query-params";
 import { BobaProvider } from "src/utils/context/boba";
 
 import Hero from "src/app/sections/Hero";
@@ -11,19 +13,33 @@ import Activities from "src/app/sections/Activities";
 import Workshops from "src/app/sections/Workshops";
 import About from "src/app/sections/About";
 import Style from "src/components/Style";
+import RouteNotFound from "src/app/sections/RouteNotFound";
 
 const App: React.FC = () => (
   <BobaProvider>
-    <Hero />
-    <About />
-    <Schedule />
-    <Judges />
-    <Workshops />
-    <Sponsors />
-    <Prizes />
-    <Activities />
-    <FAQ />
     <Style />
+    <Router>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <QueryParamProvider ReactRouterRoute={Route}>
+              <Hero />
+              <About />
+              <Schedule />
+              <Judges />
+              <Workshops />
+              <Activities />
+              <Sponsors />
+              <Prizes />
+              <FAQ />
+            </QueryParamProvider>
+          )}
+        />
+        <Route component={RouteNotFound} />
+      </Switch>
+    </Router>
   </BobaProvider>
 );
 
