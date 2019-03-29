@@ -6,7 +6,7 @@ import copy from "src/copy";
 
 import MailingListSignup from "src/components/MailingListSignup";
 import SectionWrapper from "src/components/SectionWrapper";
-import BobaPicker from "./BobaPicker";
+import BobaCustomizer from "./BobaCustomizer";
 
 const HeroWrapper = styled(SectionWrapper)`
   height: 100vh;
@@ -62,8 +62,8 @@ const HeroDesc = styled.div`
 
 const HeroSection: React.FC = () => (
   <HeroWrapper>
-    <div>
-      <BobaPicker />
+      <div>
+          <BobaCustomizer />
 
       <HeroTitle>{copy.hero.title}</HeroTitle>
       <HeroDesc>
