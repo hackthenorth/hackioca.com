@@ -53,8 +53,9 @@ const shiftOptionBy = (selected: ToppingOrFlavor, shiftBy: number) => {
       ? toppings.indexOf(selected as Topping)
       : flavors.indexOf(selected as Flavor)) + shiftBy;
 
-  // Bound the index by the array size
-  newIndex = newIndex % toppings.length;
+  // Take module to bound index by options array size
+  // https://stackoverflow.com/questions/4467539/javascript-modulo-gives-a-negative-result-for-negative-numbers
+  newIndex = ((newIndex % toppings.length) + toppings.length) % toppings.length;
 
   // Return the correct type
   return isTopping(selected) ? toppings[newIndex] : flavors[newIndex];
@@ -145,10 +146,10 @@ const BobaPicker: React.FC = () => {
     <Container>
       <OptionPicker
         incrementOption={() =>
-          changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor)
+          changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
         }
         decrementOption={() =>
-          changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
+          changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor)
         }
         changeOption={changeFlavor}
         shownOptions={shownFlavors}
@@ -171,10 +172,10 @@ const BobaPicker: React.FC = () => {
 
       <OptionPicker
         incrementOption={() =>
-          changeTopping(shiftOptionBy(selectedTopping, -1) as Topping)
+          changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)
         }
         decrementOption={() =>
-          changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)
+          changeTopping(shiftOptionBy(selectedTopping, -1) as Topping)
         }
         changeOption={changeTopping}
         shownOptions={shownToppings}
