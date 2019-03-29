@@ -4,8 +4,8 @@ import copy from "src/copy";
 import media from "src/utils/media";
 
 import Judge from "src/components/Judge";
-import Anchor from 'src/components/Anchor';
-import Title from 'src/components/Title';
+import Anchor from "src/components/Anchor";
+import Title from "src/components/Title";
 
 const Wrapper = styled.div`
   display: flex;

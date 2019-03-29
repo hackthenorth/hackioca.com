@@ -4,7 +4,7 @@ import Title from "src/components/Title";
 import copy from "src/copy";
 import Prize from "./prize";
 import media from "src/utils/media";
-import Anchor from 'src/components/Anchor';
+import Anchor from "src/components/Anchor";
 
 const Section = styled.div`
   width: 800px;

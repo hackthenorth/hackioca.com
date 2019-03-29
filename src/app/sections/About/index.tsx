@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import copy from "src/copy";
 import media from "src/utils/media";
-import Anchor from 'src/components/Anchor';
-import BaseTitle from 'src/components/Title';
+import Anchor from "src/components/Anchor";
+import BaseTitle from "src/components/Title";
+
+import ImgBoilingBobaGif from "src/static/images/boiling_boba_about.gif";
 
 const Wrapper = styled.div`
   display: flex;
@@ -60,7 +62,7 @@ const About: React.FC = () => (
       <Title>{copy.about.title}</Title>
       <Section>
         <Paragraph>{copy.about.desc}</Paragraph>
-        <Image src="/images/boiling_boba_about.gif" />
+        <Image src={ImgBoilingBobaGif} />
       </Section>
     </div>
   </Wrapper>
