@@ -14,6 +14,8 @@ import OptionPicker from "./OptionPicker";
 /* HELPERS */
 type ToppingOrFlavor = Topping | Flavor;
 
+const ENABLE_AUTO_FLAVOR_SWITCH = false;
+
 const isTopping = (option: ToppingOrFlavor): option is Topping =>
   toppings.indexOf(option as Topping) >= 0;
 
@@ -151,7 +153,7 @@ const BobaCustomizer: React.FC = () => {
   // Randomly change flavor every 3 secs until user interaction occurs
   // If user interacted, then trigger the boop animation
   useEffect(() => {
-    if (!userInteracted) {
+    if (!userInteracted && ENABLE_AUTO_FLAVOR_SWITCH) {
       const flavorChangerId = setInterval(
         () => updateFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor),
         3000
