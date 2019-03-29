@@ -13,6 +13,8 @@
     "eject": "react-scripts-ts eject"
   },
   "dependencies": {
+    "@bugsnag/js": "^6.0.0",
+    "@bugsnag/plugin-react": "^6.0.0",
     "@types/react-tooltip": "^3.9.2",
     "nuka-carousel": "^4.5.3",
     "react": "^16.8.4",
