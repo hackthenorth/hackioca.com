@@ -8,13 +8,6 @@ import Judge from "src/components/Judge";
 import Anchor from "src/components/Anchor";
 import Title from "src/components/Title";
 
-const Header = styled.h1`
-  font-family: "Bubbleboddy";
-  font-size: 48px;
-  color: #000000;
-  text-align: center;
-`;
-
 const Container = styled.div`
   position: relative;
 `;
@@ -52,7 +45,6 @@ const Judges = () => (
         { top: 85, left: 95, scale: 0.5, angle: 80 }
       ]}
     />
-    <Header>{copy.judges.title}</Header>
     <Wrapper>
       <Judge
         bgPath="judge_cups_matcha.svg"
