@@ -62,7 +62,7 @@ const Sponsors = () => (
     <Title>{copy.sponsors.title}</Title>
     <Wrapper>
       {copy.sponsors.companies.map(company => (
-        <Item key={company} src={`/images/sponsors/${company}.png`} />
+        <Item key={company} src={`/images/supporters/${company}.png`} />
       ))}
     </Wrapper>
   </div>
