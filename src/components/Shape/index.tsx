@@ -138,4 +138,4 @@ class Shape extends React.PureComponent<ShapeProps> {
   }
 }
 
-export default React.memo(Shape);
+export default Shape;

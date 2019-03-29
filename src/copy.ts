@@ -46,7 +46,7 @@ export default {
         { title: "Breakfast: Bubble Waffles and Boba", time: "8am - 10am" },
         { title: "Workshop: H-TEA-TEA-P", time: "11am-12pm" },
         { title: "Activity: Bubble Soccer", time: "2pm-3pm" },
-        { title: "Lunch: Lunch: Burritos and Boba", time: "2pm-3pm" },
+        { title: "Lunch: Burritos and Boba", time: "2pm-3pm" },
         { title: "Snack: Mochi and Boba", time: "3pm-5pm" },
         { title: "Dinner: Boba w/ Parental Disappointment", time: "6pm-8pm," },
         { title: "Activity: Do hw that’s due tomorrow", time: "10pm-11:30pm" }
