@@ -42,7 +42,7 @@ class Shape extends React.PureComponent<ShapeProps> {
   public recalculate: (scrollTop: number) => void;
   public attachRef: (e: any) => void;
   public static windowHeight: number;
-  public static shapeList: any[];
+  public static shapeList: Shape[];
   public static getScrollTop: () => number;
   public randomNum: number;
   public size: number;
@@ -86,7 +86,7 @@ class Shape extends React.PureComponent<ShapeProps> {
         window.pageYOffset || document.documentElement.scrollTop;
       const animate = () => {
         const scrollTop = Shape.getScrollTop();
-        Shape.shapeList.forEach((shape: any) => {
+        Shape.shapeList.forEach((shape: Shape) => {
           shape.move(scrollTop);
         });
       };

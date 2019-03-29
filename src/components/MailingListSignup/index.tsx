@@ -4,6 +4,7 @@ import media from "src/utils/media";
 
 // replace with mailinglist stuff
 const Container = styled.div`
+  display: none;
   position: relative;
   width: 585px;
   height: 100px;

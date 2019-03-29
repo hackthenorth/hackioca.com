@@ -7,13 +7,13 @@ interface ShapesProps {
 
 const Shapes = ({ shapes }: ShapesProps) => (
   <>
-    {shapes.map((shape, i) => (
+    {shapes.map(({ top, left, scale, angle }) => (
       <Shape
-        key={i}
-        top={shape.top}
-        left={shape.left}
-        scale={shape.scale}
-        angle={shape.angle}
+        key={`${top}-${left}-${scale}-${angle}`}
+        top={top}
+        left={left}
+        scale={scale}
+        angle={angle}
       />
     ))}
   </>
