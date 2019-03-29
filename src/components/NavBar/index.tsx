@@ -132,12 +132,13 @@ const NavBar: React.FC = () => {
   const mobile = useWindowWidth() <= breakpoints.tablet; // TODO: use global breakpoint constant
   const [showMobileMenu, toggleMobileMenu] = useState(false);
 
-  const scrollTo = (e: React.MouseEvent<HTMLElement>) => {
+  const scrollTo = (e: React.MouseEvent<HTMLElement>, id: string) => {
     toggleMobileMenu(false);
     const circle = document.getElementById("circle");
     if (circle) circle.classList.remove("expand");
-    const { href } = e.target as any;
-    const el = document.getElementById(href.substr(href.indexOf("#") + 1));
+    console.log(e.target)
+    // const { href } = e.target as any;
+    const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
@@ -164,14 +165,14 @@ const NavBar: React.FC = () => {
 
   return (
     <NavBarContainer>
-      <a href="/">
+      <a href="#" onClick={(e) => scrollTo(e, "#home")}>
         <LogoContainer>
           <Logo src="/images/navbar/logo_dark.svg" />
         </LogoContainer>
       </a>
       <LinksContainer>
         {mobile ? (
-          <a href="#" onClick={openMenu}>
+          <a href="#activity" onClick={openMenu}>
             <HamburgerMenu src="/images/navbar/hamburger.svg" alt="menu" />
           </a>
         ) : (

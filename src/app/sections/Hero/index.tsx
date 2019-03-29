@@ -99,6 +99,18 @@ const HeroSection: React.FC = () => (
         { top: 85, left: 95, scale: 0.5, angle: 80 }
       ]}
     />
+    <div id="home">
+      <BobaCustomizer />
+
+      <HeroTitle>{copy.hero.title}</HeroTitle>
+      <HeroDesc>
+        <div className="subtitle">{copy.hero.subtitle}</div>
+        <div className="details">{copy.hero.eventDate}</div>
+        <div className="details">{copy.hero.eventLoc}</div>
+      </HeroDesc>
+
+      <MailingListSignup />
+    </div>
   </HeroWrapper>
 );
 

@@ -12,7 +12,7 @@ interface SocialLinkProps {
 const IMG_PATH = "/images/socials/";
 
 const SocialImg = styled.img`
-  width: 30px;
+  width: 25px;
 
   &:hover {
     opacity: 0.7;

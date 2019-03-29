@@ -5,12 +5,12 @@ import media from "src/utils/media";
 
 interface NavLinkProps {
   sections: string[];
-  clickHandler(e: React.MouseEvent<HTMLElement>): void;
+  clickHandler(e: React.MouseEvent<HTMLElement>, id: string): void;
 }
 
 const NavLinkContainer = styled.div`
   display: flex;
-  width: 740px;
+  width: 700px;
   justify-content: space-between;
   margin-right: 32px;
 
@@ -27,7 +27,7 @@ const NavLinkContainer = styled.div`
 const NavLinkButton = styled.a`
   color: #fff;
   text-decoration: none;
-  font-size: 23px;
+  font-size: 20px;
 
   &:hover {
     opacity: 0.7;
@@ -44,7 +44,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ sections, clickHandler }) => (
       <NavLinkButton
         key={section}
         href={`#${section}`}
-        onClick={e => clickHandler(e)}
+        onClick={e => clickHandler(e, `#${section}`)}
       >
         {section}
       </NavLinkButton>
