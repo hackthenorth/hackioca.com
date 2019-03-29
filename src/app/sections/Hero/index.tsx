@@ -9,7 +9,7 @@ import SectionWrapper from "src/components/SectionWrapper";
 import BobaCustomizer from "./BobaCustomizer";
 
 const HeroWrapper = styled(SectionWrapper)`
-  height: 100vh;
+  margin: 75px auto;
 
   display: flex;
   flex-direction: column;
