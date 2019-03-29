@@ -9,7 +9,7 @@ import SectionWrapper from "src/components/SectionWrapper";
 import BobaCustomizer from "./BobaCustomizer";
 
 const HeroWrapper = styled(SectionWrapper)`
-  height: 100vh;
+  margin: 75px auto;
 
   display: flex;
   flex-direction: column;
@@ -41,9 +41,10 @@ const HeroDesc = styled.div`
   font-size: 22px;
   font-weight: 500;
   text-align: center;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 
   ${media.phone`
+    margin-bottom: 1.5em;
     font-size: 18px;
   `}
 
