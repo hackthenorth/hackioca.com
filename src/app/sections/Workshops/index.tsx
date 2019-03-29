@@ -11,16 +11,6 @@ const WorkshopContainer = styled.div`
   margin: 0 auto;
 `;
 
-// const Title = styled.h1`
-//   font-family: "Bubbleboddy";
-//   font-size: 48px;
-//   color: #000;
-//   text-align: center;
-//   ${media.phone`
-//     font-size: 40px;
-//   `}
-// `;
-
 const BodyContainer = styled.div`
   display: flex;
   justify-content: space-between;
