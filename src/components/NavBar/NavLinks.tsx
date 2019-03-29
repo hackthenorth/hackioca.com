@@ -5,7 +5,7 @@ import media from "src/utils/media";
 
 interface NavLinkProps {
   sections: string[];
-  clickHandler(e: React.MouseEvent<HTMLElement>, id: string): void;
+  clickHandler(id: string): void;
 }
 
 const NavLinkContainer = styled.div`
@@ -44,7 +44,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ sections, clickHandler }) => (
       <NavLinkButton
         key={section}
         href={`#${section}`}
-        onClick={e => clickHandler(e, `#${section}`)}
+        onClick={e => clickHandler(`#${section}`)}
       >
         {section}
       </NavLinkButton>

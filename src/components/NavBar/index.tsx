@@ -129,17 +129,16 @@ const useWindowWidth = () => {
 };
 
 const NavBar: React.FC = () => {
-  const mobile = useWindowWidth() <= breakpoints.tablet; // TODO: use global breakpoint constant
+  const mobile = useWindowWidth() <= breakpoints.tablet;
   const [showMobileMenu, toggleMobileMenu] = useState(false);
 
-  const scrollTo = (e: React.MouseEvent<HTMLElement>, id: string) => {
+  const scrollTo = (id: string) => {
     toggleMobileMenu(false);
     const circle = document.getElementById("circle");
     if (circle) circle.classList.remove("expand");
-    console.log(e.target)
-    // const { href } = e.target as any;
     const el = document.getElementById(id);
     if (el) {
+      console.log(id)
       el.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -165,7 +164,7 @@ const NavBar: React.FC = () => {
 
   return (
     <NavBarContainer>
-      <a href="#" onClick={(e) => scrollTo(e, "#home")}>
+      <a href="#" onClick={() => scrollTo("#home")}>
         <LogoContainer>
           <Logo src="/images/navbar/logo_dark.svg" />
         </LogoContainer>
