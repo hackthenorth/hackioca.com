@@ -74,7 +74,6 @@ const MobileMenu = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: #333;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -82,6 +81,33 @@ const MobileMenu = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 11;
+`;
+
+const Circle = styled.div`
+  border-radius: 50%;
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top: 31px;
+  right: 36px;
+  background: #333;
+  -webkit-transition: all 300ms cubic-bezier(0, 0.995, 0.99, 1);
+  -moz-transition: all 300ms cubic-bezier(0, 0.995, 0.99, 1);
+  -ms-transition: all 300ms cubic-bezier(0, 0.995, 0.99, 1);
+  -o-transition: all 300ms cubic-bezier(0, 0.995, 0.99, 1);
+  transition: all 300ms cubic-bezier(0, 0.995, 0.99, 1);
+
+  &.expand {
+    width: 2000px;
+    height: 2000px;
+    top: -560px;
+    right: -565px;
+    -webkit-transition: all 400ms cubic-bezier(0, 0.995, 0.99, 1);
+    -moz-transition: all 400ms cubic-bezier(0, 0.995, 0.99, 1);
+    -ms-transition: all 400ms cubic-bezier(0, 0.995, 0.99, 1);
+    -o-transition: all 400ms cubic-bezier(0, 0.995, 0.99, 1);
+    transition: all 400ms cubic-bezier(0, 0.995, 0.99, 1);
+  }
 `;
 
 const useWindowWidth = () => {
@@ -107,12 +133,29 @@ const NavBar: React.FC = () => {
   const [showMobileMenu, toggleMobileMenu] = useState(false);
 
   const scrollTo = (e: React.MouseEvent<HTMLElement>) => {
-    showMobileMenu && toggleMobileMenu(false);
+    toggleMobileMenu(false);
+    const circle = document.getElementById("circle");
+    if (circle) circle.classList.remove("expand");
     const { href } = e.target as any;
     const el = document.getElementById(href.substr(href.indexOf("#") + 1));
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const openMenu = (e: React.MouseEvent<HTMLElement>) => {
+    // e.preventDefault();
+    console.log("opening menu");
+    toggleMobileMenu(true);
+    const circle = document.getElementById("circle");
+    if (circle) circle.className += " expand";
+  };
+
+  const closeMenu = (e: React.MouseEvent<HTMLElement>) => {
+    // e.preventDefault();
+    toggleMobileMenu(false);
+    const circle = document.getElementById("circle");
+    if (circle) circle.classList.remove("expand");
   };
 
   useEffect(() => {
@@ -128,7 +171,7 @@ const NavBar: React.FC = () => {
       </a>
       <LinksContainer>
         {mobile ? (
-          <a href="#" onClick={() => toggleMobileMenu(true)}>
+          <a href="#" onClick={openMenu}>
             <HamburgerMenu src="/images/navbar/hamburger.svg" alt="menu" />
           </a>
         ) : (
@@ -140,11 +183,12 @@ const NavBar: React.FC = () => {
       </LinksContainer>
       {showMobileMenu && (
         <MobileMenu>
-          <CloseIcon clickHandler={toggleMobileMenu} />
+          <CloseIcon clickHandler={closeMenu} />
           <NavLinks sections={copy.nav.sections} clickHandler={scrollTo} />
           <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
         </MobileMenu>
       )}
+      <Circle id="circle" />
     </NavBarContainer>
   );
 };

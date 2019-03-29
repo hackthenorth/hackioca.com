@@ -4,7 +4,7 @@ import styled from "styled-components";
 // import media from "src/utils/media";
 
 interface CloseIconProps {
-  clickHandler(value: boolean): void;
+  clickHandler(e: React.MouseEvent<HTMLElement>): void;
 }
 
 const CloseContainer = styled.a`
@@ -18,7 +18,7 @@ const CloseImg = styled.img`
 `;
 
 const CloseIcon: React.FC<CloseIconProps> = ({ clickHandler }) => (
-  <CloseContainer href="#" onClick={() => clickHandler(false)}>
+  <CloseContainer href="#" onClick={e => clickHandler(e)}>
     <CloseImg src={`/images/navbar/cross.svg`} />
   </CloseContainer>
 );
