@@ -7,9 +7,11 @@ import copy from "src/copy";
 import MailingListSignup from "src/components/MailingListSignup";
 import SectionWrapper from "src/components/SectionWrapper";
 import BobaCustomizer from "./BobaCustomizer";
+import Shapes from "src/components/Shapes";
 
 const HeroWrapper = styled(SectionWrapper)`
   margin: 75px auto;
+  position: relative;
 
   display: flex;
   flex-direction: column;
@@ -63,6 +65,23 @@ const HeroDesc = styled.div`
 
 const HeroSection: React.FC = () => (
   <HeroWrapper>
+    <Shapes
+      shapes={[
+        { top: 12, left: 10, scale: 0.5, angle: 60 },
+        { top: 25, left: 15, scale: 0.75, angle: 120 },
+        { top: 45, left: 7, scale: 0.9, angle: 30 },
+        { top: 80, left: 5, scale: 0.5, angle: 120 }
+      ]}
+    />
+    <Shapes
+      shapes={[
+        { top: 10, left: 80, scale: 1, angle: 90 },
+        { top: 35, left: 90, scale: 0.75, angle: 10 },
+        { top: 55, left: 80, scale: 0.75, angle: 40 },
+        { top: 65, left: 75, scale: 0.4, angle: 60 },
+        { top: 85, left: 95, scale: 0.5, angle: 80 }
+      ]}
+    />
     <div>
       <BobaCustomizer />
 
