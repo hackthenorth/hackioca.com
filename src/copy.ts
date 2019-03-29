@@ -138,6 +138,18 @@ export default {
       }
     ]
   },
+  sponsors: {
+    title: "sponsors",
+    companies: [
+      "aliboba",
+      "chatime",
+      "coco",
+      "ibm",
+      "lactaid",
+      "t-combinator",
+      "tea-mobile"
+    ]
+  },
   prizes: {
     title: "prizes",
     prizes: [
@@ -166,6 +178,66 @@ export default {
         title: "Most insTEAworthy",
         desc: "Best design hack",
         prize: "Prize: 4 new insta followers"
+      }
+    ]
+  },
+  activities: {
+    title: "activities",
+    body: [
+      {
+        activity: "Boba Ball Pit",
+        desc:
+          "Come blow off some steam in our giant tapioca ball pit! If you get stuck, you can eat your way out."
+      },
+      {
+        activity: "Bubble Soccer",
+        desc:
+          "Soccer with a twist: step inside a giant inflatable bubble and get some physical activity!"
+      },
+      {
+        activity: "Do your homework that’s due tomorrow",
+        desc:
+          "We know you have to do it. You know you have to do it. Come procrastinate with all the other procrastinators together."
+      },
+      {
+        activity: "Find Your Boba Bae",
+        desc:
+          "Mix and mingle with those who share your passion for all things boba. Strike up a conversation with someone and see if you’re a matcha!"
+      }
+    ]
+  },
+  workshops: {
+    title: "workshops",
+    body: [
+      {
+        workshop: "Binary Tea Algorithms",
+        desc:
+          "This workshop is a tea-rrific way to brush up on a common topic in those technical algorithm interviews!"
+      },
+      {
+        workshop: "Intro to Perl",
+        desc:
+          "Ever wonder what perl is? Add some texture to your programming skill set and find out!"
+      },
+      {
+        workshop: "How to conduct Quali-tea Assurance (QA)",
+        desc:
+          "Ever had a bad cup of boba? This workshop will teach you how to keep your service or product at its best quali-tea for every customer."
+      },
+      {
+        workshop: "Intro to kuberne-tea-s",
+        desc:
+          "By the end of this workshop, you’ll barely be able to contain your excitement to try kuberne-tea-s out!"
+      },
+      {
+        workshop: "H-TEA-TEA-P",
+        desc:
+          "Spill all the tea! Format as well as transmit your messages across the web."
+      },
+      {
+        workshop: "CoffeeScript",
+        desc:
+          "Get your day going with this hyper fast paced, stimulating introduction to CoffeeScript. Note: due to it not being a boba drink, coffee will not be provided or permitted at the workshop or the hackathon."
       }
     ]
   }

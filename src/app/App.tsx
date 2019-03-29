@@ -12,9 +12,12 @@ import FontRalewayBold from "src/static/fonts/Raleway-Bold.ttf";
 import Hero from "src/app/sections/Hero";
 import Schedule from "src/app/sections/Schedule";
 import Judges from "src/app/sections/Judges";
-import About from "src/app/sections/About";
 import FAQ from "src/app/sections/FAQ";
+import Sponsors from "src/app/sections/Sponsors";
 import Prizes from "src/app/sections/Prizes";
+import Activities from "src/app/sections/Activities";
+import Workshops from "src/app/sections/Workshops";
+import About from "src/app/sections/About";
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -77,7 +80,10 @@ const App: React.FC = () => (
     <About />
     <Schedule />
     <Judges />
+    <Workshops />
+    <Sponsors />
     <Prizes />
+    <Activities />
     <FAQ />
   </BobaProvider>
 );

@@ -3,7 +3,8 @@ import styled from "styled-components";
 import copy from "src/copy";
 import media from "src/utils/media";
 
-import Judge from "src/components/Judge";
+import Judge from "src/app/components/Judge";
+import Anchor from 'src/components/Anchor';
 
 const Header = styled.h1`
   font-family: "Bubbleboddy";
@@ -24,7 +25,8 @@ const Wrapper = styled.div`
 `;
 
 const Judges = () => (
-  <div id="judges">
+  <div>
+    <Anchor id="judges" />
     <Header>{copy.judges.title}</Header>
     <Wrapper>
       <Judge

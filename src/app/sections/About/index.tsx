@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import copy from "src/copy";
 import media from "src/utils/media";
+import Anchor from 'src/components/Anchor';
 
 const Wrapper = styled.div`
   display: flex;
@@ -57,11 +58,12 @@ const Image = styled.img`
 
 const About: React.FC = () => (
   <Wrapper>
+    <Anchor id="about" />
     <div>
       <Header>{copy.about.title}</Header>
       <Section>
         <Paragraph>{copy.about.desc}</Paragraph>
-        <Image src="images/boiling_boba_about.gif" />
+        <Image src="/images/boiling_boba_about.gif" />
       </Section>
     </div>
   </Wrapper>

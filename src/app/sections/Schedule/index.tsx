@@ -3,7 +3,8 @@ import copy from "src/copy";
 import media from "src/utils/media";
 import styled from "styled-components";
 
-import Activity from "src/components/Activity";
+import Activity from "src/app/components/Activity";
+import Anchor from 'src/components/Anchor';
 
 const Wrapper = styled.div`
   padding: 0 15px;
@@ -81,7 +82,8 @@ const dayThreeActivities = copy.schedule.dayThree.events.map(
 );
 
 const Schedule = () => (
-  <Wrapper id="schedule">
+  <Wrapper>
+    <Anchor id="schedule" />
     <Header>{copy.schedule.title}</Header>
     <Chalkboard>
       <Title>{copy.schedule.dayOne.title}</Title>
