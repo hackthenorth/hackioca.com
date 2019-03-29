@@ -14,6 +14,10 @@ const IMG_PATH = "/images/socials/";
 const SocialImg = styled.img`
   width: 30px;
 
+  &:hover {
+    opacity: 0.7;
+  }
+
   ${media.phone`
     width: 40px;
   `}

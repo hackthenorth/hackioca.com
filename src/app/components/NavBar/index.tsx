@@ -1,37 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-// import media from "src/utils/media";
+import media, { sizes as breakpoints } from "src/utils/media";
+import copy from "src/copy";
 
-import NavLinks from "./navLinks";
-import SocialLink from "./socialLink";
-
-const SECTIONS = [
-  "about",
-  "schedule",
-  "judges",
-  "workshops",
-  "sponsors",
-  "faq"
-];
-
-const SOCIAL_LINKS = [
-  {
-    name: "facebook",
-    icon: "facebook.png",
-    link: "https://facebook.com"
-  },
-  {
-    name: "twitter",
-    icon: "twitter.png",
-    link: "twitter.com"
-  },
-  {
-    name: "instagram",
-    icon: "instagram.png",
-    link: "instagram.com"
-  }
-];
+import NavLinks from "./NavLinks";
+import SocialLink from "./SocialLink";
+import CloseIcon from "./CloseIcon";
 
 const NavBarContainer = styled.nav`
   font-family: "Bubbleboddy";
@@ -40,32 +15,44 @@ const NavBarContainer = styled.nav`
   left: 0;
   width: 100%;
   box-sizing: border-box;
-  height: 94px;
+  height: 61px;
   background: #333;
   padding: 0 55px;
   display: flex;
   align-items: center;
   z-index: 10;
+
+  ${media.tablet`
+    padding: 0 24px;
+  `}
 `;
 
 const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 65px;
-  height: 65px;
+  width: 43px;
+  height: 43px;
   background: #f8f8f8;
   border-radius: 50%;
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
 const Logo = styled.img`
-  height: 58px;
+  height: 39px;
 `;
 
 const SocialLinkContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 197px;
+  width: 131px;
+
+  ${media.tablet`
+    padding-top: 5px;
+    width: 150px;
+  `}
 `;
 
 const LinksContainer = styled.div`
@@ -78,7 +65,7 @@ const HamburgerMenu = styled.img`
   width: 33px;
 `;
 
-const socialLinks = SOCIAL_LINKS.map(link => (
+const socialLinks = copy.nav.socialLinks.map(link => (
   <SocialLink key={link.name} {...link} />
 ));
 
@@ -94,16 +81,6 @@ const MobileMenu = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 11;
-`;
-
-const CloseContainer = styled.a`
-  position: absolute;
-  top: 40px;
-  right: 40px;
-`;
-
-const CloseIcon = styled.img`
-  width: 26px;
 `;
 
 const useWindowWidth = () => {
@@ -125,43 +102,42 @@ const useWindowWidth = () => {
 };
 
 const NavBar: React.FC = () => {
-  const mobile = useWindowWidth() <= 700 ? true : false;
+  const mobile = useWindowWidth() <= breakpoints.tablet; // TODO: use global breakpoint constant
   const [showMobileMenu, toggleMobileMenu] = useState(false);
 
-  // console.log(mobile);
-  // console.log(showMobileMenu);
-
   return (
-    <>
-      <NavBarContainer>
-        <a href="#">
-          <LogoContainer>
-            <Logo src={"/images/navbar/logo_dark.svg"} />
-          </LogoContainer>
-        </a>
-        <LinksContainer>
-          {mobile ? (
-            <a href="#" onClick={() => toggleMobileMenu(true)}>
-              <HamburgerMenu src={`/images/navbar/hamburger.svg`} alt="menu" />
-            </a>
-          ) : (
-            <>
-              <NavLinks sections={SECTIONS} clickHandler={toggleMobileMenu} />
-              <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
-            </>
-          )}
-        </LinksContainer>
-        {showMobileMenu && (
-          <MobileMenu>
-            <CloseContainer href="#" onClick={() => toggleMobileMenu(false)}>
-              <CloseIcon src={`/images/navbar/cross.svg`} />
-            </CloseContainer>
-            <NavLinks sections={SECTIONS} clickHandler={toggleMobileMenu} />
+    <NavBarContainer>
+      <a href="/">
+        <LogoContainer>
+          <Logo src="/images/navbar/logo_dark.svg" />
+        </LogoContainer>
+      </a>
+      <LinksContainer>
+        {mobile ? (
+          <a href="#" onClick={() => toggleMobileMenu(true)}>
+            <HamburgerMenu src="/images/navbar/hamburger.svg" alt="menu" />
+          </a>
+        ) : (
+          <>
+            <NavLinks
+              sections={copy.nav.sections}
+              clickHandler={toggleMobileMenu}
+            />
             <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
-          </MobileMenu>
+          </>
         )}
-      </NavBarContainer>
-    </>
+      </LinksContainer>
+      {showMobileMenu && (
+        <MobileMenu>
+          <CloseIcon clickHandler={toggleMobileMenu} />
+          <NavLinks
+            sections={copy.nav.sections}
+            clickHandler={toggleMobileMenu}
+          />
+          <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
+        </MobileMenu>
+      )}
+    </NavBarContainer>
   );
 };
 

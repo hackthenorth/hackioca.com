@@ -14,7 +14,7 @@ const NavLinkContainer = styled.div`
   justify-content: space-between;
   margin-right: 32px;
 
-  ${media.phone`
+  ${media.tablet`
     flex-direction: column;
     align-items: center;
     height: 375px;
@@ -28,6 +28,10 @@ const NavLinkButton = styled.a`
   color: #fff;
   text-decoration: none;
   font-size: 24px;
+
+  &:hover {
+    opacity: 0.7;
+  }
 
   ${media.phone`
     font-size: 32px;
