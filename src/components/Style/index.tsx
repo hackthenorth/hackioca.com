@@ -9,23 +9,6 @@ import FontRalewayMedium from "src/static/fonts/Raleway-Medium.ttf";
 import FontRalewaySemibold from "src/static/fonts/Raleway-SemiBold.ttf";
 import FontRalewayBold from "src/static/fonts/Raleway-Bold.ttf";
 
-interface BackgroundStyleProps {
-  gradient: string;
-}
-
-class BackgroundStyleComponent extends React.Component<BackgroundStyleProps, {}> {
-  rerender() {
-    document.body.style.background = this.props.gradient;
-  }
-  componentDidMount() {
-    this.rerender();
-  }
-  componentDidUpdate() {
-    this.rerender();
-  }
-  render() { return null };
-}
-
 const BackgroundStyle = React.memo(() => (
   <BobaContext.Consumer>
     {({ flavor }) => {
@@ -36,7 +19,8 @@ const BackgroundStyle = React.memo(() => (
         mango: "linear-gradient(180deg, #F2C834 0%, #FBF0CB 100%)",
         strawberry: "linear-gradient(180deg, #ED6E6F 0%, #FAD7D7 100%)"
       };
-      return <BackgroundStyleComponent gradient={gradients[flavor]} />;
+      document.body.style.background = gradients[flavor];
+      return null;
     }}
   </BobaContext.Consumer>
 ));
