@@ -10,13 +10,11 @@ import { useBobaContext } from "src/utils/context/boba";
 import BobaDisplay from "./BobaDisplay";
 import OptionPicker from "./OptionPicker";
 
-
 /* HELPERS */
 type ToppingOrFlavor = Topping | Flavor;
 
 const isTopping = (option: ToppingOrFlavor): option is Topping =>
   toppings.indexOf(option as Topping) >= 0;
-
 
 // https://stackoverflow.com/questions/50924952/typescript-has-no-compatible-call-signatures
 // Since the picker only displays 3 options for each, find the range of -1, +1 options based
@@ -33,13 +31,11 @@ const filterShownOptions = (selected: ToppingOrFlavor): ToppingOrFlavor[] => {
     resultArr = resultArr
       .slice(resultArr.length - 1, resultArr.length)
       .concat(resultArr.slice(0, 2));
-
   } else if (posInArr === resultArr.length - 1) {
     // Merge last two items with first item in options
     resultArr = resultArr
       .slice(resultArr.length - 2, resultArr.length)
       .concat(resultArr.slice(0, 1));
-
   } else {
     // Get item before, item after, and current item in options
     resultArr = resultArr.slice(posInArr - 1, posInArr + 2);
@@ -47,7 +43,6 @@ const filterShownOptions = (selected: ToppingOrFlavor): ToppingOrFlavor[] => {
 
   return resultArr;
 };
-
 
 // Changes the selected option by shiftBy units in the original
 // toppings or flavors array
@@ -59,7 +54,7 @@ const shiftOptionBy = (selected: ToppingOrFlavor, shiftBy: number) => {
       : flavors.indexOf(selected as Flavor)) + shiftBy;
 
   // Bound the index by the array size
-  newIndex = (newIndex % toppings.length);
+  newIndex = newIndex % toppings.length;
 
   // Return the correct type
   return isTopping(selected) ? toppings[newIndex] : flavors[newIndex];
@@ -91,7 +86,6 @@ const Container = styled.div`
     height: 400px;
   `}
 `;
-
 
 const PickerTooltip = styled(ReactTooltip)`
   font-family: Bubbleboddy;
@@ -149,36 +143,46 @@ const BobaPicker: React.FC = () => {
 
   return (
     <Container>
-        <OptionPicker
-            incrementOption={() => changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor)}
-            decrementOption={() => changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)}
-            changeOption={changeFlavor}
-            shownOptions={shownFlavors}
-            selectedOption={selectedFlavor}
-            tooltipOptions={copy.hero.flavors}
-        />
+      <OptionPicker
+        incrementOption={() =>
+          changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor)
+        }
+        decrementOption={() =>
+          changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
+        }
+        changeOption={changeFlavor}
+        shownOptions={shownFlavors}
+        selectedOption={selectedFlavor}
+        tooltipOptions={copy.hero.flavors}
+      />
 
-        <div className="circleBg" />
+      <div className="circleBg" />
 
-        <BobaDisplay
-            boopChanged={boopChanged}
-            animationEndCallback={() => updateBoopChanged(false)}
-            selectedFlavor={selectedFlavor}
-            selectedTopping={selectedTopping}
-            setTopping={changeTopping}
-            incrementFlavor={() => changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)}
-        />
+      <BobaDisplay
+        boopChanged={boopChanged}
+        animationEndCallback={() => updateBoopChanged(false)}
+        selectedFlavor={selectedFlavor}
+        selectedTopping={selectedTopping}
+        setTopping={changeTopping}
+        incrementFlavor={() =>
+          changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
+        }
+      />
 
-        <OptionPicker
-            incrementOption={() => changeTopping(shiftOptionBy(selectedTopping, -1) as Topping)}
-            decrementOption={() => changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)}
-            changeOption={changeTopping}
-            shownOptions={shownToppings}
-            selectedOption={selectedTopping}
-            tooltipOptions={copy.hero.toppings}
-        />
+      <OptionPicker
+        incrementOption={() =>
+          changeTopping(shiftOptionBy(selectedTopping, -1) as Topping)
+        }
+        decrementOption={() =>
+          changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)
+        }
+        changeOption={changeTopping}
+        shownOptions={shownToppings}
+        selectedOption={selectedTopping}
+        tooltipOptions={copy.hero.toppings}
+      />
 
-        <PickerTooltip type="light" />
+      <PickerTooltip type="light" />
     </Container>
   );
 };

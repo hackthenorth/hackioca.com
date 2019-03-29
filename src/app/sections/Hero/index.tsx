@@ -62,8 +62,8 @@ const HeroDesc = styled.div`
 
 const HeroSection: React.FC = () => (
   <HeroWrapper>
-      <div>
-          <BobaCustomizer />
+    <div>
+      <BobaCustomizer />
 
       <HeroTitle>{copy.hero.title}</HeroTitle>
       <HeroDesc>

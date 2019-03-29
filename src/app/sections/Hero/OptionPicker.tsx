@@ -5,7 +5,6 @@ import media from "src/utils/media";
 import ImgChevron from "src/static/images/chevron_up.svg";
 import { Flavor, Topping } from "src/data";
 
-
 import ImgToppingOptionGrassJelly from "src/static/images/hero/options/toppings/grass_jelly.svg";
 import ImgToppingOptionTapioca from "src/static/images/hero/options/toppings/tapioca.svg";
 import ImgToppingOptionRedBean from "src/static/images/hero/options/toppings/red_bean.svg";
@@ -18,7 +17,6 @@ import ImgFlavorOptionMango from "src/static/images/hero/options/flavors/mango.s
 import ImgFlavorOptionTaro from "src/static/images/hero/options/flavors/taro.svg";
 import ImgFlavorOptionMatcha from "src/static/images/hero/options/flavors/matcha.svg";
 
-
 /* HELPERS */
 type ToppingOrFlavor = Topping | Flavor;
 
@@ -28,13 +26,12 @@ const OPTION_IMAGES = {
   mango: ImgFlavorOptionMango,
   matcha: ImgFlavorOptionMatcha,
   taro: ImgFlavorOptionTaro,
-  grass_jelly: ImgToppingOptionGrassJelly,
+  grass_jelly: ImgToppingOptionGrassJelly, // eslint-disable-line @typescript-eslint/camelcase
   tapioca: ImgToppingOptionTapioca,
   pudding: ImgToppingOptionPudding,
-  aloe_vera: ImgToppingOptionAloeVera,
-  red_bean: ImgToppingOptionRedBean
+  aloe_vera: ImgToppingOptionAloeVera, // eslint-disable-line @typescript-eslint/camelcase
+  red_bean: ImgToppingOptionRedBean // eslint-disable-line @typescript-eslint/camelcase
 };
-
 
 const Container = styled.div`
   display: flex;
@@ -100,7 +97,6 @@ interface OptionPickerProps {
   };
 }
 
-
 const OptionPicker: React.FC<OptionPickerProps> = ({
   incrementOption,
   decrementOption,
@@ -110,27 +106,19 @@ const OptionPicker: React.FC<OptionPickerProps> = ({
   tooltipOptions
 }) => (
   <Container>
-      <PickerArrow
-          src={ImgChevron}
-          onClick={decrementOption}
-      />
-      {shownOptions.map(option => (
-          <PickerOption
-              key={option}
-              onClick={() => changeOption(option)}
-              selected={option === selectedOption}
-              data-tip={tooltipOptions[option]}
-          >
-              <img src={OPTION_IMAGES[option]} />
-          </PickerOption>
-      ))}
-      <PickerArrow
-          src={ImgChevron}
-          down
-          onClick={incrementOption}
-      />
+    <PickerArrow src={ImgChevron} onClick={decrementOption} />
+    {shownOptions.map(option => (
+      <PickerOption
+        key={option}
+        onClick={() => changeOption(option)}
+        selected={option === selectedOption}
+        data-tip={tooltipOptions[option]}
+      >
+        <img src={OPTION_IMAGES[option]} />
+      </PickerOption>
+    ))}
+    <PickerArrow src={ImgChevron} down onClick={incrementOption} />
   </Container>
 );
-
 
 export default OptionPicker;
