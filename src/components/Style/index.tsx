@@ -9,9 +9,37 @@ import FontRalewayMedium from "src/static/fonts/Raleway-Medium.ttf";
 import FontRalewaySemibold from "src/static/fonts/Raleway-SemiBold.ttf";
 import FontRalewayBold from "src/static/fonts/Raleway-Bold.ttf";
 
-interface StyleProps {
-  gradient?: string;
+interface BackgroundStyleProps {
+  gradient: string;
 }
+
+class BackgroundStyleComponent extends React.Component<BackgroundStyleProps, {}> {
+  rerender() {
+    document.body.style.background = this.props.gradient;
+  }
+  componentDidMount() {
+    this.rerender();
+  }
+  componentDidUpdate() {
+    this.rerender();
+  }
+  render() { return null };
+}
+
+const BackgroundStyle = React.memo(() => (
+  <BobaContext.Consumer>
+    {({ flavor }) => {
+      const gradients = {
+        milk: "linear-gradient(180deg, #E5C49E 0%, #F7EEE3 100%)",
+        matcha: "linear-gradient(180deg, #C8D170 0%, #EFF1D7 100%)",
+        taro: "linear-gradient(180deg, #CF92B7 0%, #EDD7E4 100%)",
+        mango: "linear-gradient(180deg, #F2C834 0%, #FBF0CB 100%)",
+        strawberry: "linear-gradient(180deg, #ED6E6F 0%, #FAD7D7 100%)"
+      };
+      return <BackgroundStyleComponent gradient={gradients[flavor]} />;
+    }}
+  </BobaContext.Consumer>
+));
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -57,27 +85,14 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${(props: StyleProps) => props.gradient};
     height: 100%;
     margin: 0;
     padding: 0;
   }
 `;
 
-const Style = () => (
-  <BobaContext.Consumer>
-    {({ flavor }) => {
-      const gradient = {
-        milk: "linear-gradient(180deg, #E5C49E 0%, #F7EEE3 100%);",
-        matcha: "linear-gradient(180deg, #C8D170 0%, #EFF1D7 100%);",
-        taro: "linear-gradient(180deg, #CF92B7 0%, #EDD7E4 100%);",
-        mango: "linear-gradient(180deg, #F2C834 0%, #FBF0CB 100%)",
-        strawberry: "linear-gradient(180deg, #ED6E6F 0%, #FAD7D7 100%)"
-      };
+export default React.memo(() => <>
+  <GlobalStyle />
+  <BackgroundStyle />
+</>);
 
-      return <GlobalStyle gradient={gradient[flavor]} />;
-    }}
-  </BobaContext.Consumer>
-);
-
-export default React.memo(Style);
