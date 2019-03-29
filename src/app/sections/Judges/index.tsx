@@ -5,13 +5,7 @@ import media from "src/utils/media";
 
 import Judge from "src/app/components/Judge";
 import Anchor from 'src/components/Anchor';
-
-const Header = styled.h1`
-  font-family: "Bubbleboddy";
-  font-size: 48px;
-  color: #000000;
-  text-align: center;
-`;
+import Title from 'src/components/Title';
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,7 +21,7 @@ const Wrapper = styled.div`
 const Judges = () => (
   <div>
     <Anchor id="judges" />
-    <Header>{copy.judges.title}</Header>
+    <Title>{copy.judges.title}</Title>
     <Wrapper>
       <Judge
         bgPath="judge_cups_matcha.svg"

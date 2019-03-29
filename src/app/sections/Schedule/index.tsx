@@ -5,16 +5,10 @@ import styled from "styled-components";
 
 import Activity from "src/app/components/Activity";
 import Anchor from 'src/components/Anchor';
+import Title from 'src/components/Title';
 
 const Wrapper = styled.div`
   padding: 0 15px;
-`;
-
-const Header = styled.h1`
-  font-family: "Bubbleboddy";
-  font-size: 48px;
-  color: #000;
-  text-align: center;
 `;
 
 const Chalkboard = styled.div`
@@ -36,7 +30,7 @@ const Chalkboard = styled.div`
   `}
 `;
 
-const Title = styled.h3`
+const ChalkboardTitle = styled.h3`
   color: #f2c834;
   font-weight: 700;
   margin-bottom: 0;
@@ -84,19 +78,19 @@ const dayThreeActivities = copy.schedule.dayThree.events.map(
 const Schedule = () => (
   <Wrapper>
     <Anchor id="schedule" />
-    <Header>{copy.schedule.title}</Header>
+    <Title>{copy.schedule.title}</Title>
     <Chalkboard>
-      <Title>{copy.schedule.dayOne.title}</Title>
+      <ChalkboardTitle>{copy.schedule.dayOne.title}</ChalkboardTitle>
       <Activities>{dayOneActivities}</Activities>
     </Chalkboard>
 
     <Chalkboard>
-      <Title>{copy.schedule.dayTwo.title}</Title>
+      <ChalkboardTitle>{copy.schedule.dayTwo.title}</ChalkboardTitle>
       <Activities>{dayTwoActivities}</Activities>
     </Chalkboard>
 
     <Chalkboard>
-      <Title>{copy.schedule.dayThree.title}</Title>
+      <ChalkboardTitle>{copy.schedule.dayThree.title}</ChalkboardTitle>
       <Activities>{dayThreeActivities}</Activities>
     </Chalkboard>
   </Wrapper>

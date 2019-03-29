@@ -4,6 +4,7 @@ import styled from "styled-components";
 import copy from "src/copy";
 import media from "src/utils/media";
 import Anchor from 'src/components/Anchor';
+import Title from 'src/components/Title';
 
 const Body = styled.div`
   display: flex;
@@ -16,14 +17,6 @@ const Body = styled.div`
     width: 100%;
     padding: 0 25px;
   `}
-`;
-
-const Title = styled.h1`
-  font-family: "Bubbleboddy";
-  color: #000;
-  font-size: 64px;
-  text-align: center;
-  margin-bottom: 32px;
 `;
 
 const Column = styled.div`

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import copy from "src/copy";
 import media from "src/utils/media";
 import Anchor from 'src/components/Anchor';
+import BaseTitle from 'src/components/Title';
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,12 +20,8 @@ const Section = styled.div`
     `}
 `;
 
-const Header = styled.h1`
-  font-family: "Bubbleboddy";
-  font-size: 48px;
-  color: #000000;
-  margin-bottom: 5px;
-
+const Title = styled(BaseTitle)`
+  text-align: left;
   ${media.phone`
     text-align: center;
   `}
@@ -60,7 +57,7 @@ const About: React.FC = () => (
   <Wrapper>
     <Anchor id="about" />
     <div>
-      <Header>{copy.about.title}</Header>
+      <Title>{copy.about.title}</Title>
       <Section>
         <Paragraph>{copy.about.desc}</Paragraph>
         <Image src="/images/boiling_boba_about.gif" />
