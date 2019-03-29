@@ -10,7 +10,7 @@ interface NavLinkProps {
 
 const NavLinkContainer = styled.div`
   display: flex;
-  width: 569px;
+  width: 740px;
   justify-content: space-between;
   margin-right: 32px;
 
@@ -27,7 +27,7 @@ const NavLinkContainer = styled.div`
 const NavLinkButton = styled.a`
   color: #fff;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 23px;
 
   &:hover {
     opacity: 0.7;
