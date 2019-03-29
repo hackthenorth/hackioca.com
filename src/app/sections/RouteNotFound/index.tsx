@@ -31,10 +31,10 @@ const ErrorImg = styled.img`
 
 const RouteNotFound: React.FC = () => (
   <Container>
-      <Subtitle>
-          Error 418: I'm a teapot and I can&apos;t find this page ¯\_(ツ)_/¯
-      </Subtitle>
-      <ErrorImg src={ImgTeapot} />
+    <Subtitle>
+      Error 418: I'm a teapot and I can&apos;t find this page ¯\_(ツ)_/¯
+    </Subtitle>
+    <ErrorImg src={ImgTeapot} />
   </Container>
 );
 
