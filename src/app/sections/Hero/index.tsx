@@ -63,8 +63,25 @@ const HeroDesc = styled.div`
   }
 `;
 
+const HeroContentWrapper = styled.div`
+  position: relative;
+  z-index: 2;
+`;
+
 const HeroSection: React.FC = () => (
   <HeroWrapper>
+    <HeroContentWrapper>
+      <BobaCustomizer />
+
+      <HeroTitle>{copy.hero.title}</HeroTitle>
+      <HeroDesc>
+        <div className="subtitle">{copy.hero.subtitle}</div>
+        <div className="details">{copy.hero.eventDate}</div>
+        <div className="details">{copy.hero.eventLoc}</div>
+      </HeroDesc>
+
+      <MailingListSignup />
+    </HeroContentWrapper>
     <Shapes
       shapes={[
         { top: 12, left: 10, scale: 0.5, angle: 60 },
@@ -82,18 +99,6 @@ const HeroSection: React.FC = () => (
         { top: 85, left: 95, scale: 0.5, angle: 80 }
       ]}
     />
-    <div>
-      <BobaCustomizer />
-
-      <HeroTitle>{copy.hero.title}</HeroTitle>
-      <HeroDesc>
-        <div className="subtitle">{copy.hero.subtitle}</div>
-        <div className="details">{copy.hero.eventDate}</div>
-        <div className="details">{copy.hero.eventLoc}</div>
-      </HeroDesc>
-
-      <MailingListSignup />
-    </div>
   </HeroWrapper>
 );
 
