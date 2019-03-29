@@ -20,7 +20,16 @@ export default {
     }
   },
   nav: {
-    sections: ["about", "schedule", "judges", "workshops", "sponsors", "prizes", "activities", "faq"],
+    sections: [
+      "about",
+      "schedule",
+      "judges",
+      "workshops",
+      "sponsors",
+      "prizes",
+      "activities",
+      "faq"
+    ],
     socialLinks: [
       {
         name: "facebook",

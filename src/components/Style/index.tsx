@@ -77,8 +77,9 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default React.memo(() => <>
-  <GlobalStyle />
-  <BackgroundStyle />
-</>);
-
+export default React.memo(() => (
+  <>
+    <GlobalStyle />
+    <BackgroundStyle />
+  </>
+));

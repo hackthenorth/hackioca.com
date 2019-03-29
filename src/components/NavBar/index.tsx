@@ -6,7 +6,7 @@ import media, { sizes as breakpoints } from "src/utils/media";
 import copy from "src/copy";
 
 import NavLinks from "./NavLinks";
-import SocialLink from "./SocialLink";
+import SocialLinks from "./SocialLinks";
 import CloseIcon from "./CloseIcon";
 
 const NavBarContainer = styled.nav`
@@ -45,17 +45,6 @@ const Logo = styled.img`
   height: 39px;
 `;
 
-const SocialLinkContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 131px;
-
-  ${media.tablet`
-    padding-top: 5px;
-    width: 150px;
-  `}
-`;
-
 const LinksContainer = styled.div`
   display: flex;
   align-items: center;
@@ -65,10 +54,6 @@ const LinksContainer = styled.div`
 const HamburgerMenu = styled.img`
   width: 33px;
 `;
-
-const socialLinks = copy.nav.socialLinks.map(link => (
-  <SocialLink key={link.name} {...link} />
-));
 
 const MobileMenu = styled.div`
   position: absolute;
@@ -138,7 +123,7 @@ const NavBar: React.FC = () => {
     if (circle) circle.classList.remove("expand");
     const el = document.getElementById(id);
     if (el) {
-      console.log(id)
+      console.log(id);
       el.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -177,7 +162,7 @@ const NavBar: React.FC = () => {
         ) : (
           <>
             <NavLinks sections={copy.nav.sections} clickHandler={scrollTo} />
-            <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
+            <SocialLinks links={copy.nav.socialLinks} />
           </>
         )}
       </LinksContainer>
@@ -185,7 +170,7 @@ const NavBar: React.FC = () => {
         <MobileMenu>
           <CloseIcon clickHandler={closeMenu} />
           <NavLinks sections={copy.nav.sections} clickHandler={scrollTo} />
-          <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
+          <SocialLinks links={copy.nav.socialLinks} />
         </MobileMenu>
       )}
       <Circle id="circle" />

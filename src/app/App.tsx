@@ -15,6 +15,7 @@ import Workshops from "src/app/sections/Workshops";
 import About from "src/app/sections/About";
 import Style from "src/components/Style";
 import RouteNotFound from "src/app/sections/RouteNotFound";
+import Footer from "src/app/sections/Footer";
 
 const App: React.FC = () => (
   <BobaProvider>
@@ -36,6 +37,7 @@ const App: React.FC = () => (
               <Sponsors />
               <Prizes />
               <FAQ />
+              <Footer />
             </QueryParamProvider>
           )}
         />
