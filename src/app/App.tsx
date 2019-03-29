@@ -1,7 +1,7 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { QueryParamProvider } from 'use-query-params';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { QueryParamProvider } from "use-query-params";
 import { BobaProvider } from "src/utils/context/boba";
 
 import FontBubbleBoddy from "src/static/fonts/Bubbleboddy-FatTrial.ttf";
@@ -77,26 +77,29 @@ const GlobalStyles = createGlobalStyle`
 
 const App: React.FC = () => (
   <BobaProvider>
-      <Router>
-          <Switch>
-              <Route exact path="/" render={() => (
-                  <QueryParamProvider ReactRouterRoute={Route}>
-                      <GlobalStyles />
+    <Router>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <QueryParamProvider ReactRouterRoute={Route}>
+              <GlobalStyles />
 
-                      <Hero />
-                      <About />
-                      <Schedule />
-                      <Judges />
-                      <Workshops />
-                      <Activities />
-                      <Sponsors />
-                      <Prizes />
-                      <FAQ />
-                  </QueryParamProvider>
-              )}/>
-              <Route component={RouteNotFound} />
-          </Switch>
-
+              <Hero />
+              <About />
+              <Schedule />
+              <Judges />
+              <Workshops />
+              <Activities />
+              <Sponsors />
+              <Prizes />
+              <FAQ />
+            </QueryParamProvider>
+          )}
+        />
+        <Route component={RouteNotFound} />
+      </Switch>
     </Router>
   </BobaProvider>
 );

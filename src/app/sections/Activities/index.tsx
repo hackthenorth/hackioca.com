@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import copy from "src/copy";
 import media from "src/utils/media";
-import Anchor from 'src/components/Anchor';
-import Title from 'src/components/Title';
+import Anchor from "src/components/Anchor";
+import Title from "src/components/Title";
 
 const ActivityContainer = styled.div`
   max-width: 1440px;

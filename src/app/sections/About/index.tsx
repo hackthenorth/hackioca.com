@@ -7,7 +7,6 @@ import BaseTitle from "src/components/Title";
 
 import ImgBoilingBobaGif from "src/static/images/boiling_boba_about.gif";
 
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -58,12 +57,12 @@ const Image = styled.img`
 
 const About: React.FC = () => (
   <Wrapper>
-      <Anchor id="about" />
-      <div>
-          <Title>{copy.about.title}</Title>
-          <Section>
-              <Paragraph>{copy.about.desc}</Paragraph>
-              <Image src={ImgBoilingBobaGif} />
+    <Anchor id="about" />
+    <div>
+      <Title>{copy.about.title}</Title>
+      <Section>
+        <Paragraph>{copy.about.desc}</Paragraph>
+        <Image src={ImgBoilingBobaGif} />
       </Section>
     </div>
   </Wrapper>
