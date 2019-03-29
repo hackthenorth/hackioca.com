@@ -1,4 +1,24 @@
 export default {
+  hero: {
+    title: "Hackioca",
+    subtitle: "A Qualitea Hackathon",
+    eventDate: "April 28 - 30, 2019",
+    eventLoc: "Taipei 101",
+    toppings: {
+      tapioca: "Tapioca",
+      red_bean: "Red Bean", // eslint-disable-line @typescript-eslint/camelcase
+      grass_jelly: "Grass Jelly", // eslint-disable-line @typescript-eslint/camelcase
+      pudding: "Pudding",
+      aloe_vera: "Aloe Vera" // eslint-disable-line @typescript-eslint/camelcase
+    },
+    flavors: {
+      mango: "Mango",
+      milk: "Milk Tea",
+      matcha: "Matcha",
+      taro: "Taro",
+      strawberry: "Strawberry"
+    }
+  },
   about: {
     title: "about",
     desc:

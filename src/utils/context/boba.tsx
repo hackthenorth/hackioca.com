@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
-import { Flavor, Topping, flavors, toppings } from "src/siteData";
+import { Flavor, Topping, flavors, toppings } from "src/data";
 
 export interface BobaState {
   flavor: Flavor;
@@ -20,7 +20,9 @@ export const useBobaContext = () => useContext(BobaContext);
 const randomFlavor = flavors[Math.floor(Math.random() * flavors.length)];
 const randomTopping = toppings[Math.floor(Math.random() * toppings.length)];
 
-export const BobaProvider: React.FC = ({ children }) => {
+export const BobaProvider: React.FC<{ children: React.ReactNode }> = ({
+  children
+}) => {
   const [flavor, updateFlavor] = useState(randomFlavor);
   const [topping, updateTopping] = useState(randomTopping);
 

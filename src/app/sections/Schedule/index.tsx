@@ -3,7 +3,7 @@ import copy from "src/copy";
 import media from "src/utils/media";
 import styled from "styled-components";
 
-import Activity from "src/app/components/Activity";
+import Activity from "src/components/Activity";
 import Anchor from 'src/components/Anchor';
 import Title from 'src/components/Title';
 
