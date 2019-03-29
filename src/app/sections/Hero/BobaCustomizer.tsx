@@ -67,6 +67,8 @@ const Container = styled.div`
   height: 375px;
   position: relative;
 
+  margin: auto;
+
   display: flex;
   justify-content: space-between;
 
