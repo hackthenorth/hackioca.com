@@ -106,7 +106,7 @@ const PickerTooltip = styled(ReactTooltip)`
 `;
 
 /* MAIN COMPONENT */
-const BobaPicker: React.FC = () => {
+const BobaCustomizer: React.FC = () => {
   const {
     flavor: selectedFlavor,
     topping: selectedTopping,
@@ -223,4 +223,4 @@ const BobaPicker: React.FC = () => {
   );
 };
 
-export default BobaPicker;
+export default BobaCustomizer;
