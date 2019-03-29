@@ -1,5 +1,7 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { QueryParamProvider } from 'use-query-params';
 import { BobaProvider } from "src/utils/context/boba";
 
 import FontBubbleBoddy from "src/static/fonts/Bubbleboddy-FatTrial.ttf";
@@ -74,17 +76,21 @@ const GlobalStyles = createGlobalStyle`
 
 const App: React.FC = () => (
   <BobaProvider>
-    <GlobalStyles />
+      <Router>
+          <QueryParamProvider ReactRouterRoute={Route}>
+              <GlobalStyles />
 
-    <Hero />
-    <About />
-    <Schedule />
-    <Judges />
-    <Workshops />
-    <Sponsors />
-    <Prizes />
-    <Activities />
-    <FAQ />
+              <Hero />
+              <About />
+              <Schedule />
+              <Judges />
+              <Workshops />
+              <Activities />
+              <Sponsors />
+              <Prizes />
+              <FAQ />
+      </QueryParamProvider>
+    </Router>
   </BobaProvider>
 );
 

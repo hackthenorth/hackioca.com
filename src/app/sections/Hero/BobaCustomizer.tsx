@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ReactTooltip from "react-tooltip";
+import { useQueryParams, StringParam } from 'use-query-params';
 
 import media from "src/utils/media";
 import copy from "src/copy";
@@ -15,6 +16,9 @@ type ToppingOrFlavor = Topping | Flavor;
 
 const isTopping = (option: ToppingOrFlavor): option is Topping =>
   toppings.indexOf(option as Topping) >= 0;
+
+const isFlavor = (option: ToppingOrFlavor): option is Flavor =>
+  flavors.indexOf(option as Flavor) >= 0;
 
 // https://stackoverflow.com/questions/50924952/typescript-has-no-compatible-call-signatures
 // Since the picker only displays 3 options for each, find the range of -1, +1 options based
@@ -109,6 +113,11 @@ const BobaPicker: React.FC = () => {
     updateFlavor,
     updateTopping
   } = useBobaContext();
+  const [query, setQuery] = useQueryParams({
+    flavor: StringParam,
+    topping: StringParam
+  })
+  const { flavor: paramFlavor, topping: paramTopping } = query;
   const [userInteracted, updateUserInteracted] = useState(false);
   const [boopChanged, updateBoopChanged] = useState(false);
   const shownFlavors = filterShownOptions(selectedFlavor) as Flavor[];
@@ -123,7 +132,16 @@ const BobaPicker: React.FC = () => {
     updateTopping(topping);
   };
 
+  // Read the url params and update boba options if necessary
+  useEffect(() => {
+    if(paramFlavor && isFlavor(paramFlavor as Flavor) && paramFlavor !== selectedFlavor) changeFlavor(paramFlavor as Flavor);
+    if(paramTopping && isTopping(paramTopping as Topping) && paramTopping !== selectedTopping) changeTopping(paramTopping as Topping);
+  }, []);
+
+
+
   // Randomly change flavor every 3 secs until user interaction occurs
+  // If user interacted, then trigger the boop animation
   useEffect(() => {
     if (!userInteracted) {
       const flavorChangerId = setInterval(
@@ -131,15 +149,25 @@ const BobaPicker: React.FC = () => {
         3000
       );
       return () => clearTimeout(flavorChangerId);
+    } else {
+      updateBoopChanged(true);
     }
 
     return () => {};
   }, [userInteracted, selectedFlavor]);
 
-  // Trigger the boop animation
+
+  // Update the url params if user changes options
   useEffect(() => {
-    if (userInteracted) updateBoopChanged(true);
-  }, [userInteracted, selectedFlavor]);
+    if(userInteracted) {
+      setQuery({
+        flavor: selectedFlavor,
+        topping: selectedTopping
+      });
+    }
+
+  }, [userInteracted, selectedFlavor, selectedTopping])
+
 
   // Update the tooltips after flavor/topping selection changed
   useEffect(() => ReactTooltip.rebuild(), [selectedFlavor, selectedTopping]);
