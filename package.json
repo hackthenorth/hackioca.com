@@ -24,7 +24,8 @@
     "react-scripts-ts": "^4.0.8",
     "react-tooltip": "^3.10.0",
     "styled-components": "^4.1.3",
-    "use-query-params": "^0.3.0"
+    "use-query-params": "^0.3.0",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
     "@types/enzyme": "^3.9.1",

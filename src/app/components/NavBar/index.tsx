@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import smoothscroll from "smoothscroll-polyfill";
 
 import media, { sizes as breakpoints } from "src/utils/media";
 import copy from "src/copy";
@@ -105,6 +106,19 @@ const NavBar: React.FC = () => {
   const mobile = useWindowWidth() <= breakpoints.tablet; // TODO: use global breakpoint constant
   const [showMobileMenu, toggleMobileMenu] = useState(false);
 
+  const scrollTo = (e: React.MouseEvent<HTMLElement>) => {
+    showMobileMenu && toggleMobileMenu(false);
+    const { href } = e.target as any;
+    const el = document.getElementById(href.substr(href.indexOf("#") + 1));
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    smoothscroll.polyfill();
+  }, []);
+
   return (
     <NavBarContainer>
       <a href="/">
@@ -119,10 +133,7 @@ const NavBar: React.FC = () => {
           </a>
         ) : (
           <>
-            <NavLinks
-              sections={copy.nav.sections}
-              clickHandler={toggleMobileMenu}
-            />
+            <NavLinks sections={copy.nav.sections} clickHandler={scrollTo} />
             <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
           </>
         )}
@@ -130,10 +141,7 @@ const NavBar: React.FC = () => {
       {showMobileMenu && (
         <MobileMenu>
           <CloseIcon clickHandler={toggleMobileMenu} />
-          <NavLinks
-            sections={copy.nav.sections}
-            clickHandler={toggleMobileMenu}
-          />
+          <NavLinks sections={copy.nav.sections} clickHandler={scrollTo} />
           <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
         </MobileMenu>
       )}
