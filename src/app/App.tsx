@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 import { BobaProvider } from "src/utils/context/boba";
 
+import NavBar from "src/components/NavBar";
 import Hero from "src/app/sections/Hero";
 import Schedule from "src/app/sections/Schedule";
 import Judges from "src/app/sections/Judges";
@@ -25,6 +26,7 @@ const App: React.FC = () => (
           path="/"
           render={() => (
             <QueryParamProvider ReactRouterRoute={Route}>
+              <NavBar />
               <Hero />
               <About />
               <Schedule />

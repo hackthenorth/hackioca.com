@@ -66,12 +66,14 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100%;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
   }
 
   body {
     height: 100%;
     margin: 0;
     padding: 0;
+    padding-top: 60px;
   }
 `;
 

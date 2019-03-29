@@ -19,6 +19,26 @@ export default {
       strawberry: "Strawberry"
     }
   },
+  nav: {
+    sections: ["about", "schedule", "judges", "workshops", "sponsors", "prizes", "activities", "faq"],
+    socialLinks: [
+      {
+        name: "facebook",
+        icon: "facebook.png",
+        link: "https://facebook.com"
+      },
+      {
+        name: "twitter",
+        icon: "twitter.png",
+        link: "twitter.com"
+      },
+      {
+        name: "instagram",
+        icon: "instagram.png",
+        link: "instagram.com"
+      }
+    ]
+  },
   about: {
     title: "about",
     desc:

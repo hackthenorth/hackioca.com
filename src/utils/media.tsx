@@ -9,7 +9,7 @@ type MediaTemplates = {
   [key in keyof DisplaySizes]: ThemedCssFunction<object>
 };
 
-const sizes: DisplaySizes = {
+export const sizes: DisplaySizes = {
   phone: 700,
   tablet: 900
 };
