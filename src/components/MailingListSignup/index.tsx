@@ -8,8 +8,8 @@ const Container = styled.div`
   width: 550px;
   height: 50px;
   margin: auto;
-  padding-left: 20px;
   position: relative;
+
 
   border-radius: 50px;
 
@@ -24,6 +24,27 @@ const Container = styled.div`
   `}
 `;
 
+
+const SubmitInput = styled.input`
+  width: 380px;
+  height: 50px;
+  padding-left: 20px;
+
+  font-family: Raleway;
+  font-size: 16px;
+  line-height: 50px;
+
+  border-radius: 50px;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  ${media.phone`
+    width: 50vw;
+  `}
+`;
 
 const SubmitButton = styled.div`
   position: absolute;
@@ -53,7 +74,7 @@ const SubmitButton = styled.div`
 
 const MailingListSignup: React.FC = () => (
   <Container>
-    gimmemyboba@gmail.com
+      <SubmitInput placeholder="gimmemyboba@gmail.com" />
       <SubmitButton>
       Order Now
       </SubmitButton>
