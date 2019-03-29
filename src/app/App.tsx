@@ -77,15 +77,15 @@ const GlobalStyles = createGlobalStyle`
 
 const App: React.FC = () => (
   <BobaProvider>
-    <Router>
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <QueryParamProvider ReactRouterRoute={Route}>
-              <GlobalStyles />
-
+      <GlobalStyles />
+      <Router>
+          <Switch>
+              <Route
+                  exact
+                  path="/"
+                  render={() => (
+                      <QueryParamProvider ReactRouterRoute={Route}>
+                          
               <Hero />
               <About />
               <Schedule />
