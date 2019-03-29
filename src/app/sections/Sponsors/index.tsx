@@ -5,6 +5,7 @@ import media from "src/utils/media";
 
 import Title from "src/components/Title";
 import Anchor from "src/components/Anchor";
+import PickerToolTip from "src/components/PickerToolTip";
 
 const Wrapper = styled.div`
   display: grid;
@@ -62,8 +63,13 @@ const Sponsors = () => (
     <Title>{copy.sponsors.title}</Title>
     <Wrapper>
       {copy.sponsors.companies.map(company => (
-        <Item key={company} src={`/images/sponsors/${company}.png`} />
+        <Item
+          data-tip={company}
+          key={company}
+          src={`/images/sponsors/${company}.png`}
+        />
       ))}
+      <PickerToolTip type="light" />
     </Wrapper>
   </div>
 );

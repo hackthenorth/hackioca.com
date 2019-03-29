@@ -10,6 +10,7 @@ import { useBobaContext } from "src/utils/context/boba";
 
 import BobaDisplay from "./BobaDisplay";
 import OptionPicker from "./OptionPicker";
+import PickerToolTip from "src/components/PickerToolTip";
 
 /* HELPERS */
 type ToppingOrFlavor = Topping | Flavor;
@@ -94,17 +95,6 @@ const Container = styled.div`
     width: 100vw;
     height: 400px;
   `}
-`;
-
-const PickerTooltip = styled(ReactTooltip)`
-  font-family: Bubbleboddy;
-  font-size: 16px;
-  background: none !important;
-
-  &:before,
-  &:after {
-    display: none;
-  }
 `;
 
 /* MAIN COMPONENT */
@@ -220,7 +210,7 @@ const BobaCustomizer: React.FC = () => {
         tooltipOptions={copy.hero.toppings}
       />
 
-      <PickerTooltip type="light" />
+      <PickerToolTip type="light" />
     </Container>
   );
 };
