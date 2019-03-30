@@ -20,29 +20,29 @@ export default {
     }
   },
   nav: {
-    sections: ["about", "schedule", "judges", "workshops", "sponsors", "prizes", "activities", "faq"],
+    sections: ["about", "schedule", "judges", "workshops", "activities", "sponsors", "prizes", "faq"],
     socialLinks: [
       {
         name: "facebook",
         icon: "facebook.png",
-        link: "https://facebook.com"
+        link: "https://www.facebook.com/hackioca"
       },
       {
         name: "twitter",
         icon: "twitter.png",
-        link: "twitter.com"
+        link: "https://twitter.com/hackioca"
       },
       {
         name: "instagram",
         icon: "instagram.png",
-        link: "instagram.com"
+        link: "https://www.instagram.com/hackioca/"
       }
     ]
   },
   about: {
     title: "about",
     desc:
-      "Hackioca is the first boba-themed hackathon, where your love for boba and tech intertwine. Immerse yourself in a weekend filled with workshops, and activities at the Taipei 101. Join hackers from all around the globe who share the passion for world-class builds and boba."
+      "Hackioca is the first boba-themed hackathon, where your love for boba and tech intertwine. Immerse yourself in a weekend filled with workshops and activities at the Taipei 101. Join hackers from all around the globe who share a passion for world-class builds and boba!"
   },
   schedule: {
     title: "schedule",
@@ -65,8 +65,8 @@ export default {
         { title: "Workshop: Intro to Kuberne-tea-s", time: "6am-7am" },
         { title: "Breakfast: Bubble Waffles and Boba", time: "8am - 10am" },
         { title: "Workshop: H-TEA-TEA-P", time: "11am-12pm" },
+        { title: "Lunch: Burritos and Boba", time: "12pm-2pm" },
         { title: "Activity: Bubble Soccer", time: "2pm-3pm" },
-        { title: "Lunch: Burritos and Boba", time: "2pm-3pm" },
         { title: "Snack: Mochi and Boba", time: "3pm-5pm" },
         { title: "Dinner: Boba w/ Parental Disappointment", time: "6pm-8pm," },
         { title: "Activity: Do hw that’s due tomorrow", time: "10pm-12am" }
@@ -258,6 +258,34 @@ export default {
         workshop: "CoffeeScript",
         desc:
           "Get your day going with this hyper fast paced, stimulating introduction to CoffeeScript. Note: due to it not being a boba drink, coffee will not be provided or permitted at the workshop or the hackathon."
+      }
+    ]
+  },
+  footer: {
+    logoText: {
+      title: "hackioca",
+      copyright: "Copyright © hackioca 2019"
+    },
+    backgrounds: [
+      {
+        flavor: "milk",
+        image: "/images/footer/footer_milktea.svg"
+      },
+      {
+        flavor: "matcha",
+        image: "/images/footer/footer_matcha.svg"
+      },
+      {
+        flavor: "taro",
+        image: "/images/footer/footer_taro.svg"
+      },
+      {
+        flavor: "mango",
+        image: "/images/footer/footer_mango.svg"
+      },
+      {
+        flavor: "strawberry",
+        image: "/images/footer/footer_strawberry.svg"
       }
     ]
   }

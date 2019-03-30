@@ -47,13 +47,13 @@ const Judges = () => (
     />
     <Wrapper>
       <Judge
-        bgPath="judge_cups_matcha.svg"
+        bgPath="judge_cups_milktea.svg"
         photoPath="barack_bobama.png"
         name={copy.judges.barack.name}
         quote={copy.judges.barack.quote}
       />
       <Judge
-        bgPath="judge_cups_milktea.svg"
+        bgPath="judge_cups_matcha.svg"
         photoPath="boba_fett.png"
         name={copy.judges.boba.name}
         quote={copy.judges.boba.quote}

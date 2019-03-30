@@ -6,8 +6,9 @@ import media, { sizes as breakpoints } from "src/utils/media";
 import copy from "src/copy";
 
 import NavLinks from "./NavLinks";
-import SocialLink from "./SocialLink";
+import SocialLinks from "./SocialLinks";
 import CloseIcon from "./CloseIcon";
+import { LogoContainer, LogoImg } from "src/components/Logo";
 
 const NavBarContainer = styled.nav`
   font-family: "Bubbleboddy";
@@ -28,32 +29,16 @@ const NavBarContainer = styled.nav`
   `}
 `;
 
-const LogoContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const NavLogoContainer = styled(LogoContainer)`
   width: 43px;
   height: 43px;
-  background: #f8f8f8;
-  border-radius: 50%;
   &:hover {
     opacity: 0.7;
   }
 `;
 
-const Logo = styled.img`
+const NavLogoImg = styled(LogoImg)`
   height: 39px;
-`;
-
-const SocialLinkContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 131px;
-
-  ${media.tablet`
-    padding-top: 5px;
-    width: 150px;
-  `}
 `;
 
 const LinksContainer = styled.div`
@@ -65,10 +50,6 @@ const LinksContainer = styled.div`
 const HamburgerMenu = styled.img`
   width: 33px;
 `;
-
-const socialLinks = copy.nav.socialLinks.map(link => (
-  <SocialLink key={link.name} {...link} />
-));
 
 const MobileMenu = styled.div`
   position: absolute;
@@ -138,12 +119,12 @@ const NavBar: React.FC = () => {
     if (circle) circle.classList.remove("expand");
     const el = document.getElementById(id);
     if (el) {
-      console.log(id)
+      console.log(id);
       el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const openMenu = (e: React.MouseEvent<HTMLElement>) => {
+  const openMenu = () => {
     // e.preventDefault();
     console.log("opening menu");
     toggleMobileMenu(true);
@@ -151,7 +132,7 @@ const NavBar: React.FC = () => {
     if (circle) circle.className += " expand";
   };
 
-  const closeMenu = (e: React.MouseEvent<HTMLElement>) => {
+  const closeMenu = () => {
     // e.preventDefault();
     toggleMobileMenu(false);
     const circle = document.getElementById("circle");
@@ -165,9 +146,9 @@ const NavBar: React.FC = () => {
   return (
     <NavBarContainer>
       <a href="#" onClick={() => scrollTo("#home")}>
-        <LogoContainer>
-          <Logo src="/images/navbar/logo_dark.svg" />
-        </LogoContainer>
+        <NavLogoContainer>
+          <NavLogoImg src="/images/navbar/logo_dark.svg" />
+        </NavLogoContainer>
       </a>
       <LinksContainer>
         {mobile ? (
@@ -177,7 +158,7 @@ const NavBar: React.FC = () => {
         ) : (
           <>
             <NavLinks sections={copy.nav.sections} clickHandler={scrollTo} />
-            <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
+            <SocialLinks links={copy.nav.socialLinks} />
           </>
         )}
       </LinksContainer>
@@ -185,7 +166,7 @@ const NavBar: React.FC = () => {
         <MobileMenu>
           <CloseIcon clickHandler={closeMenu} />
           <NavLinks sections={copy.nav.sections} clickHandler={scrollTo} />
-          <SocialLinkContainer>{socialLinks}</SocialLinkContainer>
+          <SocialLinks links={copy.nav.socialLinks} />
         </MobileMenu>
       )}
       <Circle id="circle" />
