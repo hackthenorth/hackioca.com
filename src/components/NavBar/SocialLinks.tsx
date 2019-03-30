@@ -43,7 +43,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => (
   <SocialLinkContainer>
     {links.map(({ name, link, icon }: LinkProps) => (
       <a key={name} href={link}>
-        <SocialImg src={`${IMG_PATH}${icon}`} alt={name} />
+        <SocialImg src={`${IMG_PATH}${icon}`} />
       </a>
     ))}
   </SocialLinkContainer>
