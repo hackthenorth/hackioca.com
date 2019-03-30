@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Carousel from "nuka-carousel";
 import media from "src/utils/media";
 import { toppings, Topping, Flavor } from "src/data";
+import { getScrollbarWidth } from "src/utils/scroll-bar-width";
 
 import ImgChevron from "src/static/images/chevron_up.svg";
 import ImgBobaPlaceholder from "src/static/images/hero/placeholder_cup.svg";
@@ -51,7 +52,7 @@ const Container = styled.div`
   }
 
   ${media.phone`
-    width: 100vw;
+    width: calc(100vw - ${getScrollbarWidth()}px);;
     height: 340px;
 
     & img.emptyCupBg {
@@ -100,7 +101,7 @@ const ToppingDisplay = styled(Carousel)`
   }
 
   ${media.phone`
-    width: 100vw !important;
+    width: calc(100vw - ${getScrollbarWidth()}px) !important;
   `}
 `;
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ReactTooltip from "react-tooltip";
 import { useQueryParams, StringParam } from "use-query-params";
+import { getScrollbarWidth } from "src/utils/scroll-bar-width";
 
 import media from "src/utils/media";
 import copy from "src/copy";
@@ -100,7 +101,7 @@ const Container = styled.div<{ circleColor: string }>`
   }
 
   ${media.phone`
-    width: 100vw;
+    width: calc(100vw - ${getScrollbarWidth()}px);
     height: auto;
 
     & div.circleBg {
