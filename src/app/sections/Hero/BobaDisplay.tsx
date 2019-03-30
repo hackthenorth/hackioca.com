@@ -220,7 +220,6 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
           />
       </FlavorDisplay>
       <ToppingDisplay
-          wrapAround
           withoutControls
           width="350px"
           initialSlideHeight={350}

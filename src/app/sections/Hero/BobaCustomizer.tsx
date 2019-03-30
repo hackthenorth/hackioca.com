@@ -14,6 +14,14 @@ import OptionPicker from "./OptionPicker";
 /* HELPERS */
 type ToppingOrFlavor = Topping | Flavor;
 
+const circleBgColors = {
+  mango: "#F8E399",
+  milk: "#F2E1CF",
+  matcha: "#E3E8B7",
+  taro: "#E7C8D8",
+  strawberry: "#F6B7B7"
+}
+
 const ENABLE_AUTO_FLAVOR_SWITCH = true;
 
 const isTopping = (option: ToppingOrFlavor): option is Topping =>
@@ -68,7 +76,7 @@ const shiftOptionBy = (selected: ToppingOrFlavor, shiftBy: number) => {
 };
 
 /* STYLED COMPONENTS */
-const Container = styled.div`
+const Container = styled.div<{ circleColor: string }>`
   width: 550px;
   height: 375px;
   position: relative;
@@ -86,7 +94,8 @@ const Container = styled.div`
     left: 50%;
     transform: translateX(-50%);
 
-    background-color: #f2e1cf;
+    transition: background-color 500ms ease-out;
+    background-color: ${props => props.circleColor};
     border-radius: 50%;
   }
 
@@ -186,7 +195,7 @@ const BobaCustomizer: React.FC = () => {
   useEffect(() => ReactTooltip.rebuild(), [selectedFlavor, selectedTopping]);
 
   return (
-    <Container>
+    <Container circleColor={circleBgColors[selectedFlavor]}>
       <OptionPicker
         incrementOption={() =>
           changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
