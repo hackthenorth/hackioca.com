@@ -42,7 +42,7 @@ const SocialImg = styled.img`
 const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => (
   <SocialLinkContainer>
     {links.map(({ name, link, icon }: LinkProps) => (
-      <a key={name} href={link}>
+      <a key={name} href={link} alt={`${name[0]}&#8291;${name.substr(1)}`}>
         <SocialImg src={`${IMG_PATH}${icon}`} />
       </a>
     ))}
