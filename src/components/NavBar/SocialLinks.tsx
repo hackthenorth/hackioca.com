@@ -34,10 +34,6 @@ const SocialImg = styled.img`
   &:hover {
     opacity: 0.7;
   }
-  ${media.phone`
-    width: 40px;
-  `}
-
   ${media.smallPhone`
     width: 20px;
   `}

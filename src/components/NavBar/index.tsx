@@ -8,6 +8,7 @@ import copy from "src/copy";
 import NavLinks from "./NavLinks";
 import SocialLinks from "./SocialLinks";
 import CloseIcon from "./CloseIcon";
+import { LogoContainer, LogoImg } from "src/components/Logo";
 
 const NavBarContainer = styled.nav`
   font-family: "Bubbleboddy";
@@ -28,20 +29,15 @@ const NavBarContainer = styled.nav`
   `}
 `;
 
-const LogoContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const NavLogoContainer = styled(LogoContainer)`
   width: 43px;
   height: 43px;
-  background: #f8f8f8;
-  border-radius: 50%;
   &:hover {
     opacity: 0.7;
   }
 `;
 
-const Logo = styled.img`
+const NavLogoImg = styled(LogoImg)`
   height: 39px;
 `;
 
@@ -128,7 +124,7 @@ const NavBar: React.FC = () => {
     }
   };
 
-  const openMenu = (e: React.MouseEvent<HTMLElement>) => {
+  const openMenu = () => {
     // e.preventDefault();
     console.log("opening menu");
     toggleMobileMenu(true);
@@ -136,7 +132,7 @@ const NavBar: React.FC = () => {
     if (circle) circle.className += " expand";
   };
 
-  const closeMenu = (e: React.MouseEvent<HTMLElement>) => {
+  const closeMenu = () => {
     // e.preventDefault();
     toggleMobileMenu(false);
     const circle = document.getElementById("circle");
@@ -150,9 +146,9 @@ const NavBar: React.FC = () => {
   return (
     <NavBarContainer>
       <a href="#" onClick={() => scrollTo("#home")}>
-        <LogoContainer>
-          <Logo src="/images/navbar/logo_dark.svg" />
-        </LogoContainer>
+        <NavLogoContainer>
+          <NavLogoImg src="/images/navbar/logo_dark.svg" />
+        </NavLogoContainer>
       </a>
       <LinksContainer>
         {mobile ? (

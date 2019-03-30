@@ -269,5 +269,34 @@ export default {
           "Get your day going with this hyper fast paced, stimulating introduction to CoffeeScript. Note: due to it not being a boba drink, coffee will not be provided or permitted at the workshop or the hackathon."
       }
     ]
+  },
+  footer: {
+    logoText: {
+      title: "hackioca",
+      copyright: "Copyright © hackioca 2019"
+    },
+    backgrounds: [
+      {
+        flavor: "milk",
+        image: "/images/footer/footer_milktea.svg"
+      },
+      {
+        flavor: "matcha",
+        image: "/images/footer/footer_matcha.svg"
+      },
+      {
+        flavor: "taro",
+        image: "/images/footer/footer_taro.svg"
+      },
+      {
+        flavor: "mango",
+        image: "/images/footer/footer_mango.svg"
+      },
+      {
+        flavor: "strawberry",
+        image: "/images/footer/footer_strawberry.svg"
+      }
+    ]
   }
+
 };
