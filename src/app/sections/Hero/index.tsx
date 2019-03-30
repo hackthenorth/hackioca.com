@@ -10,7 +10,8 @@ import BobaCustomizer from "./BobaCustomizer";
 import Shapes from "src/components/Shapes";
 
 const HeroWrapper = styled(SectionWrapper)`
-  margin: 75px auto;
+  height: 80vh;
+  margin: 10vh auto;
   position: relative;
 
   display: flex;
