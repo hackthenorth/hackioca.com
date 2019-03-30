@@ -110,7 +110,7 @@ const useWindowWidth = () => {
 };
 
 const NavBar: React.FC = () => {
-  const mobile = useWindowWidth() <= breakpoints.tablet;
+  const mobile = useWindowWidth() <= breakpoints.navbar;
   const [showMobileMenu, toggleMobileMenu] = useState(false);
 
   const scrollTo = (id: string) => {
@@ -124,16 +124,16 @@ const NavBar: React.FC = () => {
     }
   };
 
-  const openMenu = () => {
-    // e.preventDefault();
+  const openMenu = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
     console.log("opening menu");
     toggleMobileMenu(true);
     const circle = document.getElementById("circle");
     if (circle) circle.className += " expand";
   };
 
-  const closeMenu = () => {
-    // e.preventDefault();
+  const closeMenu = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
     toggleMobileMenu(false);
     const circle = document.getElementById("circle");
     if (circle) circle.classList.remove("expand");
