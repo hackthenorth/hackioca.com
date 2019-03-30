@@ -5,6 +5,7 @@ import copy from "src/copy";
 import media from "src/utils/media";
 import Anchor from "src/components/Anchor";
 import Title from "src/components/Title";
+import Subtitle from 'src/components/Subtitle';
 
 const ActivityContainer = styled.div`
   max-width: 1440px;
@@ -28,14 +29,6 @@ const Activity = styled.div`
   margin-bottom: 32px;
   width: 47.3%;
 
-  h4 {
-    font-weight: 700;
-    line-height: 45px;
-    font-size: 32px;
-    margin-top: 0;
-    margin-bottom: 16px;
-  }
-
   p {
     font-weight: 500;
     font-size: 16px;
@@ -45,10 +38,6 @@ const Activity = styled.div`
   ${media.phone`
     width: 100%;
     text-align: center;
-
-    h4 {
-      font-size: 24px;
-    }
 
     p {
       font-size: 18px;
@@ -60,7 +49,7 @@ const Body = (
   <BodyContainer>
     {copy.activities.body.map(({ activity, desc }) => (
       <Activity key={activity}>
-        <h4>{activity}</h4>
+        <Subtitle>{activity}</Subtitle>
         <p>{desc}</p>
       </Activity>
     ))}
