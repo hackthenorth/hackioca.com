@@ -28,7 +28,6 @@ const Waves = () => (
       );
     }}
   </BobaContext.Consumer>
-
 );
 
 export default React.memo(Waves);

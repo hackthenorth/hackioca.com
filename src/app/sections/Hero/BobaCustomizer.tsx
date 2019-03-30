@@ -20,7 +20,7 @@ const circleBgColors = {
   matcha: "#E3E8B7",
   taro: "#E7C8D8",
   strawberry: "#F6B7B7"
-}
+};
 
 const ENABLE_AUTO_FLAVOR_SWITCH = true;
 
@@ -178,7 +178,7 @@ const BobaCustomizer: React.FC = () => {
       updateBoopChanged(true);
     }
 
-    return () => {};
+    return () => { };
   }, [userInteracted, selectedFlavor]);
 
   // Update the url params if user changes options
@@ -196,39 +196,39 @@ const BobaCustomizer: React.FC = () => {
 
   return (
     <Container circleColor={circleBgColors[selectedFlavor]}>
-        <OptionPicker
-            incrementOption={() =>
-                changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
-            }
-            decrementOption={() =>
-                changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor)
-            }
-            changeOption={changeFlavor}
-            shownOptions={shownFlavors}
-            selectedOption={selectedFlavor}
-            tooltipOptions={copy.hero.flavors}
-        />
+      <OptionPicker
+        incrementOption={() =>
+          changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
+        }
+        decrementOption={() =>
+          changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor)
+        }
+        changeOption={changeFlavor}
+        shownOptions={shownFlavors}
+        selectedOption={selectedFlavor}
+        tooltipOptions={copy.hero.flavors}
+      />
 
-        <div className="circleBg" />
+      <div className="circleBg" />
 
-        <BobaDisplay
-            boopChanged={boopChanged}
-            animationEndCallback={() => updateBoopChanged(false)}
-            selectedFlavor={selectedFlavor}
-            selectedTopping={selectedTopping}
-            setTopping={changeTopping}
-            incrementTopping={() =>
-                changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)}
-            decrementTopping={() =>
-                changeTopping(shiftOptionBy(selectedTopping, -1) as Topping)}
-            incrementFlavor={() =>
-                changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
-            }
-        />
+      <BobaDisplay
+        boopChanged={boopChanged}
+        animationEndCallback={() => updateBoopChanged(false)}
+        selectedFlavor={selectedFlavor}
+        selectedTopping={selectedTopping}
+        setTopping={changeTopping}
+        incrementTopping={() =>
+          changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)}
+        decrementTopping={() =>
+          changeTopping(shiftOptionBy(selectedTopping, -1) as Topping)}
+        incrementFlavor={() =>
+          changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
+        }
+      />
 
-        <OptionPicker
-            incrementOption={() =>
-                changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)
+      <OptionPicker
+        incrementOption={() =>
+          changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)
         }
         decrementOption={() =>
           changeTopping(shiftOptionBy(selectedTopping, -1) as Topping)

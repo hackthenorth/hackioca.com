@@ -26,7 +26,16 @@ export default {
     }
   },
   nav: {
-    sections: ["about", "schedule", "judges", "workshops", "activities", "sponsors", "prizes", "faq"],
+    sections: [
+      "about",
+      "schedule",
+      "judges",
+      "workshops",
+      "activities",
+      "sponsors",
+      "prizes",
+      "faq"
+    ],
     socialLinks: [
       {
         name: "facebook",
@@ -295,5 +304,4 @@ export default {
       }
     ]
   }
-
 };

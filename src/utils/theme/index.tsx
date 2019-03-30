@@ -4,7 +4,6 @@ import { css, ThemeDefinition, UnstyledButton } from "@hackthenorth/north";
 import media from "src/utils/media";
 import globalStyles from "./globalStyles";
 
-
 const theme: ThemeDefinition = {
   globalStyles,
   button: {
@@ -28,8 +27,9 @@ const theme: ThemeDefinition = {
         cursor: pointer;
 
         transition: color 200ms ease-in-out;
-        &:hover, &:focus {
-          color: #CCCCCC;
+        &:hover,
+        &:focus {
+          color: #cccccc;
         }
 
         ${media.phone`
@@ -38,7 +38,6 @@ const theme: ThemeDefinition = {
       `
     }
   }
-}
-
+};
 
 export default theme;

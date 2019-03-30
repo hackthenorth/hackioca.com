@@ -102,7 +102,6 @@ const ToppingDisplay = styled(Carousel)`
   ${media.phone`
     width: 100vw !important;
   `}
-
 `;
 
 const FlavorChoice = styled.img`
@@ -159,12 +158,13 @@ const Arrow = styled.img<{ dir: "left" | "right" }>`
   position: absolute;
   z-index: 2;
   top: 50%;
-  left: ${props => (props.dir === "left") ? "25px;" : "auto;"}
-  right: ${props => (props.dir === "left") ? "auto;" : "25px;"}
+  left: ${props => (props.dir === "left" ? "25px;" : "auto;")}
+  right: ${props => (props.dir === "left" ? "auto;" : "25px;")}
 
   margin: auto 0;
 
-  transform: translateY(50%) ${props => (props.dir === "left") ? "rotate(270deg);" : "rotate(90deg);"}
+  transform: translateY(50%) ${props =>
+    props.dir === "left" ? "rotate(270deg);" : "rotate(90deg);"}
 
   cursor: pointer;
   opacity: 0.6;
@@ -197,49 +197,48 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
   incrementFlavor
 }) => (
   <Container
-      className={boopChanged ? "boop" : ""}
-      onAnimationEnd={animationEndCallback}
+    className={boopChanged ? "boop" : ""}
+    onAnimationEnd={animationEndCallback}
   >
-      <Arrow dir="left" src={ImgChevron} onClick={decrementTopping}/>
-      <img className="emptyCupBg" src={ImgBobaPlaceholder} />
-      <FlavorDisplay className="flavor">
-          <FlavorChoice
-              src={ImgFlavorMilk}
-              className={selectedFlavor === "milk" ? "show" : ""}
-          />
-          <FlavorChoice
-              src={ImgFlavorStrawberry}
-              className={selectedFlavor === "strawberry" ? "show" : ""}
-          />
-          <FlavorChoice
-              src={ImgFlavorMango}
-              className={selectedFlavor === "mango" ? "show" : ""}
-          />
-          <FlavorChoice
-              src={ImgFlavorMatcha}
-              className={selectedFlavor === "matcha" ? "show" : ""}
-          />
-          <FlavorChoice
-              src={ImgFlavorTaro}
-              className={selectedFlavor === "taro" ? "show" : ""}
-          />
-      </FlavorDisplay>
-      <ToppingDisplay
-          wrapAround
-          withoutControls
-          width="350px"
-          initialSlideHeight={350}
-          slideIndex={toppings.indexOf(selectedTopping)}
-          afterSlide={slideIndex => setTopping(toppings[slideIndex])}
-      >
-          <ToppingChoice src={ImgToppingTapioca} onClick={incrementFlavor} />
-          <ToppingChoice src={ImgToppingGrassJelly} onClick={incrementFlavor} />
-          <ToppingChoice src={ImgToppingAloeVera} onClick={incrementFlavor} />
-          <ToppingChoice src={ImgToppingRedBean} onClick={incrementFlavor} />
-          <ToppingChoice src={ImgToppingPudding} onClick={incrementFlavor} />
-      </ToppingDisplay>
-      <Arrow dir="right" src={ImgChevron} onClick={incrementTopping}/>
-
+    <Arrow dir="left" src={ImgChevron} onClick={decrementTopping} />
+    <img className="emptyCupBg" src={ImgBobaPlaceholder} />
+    <FlavorDisplay className="flavor">
+      <FlavorChoice
+        src={ImgFlavorMilk}
+        className={selectedFlavor === "milk" ? "show" : ""}
+      />
+      <FlavorChoice
+        src={ImgFlavorStrawberry}
+        className={selectedFlavor === "strawberry" ? "show" : ""}
+      />
+      <FlavorChoice
+        src={ImgFlavorMango}
+        className={selectedFlavor === "mango" ? "show" : ""}
+      />
+      <FlavorChoice
+        src={ImgFlavorMatcha}
+        className={selectedFlavor === "matcha" ? "show" : ""}
+      />
+      <FlavorChoice
+        src={ImgFlavorTaro}
+        className={selectedFlavor === "taro" ? "show" : ""}
+      />
+    </FlavorDisplay>
+    <ToppingDisplay
+      wrapAround
+      withoutControls
+      width="350px"
+      initialSlideHeight={350}
+      slideIndex={toppings.indexOf(selectedTopping)}
+      afterSlide={slideIndex => setTopping(toppings[slideIndex])}
+    >
+      <ToppingChoice src={ImgToppingTapioca} onClick={incrementFlavor} />
+      <ToppingChoice src={ImgToppingGrassJelly} onClick={incrementFlavor} />
+      <ToppingChoice src={ImgToppingAloeVera} onClick={incrementFlavor} />
+      <ToppingChoice src={ImgToppingRedBean} onClick={incrementFlavor} />
+      <ToppingChoice src={ImgToppingPudding} onClick={incrementFlavor} />
+    </ToppingDisplay>
+    <Arrow dir="right" src={ImgChevron} onClick={incrementTopping} />
   </Container>
 );
 

@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "@hackthenorth/north";
 
-
 import FontBubbleBoddy from "src/static/fonts/Bubbleboddy-FatTrial.ttf";
 import FontRalewayLight from "src/static/fonts/Raleway-Light.ttf";
 import FontRalewayRegular from "src/static/fonts/Raleway-Regular.ttf";

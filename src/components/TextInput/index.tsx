@@ -2,14 +2,36 @@ import React from "react";
 import styled from "styled-components";
 import media from "src/utils/media";
 
-
 // will move this to North tmr
 
 interface InputProps {
   placeholder?: string;
-  type?: "button" | "checkbox" | "file" | "hidden" | "image" | "password" | "radio" | "reset" | "submit" | "text" | "search" | "email" | "url" | "tel" | "date" | "time" | "number" | "range" | "color" | "datetime-local" | "month" | "week" | "datetime";  onChange?: (newVal: string) => void;
+  type?:
+  | "button"
+  | "checkbox"
+  | "file"
+  | "hidden"
+  | "image"
+  | "password"
+  | "radio"
+  | "reset"
+  | "submit"
+  | "text"
+  | "search"
+  | "email"
+  | "url"
+  | "tel"
+  | "date"
+  | "time"
+  | "number"
+  | "range"
+  | "color"
+  | "datetime-local"
+  | "month"
+  | "week"
+  | "datetime";
+  onChange?: (newVal: string) => void;
 }
-
 
 const Input = styled.input`
   width: 380px;
@@ -33,13 +55,16 @@ const Input = styled.input`
   `}
 `;
 
-
 const TextInput: React.FC<InputProps> = ({
   placeholder,
   type = "text",
   onChange = () => {}
 }) => (
-  <Input placeholder={placeholder} type={type} onChange={e => onChange(e.target.value)} />
+  <Input
+    placeholder={placeholder}
+    type={type}
+    onChange={e => onChange(e.target.value)}
+  />
 );
 
 export default TextInput;
