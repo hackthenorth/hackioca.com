@@ -4,6 +4,7 @@ interface DisplaySizes {
   smallPhone: number;
   phone: number;
   tablet: number;
+  widescreen: number;
 }
 
 type MediaTemplates = {
@@ -13,7 +14,8 @@ type MediaTemplates = {
 export const sizes: DisplaySizes = {
   smallPhone: 400,
   phone: 700,
-  tablet: 900
+  tablet: 900,
+  widescreen: 1440
 };
 
 const media = Object.keys(sizes).reduce((acc, label) => {

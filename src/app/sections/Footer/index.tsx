@@ -13,15 +13,19 @@ import { LinksContainer, LinkButton } from "src/components/Link";
 
 const FooterContainer = styled.div`
   position: relative;
-  height: 316px;
+  height: 500px;
   padding: 23px 45px 75px 45px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 
+  ${media.widescreen`
+    height: 375px;
+  `}
+
   ${media.phone`
+    height: 316px;
     padding: 10px;
-    // flex-wrap: wrap;
   `}
 `;
 
