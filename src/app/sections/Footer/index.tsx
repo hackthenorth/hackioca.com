@@ -7,6 +7,9 @@ import copy from "src/copy";
 
 import media from "src/utils/media";
 import Waves from "./Waves";
+import { LogoContainer, LogoImg } from "src/components/Logo";
+import { LinksContainer, LinkButton } from "src/components/Link";
+// import MailingListSignup from 'src/components/MailingListSignup';
 
 const FooterContainer = styled.div`
   position: relative;
@@ -36,9 +39,7 @@ const FooterBody = styled(Body)`
   color: #fff;
   ${media.phone`
     font-size: 8px;
-  `}
-  ${media.smallPhone`
-    line-height: 15px;
+    line-height: 3px;
   `}
 `;
 
@@ -62,11 +63,11 @@ const TextContainer = styled.div`
 
   ${media.phone`
     margin-left: 10px;
-    line-height: 8px;
+    line-height: 24px;
   `}
 
   ${media.smallPhone`
-    align-items: flex-end;
+    align-items: flex-start;
   `}
 `;
 
@@ -78,37 +79,15 @@ const RightContainer = styled.div`
   height: 115px;
 `;
 
-const LinksContainer = styled.div`
+const FlexWrapContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
 `;
 
-const LogoContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 43px;
-  height: 43px;
-  background: #f8f8f8;
-  border-radius: 50%;
-`;
-
-const LogoImg = styled.img`
-  height: 39px;
-`;
-
-const Logo = (
-  <LogoContainer>
-    <LogoImg src="/images/navbar/logo_dark.svg" />
-  </LogoContainer>
-);
-
-const NavLinkContainer = styled.div`
-  display: flex;
+const FooterLinksContainer = styled(LinksContainer)`
   flex-wrap: wrap;
   width: 438px;
-  justify-content: space-between;
   margin-top: 10px;
 
   ${media.phone`
@@ -116,31 +95,46 @@ const NavLinkContainer = styled.div`
   `}
 `;
 
-const NavLinkButton = styled.a`
-  font-family: "Bubbleboddy";
-  color: #fff;
-  text-decoration: none;
+const FooterLinkButton = styled(LinkButton)`
   font-size: 23px;
   margin-left: 5px;
   margin-bottom: 5px;
-
-  &:hover {
-    opacity: 0.7;
-  }
 
   ${media.phone`
     font-size: 15px;
   `}
 `;
 
+const FooterLogoContainer = styled(LogoContainer)`
+  width: 55px;
+  height: 55px;
+  ${media.phone`
+    width: 43px;
+    height: 43px;
+  `}
+`;
+
+const FooterLogoImg = styled(LogoImg)`
+  height: 43px;
+  ${media.phone`
+    height: 39px;
+  `}
+`;
+
+const Logo = (
+  <FooterLogoContainer>
+    <FooterLogoImg src="/images/navbar/logo_dark.svg" />
+  </FooterLogoContainer>
+);
+
 const FooterLinks = (
-  <NavLinkContainer>
+  <FooterLinksContainer>
     {copy.nav.sections.map(section => (
-      <NavLinkButton key={section} href={`#${section}`}>
+      <FooterLinkButton key={section} href={`#${section}`}>
         {section}
-      </NavLinkButton>
+      </FooterLinkButton>
     ))}
-  </NavLinkContainer>
+  </FooterLinksContainer>
 );
 
 const Footer: React.FC = () => {
@@ -150,16 +144,17 @@ const Footer: React.FC = () => {
       <LeftContainer>
         {Logo}
         <TextContainer>
-          <FooterTitle>hackioca</FooterTitle>
-          <FooterBody>Copyright &copy; hackioca 2019</FooterBody>
+          <FooterTitle>{copy.footer.logoText.title}</FooterTitle>
+          <FooterBody>{copy.footer.logoText.copyright}</FooterBody>
         </TextContainer>
       </LeftContainer>
       <RightContainer>
         <SocialLinks links={copy.nav.socialLinks} />
-        <LinksContainer>{FooterLinks}</LinksContainer>
+        <FlexWrapContainer>{FooterLinks}</FlexWrapContainer>
+        {/* <MailingListSignup /> */}
       </RightContainer>
     </FooterContainer>
   );
 };
 
-export default Footer;
+export default React.memo(Footer);

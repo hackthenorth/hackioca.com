@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { LinksContainer, LinkButton } from "src/components/Link";
 import media from "src/utils/media";
 
 interface NavLinkProps {
@@ -8,12 +8,8 @@ interface NavLinkProps {
   clickHandler(id: string): void;
 }
 
-const NavLinkContainer = styled.div`
-  display: flex;
-  width: 700px;
-  justify-content: space-between;
+const NavLinksContainer = styled(LinksContainer)`
   margin-right: 32px;
-
   ${media.tablet`
     flex-direction: column;
     align-items: center;
@@ -24,32 +20,24 @@ const NavLinkContainer = styled.div`
   `}
 `;
 
-const NavLinkButton = styled.a`
-  color: #fff;
-  text-decoration: none;
-  font-size: 20px;
-
-  &:hover {
-    opacity: 0.7;
-  }
-
+const NavLinkButton = styled(LinkButton)`
   ${media.phone`
     font-size: 32px;
   `}
 `;
 
 const NavLinks: React.FC<NavLinkProps> = ({ sections, clickHandler }) => (
-  <NavLinkContainer>
+  <NavLinksContainer>
     {sections.map(section => (
       <NavLinkButton
         key={section}
         href={`#${section}`}
-        onClick={e => clickHandler(`#${section}`)}
+        onClick={() => clickHandler(`#${section}`)}
       >
         {section}
       </NavLinkButton>
     ))}
-  </NavLinkContainer>
+  </NavLinksContainer>
 );
 
 export default NavLinks;
