@@ -27,21 +27,13 @@ const Quote = styled.p`
 `;
 
 const Photo = styled.img`
-  position: absolute;
-  margin-left: 80px;
-  margin-top: 100px;
-  width: 50px;
-  border-radius: 50%;
-  border: 5px solid #51192c;
-`;
-
-const Background = styled.img`
   width: 100px;
   margin: 0 60px;
+  border-radius: 50%;
+  border: 6px solid #51192c;
 `;
 
 interface JudgeProps {
-  bgPath: string;
   photoPath: string;
   name: string;
   quote: string;
@@ -50,7 +42,6 @@ interface JudgeProps {
 const Judge = (props: JudgeProps) => (
   <Wrapper>
     <Photo src={`/images/judges/${props.photoPath}`} />
-    <Background src={`/images/judges/${props.bgPath}`} />
     <Name>{props.name}</Name>
     <Quote>
       &quot;{props.quote} {copy.judges.suffix}&quot;
