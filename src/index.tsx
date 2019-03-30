@@ -7,10 +7,18 @@ import registerServiceWorker from "./registerServiceWorker";
 import bugsnag from "@bugsnag/js";
 import bugsnagReact from "@bugsnag/plugin-react";
 
-const bugsnagClient = bugsnag('9d3336190be1523df42e4d783418e856');
+const bugsnagClient = bugsnag("9d3336190be1523df42e4d783418e856");
 bugsnagClient.use(bugsnagReact, React);
-const ErrorBoundary = process.env.NODE_ENV === "production" ? bugsnagClient.getPlugin('react') : React.Fragment;
+const ErrorBoundary =
+  process.env.NODE_ENV === "production"
+    ? bugsnagClient.getPlugin("react")
+    : React.Fragment;
 
-ReactDOM.render(<ErrorBoundary><App /></ErrorBoundary>, document.getElementById("root"));
+ReactDOM.render(
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>,
+  document.getElementById("root")
+);
 
 registerServiceWorker();

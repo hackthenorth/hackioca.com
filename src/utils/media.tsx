@@ -1,6 +1,7 @@
 import { css, ThemedCssFunction } from "styled-components";
 
 interface DisplaySizes {
+  smallPhone: number;
   phone: number;
   tablet: number;
 }
@@ -10,6 +11,7 @@ type MediaTemplates = {
 };
 
 export const sizes: DisplaySizes = {
+  smallPhone: 400,
   phone: 700,
   tablet: 900
 };

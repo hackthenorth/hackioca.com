@@ -4,13 +4,12 @@ import media from "src/utils/media";
 
 // replace with mailinglist stuff
 const Container = styled.div`
-  display: none;
+  // display: none;
   position: relative;
   width: 550px;
   height: 50px;
   margin: auto;
   position: relative;
-
 
   border-radius: 50px;
 
@@ -24,7 +23,6 @@ const Container = styled.div`
     width: 75vw;
   `}
 `;
-
 
 const SubmitInput = styled.input`
   width: 380px;
@@ -65,7 +63,7 @@ const SubmitButton = styled.div`
   transition: background-color 200ms ease-in-out;
   background-color: #51192c;
   &:hover {
-    background-color: #37121E;
+    background-color: #37121e;
   }
 
   ${media.phone`
@@ -75,10 +73,8 @@ const SubmitButton = styled.div`
 
 const MailingListSignup: React.FC = () => (
   <Container>
-      <SubmitInput placeholder="gimmemyboba@gmail.com" />
-      <SubmitButton>
-      Order Now
-      </SubmitButton>
+    <SubmitInput placeholder="gimmemyboba@gmail.com" />
+    <SubmitButton>Order Now</SubmitButton>
   </Container>
 );
 
