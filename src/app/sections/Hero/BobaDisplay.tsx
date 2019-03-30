@@ -4,8 +4,6 @@ import Carousel from "nuka-carousel";
 import media from "src/utils/media";
 import { toppings, Topping, Flavor } from "src/data";
 
-import ImgBobaPlaceholder from "src/static/images/hero/placeholder_cup.svg";
-
 import ImgToppingGrassJelly from "src/static/images/hero/display/toppings/grass_jelly.svg";
 import ImgToppingTapioca from "src/static/images/hero/display/toppings/tapioca.svg";
 import ImgToppingRedBean from "src/static/images/hero/display/toppings/red_bean.svg";
@@ -37,16 +35,6 @@ const Container = styled.div`
   animation: none;
   &.boop {
     animation: pop 200ms ease-in-out 1;
-  }
-
-  & img.emptyCupBg {
-    max-width: 93%;
-    max-height: 93%;
-    position: relative;
-    margin: auto;
-
-    grid-row: 1;
-    grid-column: 1;
   }
 
   ${media.phone`
@@ -155,7 +143,6 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
     className={boopChanged ? "boop" : ""}
     onAnimationEnd={animationEndCallback}
   >
-    <img className="emptyCupBg" src={ImgBobaPlaceholder} />
     <FlavorDisplay className="flavor">
       <FlavorChoice
         src={ImgFlavorMilk}
