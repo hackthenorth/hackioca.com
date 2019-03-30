@@ -37,7 +37,11 @@ export default {
         icon: "camera.png",
         link: "https://www.instagram.com/hackioca/"
       }
-    ]
+    ],
+    menus: {
+      hamburger: "/images/navbar/hamburger.svg",
+      close: "/images/navbar/cross.svg"
+    }
   },
   about: {
     title: "about",

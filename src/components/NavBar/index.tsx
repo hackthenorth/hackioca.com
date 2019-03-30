@@ -7,7 +7,7 @@ import copy from "src/copy";
 
 import NavLinks from "./NavLinks";
 import SocialLinks from "./SocialLinks";
-import CloseIcon from "./CloseIcon";
+import MenuIcon from "./MenuIcon";
 import { LogoContainer, LogoImg } from "src/components/Logo";
 
 const NavBarContainer = styled.nav`
@@ -45,10 +45,6 @@ const LinksContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
-`;
-
-const HamburgerMenu = styled.img`
-  width: 33px;
 `;
 
 const MobileMenu = styled.div`
@@ -150,9 +146,7 @@ const NavBar: React.FC = () => {
       </a>
       <LinksContainer>
         {mobile ? (
-          <a href="#activity" onClick={openMenu}>
-            <HamburgerMenu src="/images/navbar/hamburger.svg" alt="menu" />
-          </a>
+          <MenuIcon isOpen={showMobileMenu} open={openMenu} close={closeMenu} />
         ) : (
           <>
             <NavLinks sections={copy.nav.sections} clickHandler={scrollTo} />
@@ -162,7 +156,6 @@ const NavBar: React.FC = () => {
       </LinksContainer>
       {showMobileMenu && (
         <MobileMenu>
-          <CloseIcon clickHandler={closeMenu} />
           <NavLinks sections={copy.nav.sections} clickHandler={scrollTo} />
           <SocialLinks links={copy.nav.socialLinks} />
         </MobileMenu>
