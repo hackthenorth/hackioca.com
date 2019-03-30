@@ -24,17 +24,17 @@ export default {
     socialLinks: [
       {
         name: "facebook",
-        icon: "facebook.png",
+        icon: "f.png",
         link: "https://www.facebook.com/hackioca"
       },
       {
         name: "twitter",
-        icon: "twitter.png",
+        icon: "bird.png",
         link: "https://twitter.com/hackioca"
       },
       {
         name: "instagram",
-        icon: "instagram.png",
+        icon: "camera.png",
         link: "https://www.instagram.com/hackioca/"
       }
     ]
