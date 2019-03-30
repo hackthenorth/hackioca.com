@@ -73,7 +73,7 @@ const MailingListSignup: React.FC = () => {
     if(validateEmailAddress(email)) {
       updateSignupState("success");
       HackerAPI.Event.MailingListSignup.create(
-        new HackerAPI.Event({ slug: "ASK_BACKEND" }), // TODO: replace this
+        new HackerAPI.Event({ slug: "hackioca" }),
         new HackerAPI.Event.MailingListSignup({ email })
       )
       .then((data: { email: string }) => {
