@@ -37,7 +37,7 @@ const Container = styled.div`
 
   animation: none;
   &.boop {
-    animation: pop 200ms ease-in-out 1;
+    animation: pop 100ms ease-out 1;
   }
 
   & img.emptyCupBg {
@@ -90,7 +90,7 @@ const ToppingDisplay = styled(Carousel)`
   // way to style them is through this kinda ugly child selecting
   & ul.slider-list li.slider-slide {
     & img {
-      transition: opacity 200ms ease-in-out;
+      transition: opacity 500ms ease-in-out;
       opacity: 0;
     }
 
@@ -157,6 +157,7 @@ const Arrow = styled.img<{ dir: "left" | "right" }>`
   max-height: 20px;
 
   position: absolute;
+  z-index: 2;
   top: 50%;
   left: ${props => (props.dir === "left") ? "25px;" : "auto;"}
   right: ${props => (props.dir === "left") ? "auto;" : "25px;"}
@@ -180,6 +181,8 @@ interface BobaDisplayProps {
   selectedFlavor: Flavor;
   selectedTopping: Topping;
   setTopping: (newTopping: Topping) => void;
+  decrementTopping: () => void;
+  incrementTopping: () => void;
   incrementFlavor: () => void;
 }
 
@@ -189,13 +192,15 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
   selectedFlavor,
   selectedTopping,
   setTopping,
+  decrementTopping,
+  incrementTopping,
   incrementFlavor
 }) => (
   <Container
       className={boopChanged ? "boop" : ""}
       onAnimationEnd={animationEndCallback}
   >
-      <Arrow dir="left" src={ImgChevron} />
+      <Arrow dir="left" src={ImgChevron} onClick={decrementTopping}/>
       <img className="emptyCupBg" src={ImgBobaPlaceholder} />
       <FlavorDisplay className="flavor">
           <FlavorChoice
@@ -220,6 +225,7 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
           />
       </FlavorDisplay>
       <ToppingDisplay
+          wrapAround
           withoutControls
           width="350px"
           initialSlideHeight={350}
@@ -232,7 +238,7 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
           <ToppingChoice src={ImgToppingRedBean} onClick={incrementFlavor} />
           <ToppingChoice src={ImgToppingPudding} onClick={incrementFlavor} />
       </ToppingDisplay>
-      <Arrow dir="right" src={ImgChevron} />
+      <Arrow dir="right" src={ImgChevron} onClick={incrementTopping}/>
 
   </Container>
 );
