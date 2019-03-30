@@ -17,6 +17,12 @@ export default {
       matcha: "matcha",
       taro: "taro",
       strawberry: "strawberry"
+    },
+    signup: {
+      ready: "Sign up to hear the latest updates from Hackioca",
+      success: "Thanks for expressing your interest!",
+      error: "There was a problem signing you up - try again.",
+      invalid: "Please verify that your email address is valid."
     }
   },
   nav: {

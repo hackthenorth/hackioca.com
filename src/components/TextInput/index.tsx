@@ -7,7 +7,7 @@ import media from "src/utils/media";
 
 interface InputProps {
   placeholder?: string;
-  onChange?: () => void;
+  type?: "button" | "checkbox" | "file" | "hidden" | "image" | "password" | "radio" | "reset" | "submit" | "text" | "search" | "email" | "url" | "tel" | "date" | "time" | "number" | "range" | "color" | "datetime-local" | "month" | "week" | "datetime";  onChange?: (newVal: string) => void;
 }
 
 
@@ -35,9 +35,11 @@ const Input = styled.input`
 
 
 const TextInput: React.FC<InputProps> = ({
-  placeholder
+  placeholder,
+  type = "text",
+  onChange = () => {}
 }) => (
-  <Input placeholder={placeholder} />
+  <Input placeholder={placeholder} type={type} onChange={e => onChange(e.target.value)} />
 );
 
 export default TextInput;
