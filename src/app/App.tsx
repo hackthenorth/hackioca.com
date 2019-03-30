@@ -1,7 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
+import { North } from "@hackthenorth/north";
+
 import { BobaProvider } from "src/utils/context/boba";
+import themeDef from "src/utils/theme";
 
 import NavBar from "src/components/NavBar";
 import Hero from "src/app/sections/Hero";
@@ -13,35 +16,38 @@ import Prizes from "src/app/sections/Prizes";
 import Activities from "src/app/sections/Activities";
 import Workshops from "src/app/sections/Workshops";
 import About from "src/app/sections/About";
-import Style from "src/components/Style";
+import Background from "src/components/Background";
 import RouteNotFound from "src/app/sections/RouteNotFound";
 
 const App: React.FC = () => (
   <BobaProvider>
-    <Style />
-    <Router>
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <QueryParamProvider ReactRouterRoute={Route}>
-              <NavBar />
-              <Hero />
-              <About />
-              <Schedule />
-              <Judges />
-              <Workshops />
-              <Activities />
-              <Sponsors />
-              <Prizes />
-              <FAQ />
-            </QueryParamProvider>
-          )}
-        />
-        <Route component={RouteNotFound} />
-      </Switch>
-    </Router>
+      <North themeDefinition={themeDef}>
+          <Background />
+          <Router>
+              <Switch>
+                  <Route
+            exact
+            path="/"
+            render={() => (
+              <QueryParamProvider ReactRouterRoute={Route}>
+                <NavBar />
+                <Hero />
+                <About />
+                <Schedule />
+                <Judges />
+                <Workshops />
+                <Activities />
+                <Sponsors />
+                <Prizes />
+                <FAQ />
+              </QueryParamProvider>
+            )}
+          />
+          <Route component={RouteNotFound} />
+        </Switch>
+      </Router>
+    </North>
+
   </BobaProvider>
 );
 

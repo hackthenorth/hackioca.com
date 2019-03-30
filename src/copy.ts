@@ -5,18 +5,18 @@ export default {
     eventDate: "April 28 - 30, 2019",
     eventLoc: "Taipei 101",
     toppings: {
-      tapioca: "Tapioca",
-      red_bean: "Red Bean", // eslint-disable-line @typescript-eslint/camelcase
-      grass_jelly: "Grass Jelly", // eslint-disable-line @typescript-eslint/camelcase
-      pudding: "Pudding",
-      aloe_vera: "Aloe Vera" // eslint-disable-line @typescript-eslint/camelcase
+      tapioca: "tapioca",
+      red_bean: "red bean", // eslint-disable-line @typescript-eslint/camelcase
+      grass_jelly: "grass jelly", // eslint-disable-line @typescript-eslint/camelcase
+      pudding: "pudding",
+      aloe_vera: "aloe vera" // eslint-disable-line @typescript-eslint/camelcase
     },
     flavors: {
-      mango: "Mango",
-      milk: "Milk Tea",
-      matcha: "Matcha",
-      taro: "Taro",
-      strawberry: "Strawberry"
+      mango: "mango",
+      milk: "milk tea",
+      matcha: "matcha",
+      taro: "taro",
+      strawberry: "strawberry"
     }
   },
   nav: {
