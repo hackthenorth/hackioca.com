@@ -25,7 +25,7 @@ const FooterContainer = styled.div`
 
   ${media.phone`
     height: 316px;
-    padding: 10px;
+    padding: 18px;
   `}
 `;
 
@@ -35,7 +35,10 @@ const FooterTitle = styled(Title)`
   margin-bottom: 4px;
 
   ${media.phone`
-    font-size: 20px;
+    font-size: 16px;
+  `}
+  ${media.smallPhone`
+    line-height: 13px;
   `}
 `;
 
@@ -44,6 +47,9 @@ const FooterBody = styled(Body)`
   ${media.phone`
     font-size: 8px;
     line-height: 3px;
+  `}
+  ${media.smallPhone`
+    font-size: 6px;
   `}
 `;
 
@@ -55,6 +61,7 @@ const LeftContainer = styled.div`
 
   ${media.smallPhone`
     align-items: flex-end;
+    padding-bottom: 5px;
   `}
 `;
 
@@ -107,6 +114,9 @@ const FooterLinkButton = styled(LinkButton)`
   ${media.phone`
     font-size: 15px;
   `}
+  ${media.smallPhone`
+    font-size: 12px;
+  `}
 `;
 
 const FooterLogoContainer = styled(LogoContainer)`
@@ -116,12 +126,19 @@ const FooterLogoContainer = styled(LogoContainer)`
     width: 43px;
     height: 43px;
   `}
+  ${media.smallPhone`
+    width: 36px;
+    height: 36px;
+  `}
 `;
 
 const FooterLogoImg = styled(LogoImg)`
   height: 43px;
   ${media.phone`
     height: 39px;
+  `}
+  ${media.smallPhone`
+    height: 33px;
   `}
 `;
 
