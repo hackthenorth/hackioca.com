@@ -16,13 +16,13 @@ const theme: ThemeDefinition = {
       hero: css`
         position: absolute;
         width: 170px;
-        height: 50px;
+        height: 100%;
         right: 0;
         display: inline-block;
 
         color: white;
         text-align: center;
-        line-height: 50px;
+        line-height: 100%;
 
         background-color: #51192c;
         cursor: pointer;

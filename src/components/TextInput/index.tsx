@@ -13,12 +13,12 @@ interface InputProps {
 
 const Input = styled.input`
   width: 380px;
-  height: 50px;
+  height: 100%;
   padding-left: 20px;
 
   font-family: Raleway;
   font-size: 16px;
-  line-height: 50px;
+  line-height: 100%;
 
   border-radius: 50px;
   border: none;
@@ -28,7 +28,8 @@ const Input = styled.input`
   }
 
   ${media.phone`
-    width: 50vw;
+    width: 55vw;
+    padding-left: 15px;
   `}
 `;
 

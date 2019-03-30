@@ -92,7 +92,13 @@ const Container = styled.div`
 
   ${media.phone`
     width: 100vw;
-    height: 400px;
+    height: auto;
+
+    & div.circleBg {
+      width: 250px;
+      height: 250px;
+      bottom: 30px;
+    }
   `}
 `;
 

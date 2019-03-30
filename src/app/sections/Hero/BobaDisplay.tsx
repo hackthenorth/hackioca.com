@@ -4,6 +4,7 @@ import Carousel from "nuka-carousel";
 import media from "src/utils/media";
 import { toppings, Topping, Flavor } from "src/data";
 
+import ImgChevron from "src/static/images/chevron_up.svg";
 import ImgBobaPlaceholder from "src/static/images/hero/placeholder_cup.svg";
 
 import ImgToppingGrassJelly from "src/static/images/hero/display/toppings/grass_jelly.svg";
@@ -40,8 +41,8 @@ const Container = styled.div`
   }
 
   & img.emptyCupBg {
-    max-width: 93%;
-    max-height: 93%;
+    max-width: 350px;
+    max-height: 350px;
     position: relative;
     margin: auto;
 
@@ -51,6 +52,12 @@ const Container = styled.div`
 
   ${media.phone`
     width: 100vw;
+    height: 340px;
+
+    & img.emptyCupBg {
+      max-width: 300px;
+      max-height: 300px;
+    }
   `}
 `;
 
@@ -95,6 +102,7 @@ const ToppingDisplay = styled(Carousel)`
   ${media.phone`
     width: 100vw !important;
   `}
+
 `;
 
 const FlavorChoice = styled.img`
@@ -115,6 +123,11 @@ const FlavorChoice = styled.img`
   &.show {
     opacity: 1;
   }
+
+  ${media.phone`
+    max-width: 300px;
+    max-height: 300px;
+  `}
 `;
 
 const ToppingChoice = styled.img`
@@ -132,6 +145,33 @@ const ToppingChoice = styled.img`
   &:focus {
     outline: none;
   }
+
+  ${media.phone`
+    max-width: 300px;
+    max-height: 300px;
+  `}
+`;
+
+const Arrow = styled.img<{ dir: "left" | "right" }>`
+  max-width: 20px;
+  max-height: 20px;
+
+  position: absolute;
+  top: 50%;
+  left: ${props => (props.dir === "left") ? "25px;" : "auto;"}
+  right: ${props => (props.dir === "left") ? "auto;" : "25px;"}
+
+  margin: auto 0;
+
+  transform: translateY(50%) ${props => (props.dir === "left") ? "rotate(270deg);" : "rotate(90deg);"}
+
+  cursor: pointer;
+  opacity: 0.6;
+
+  display: none;
+  ${media.phone`
+    display: inherit;
+  `}
 `;
 
 interface BobaDisplayProps {
@@ -152,46 +192,49 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
   incrementFlavor
 }) => (
   <Container
-    className={boopChanged ? "boop" : ""}
-    onAnimationEnd={animationEndCallback}
+      className={boopChanged ? "boop" : ""}
+      onAnimationEnd={animationEndCallback}
   >
-    <img className="emptyCupBg" src={ImgBobaPlaceholder} />
-    <FlavorDisplay className="flavor">
-      <FlavorChoice
-        src={ImgFlavorMilk}
-        className={selectedFlavor === "milk" ? "show" : ""}
-      />
-      <FlavorChoice
-        src={ImgFlavorStrawberry}
-        className={selectedFlavor === "strawberry" ? "show" : ""}
-      />
-      <FlavorChoice
-        src={ImgFlavorMango}
-        className={selectedFlavor === "mango" ? "show" : ""}
-      />
-      <FlavorChoice
-        src={ImgFlavorMatcha}
-        className={selectedFlavor === "matcha" ? "show" : ""}
-      />
-      <FlavorChoice
-        src={ImgFlavorTaro}
-        className={selectedFlavor === "taro" ? "show" : ""}
-      />
-    </FlavorDisplay>
-    <ToppingDisplay
-      wrapAround
-      withoutControls
-      width="350px"
-      initialSlideHeight={350}
-      slideIndex={toppings.indexOf(selectedTopping)}
-      afterSlide={slideIndex => setTopping(toppings[slideIndex])}
-    >
-      <ToppingChoice src={ImgToppingTapioca} onClick={incrementFlavor} />
-      <ToppingChoice src={ImgToppingGrassJelly} onClick={incrementFlavor} />
-      <ToppingChoice src={ImgToppingAloeVera} onClick={incrementFlavor} />
-      <ToppingChoice src={ImgToppingRedBean} onClick={incrementFlavor} />
-      <ToppingChoice src={ImgToppingPudding} onClick={incrementFlavor} />
-    </ToppingDisplay>
+      <Arrow dir="left" src={ImgChevron} />
+      <img className="emptyCupBg" src={ImgBobaPlaceholder} />
+      <FlavorDisplay className="flavor">
+          <FlavorChoice
+              src={ImgFlavorMilk}
+              className={selectedFlavor === "milk" ? "show" : ""}
+          />
+          <FlavorChoice
+              src={ImgFlavorStrawberry}
+              className={selectedFlavor === "strawberry" ? "show" : ""}
+          />
+          <FlavorChoice
+              src={ImgFlavorMango}
+              className={selectedFlavor === "mango" ? "show" : ""}
+          />
+          <FlavorChoice
+              src={ImgFlavorMatcha}
+              className={selectedFlavor === "matcha" ? "show" : ""}
+          />
+          <FlavorChoice
+              src={ImgFlavorTaro}
+              className={selectedFlavor === "taro" ? "show" : ""}
+          />
+      </FlavorDisplay>
+      <ToppingDisplay
+          wrapAround
+          withoutControls
+          width="350px"
+          initialSlideHeight={350}
+          slideIndex={toppings.indexOf(selectedTopping)}
+          afterSlide={slideIndex => setTopping(toppings[slideIndex])}
+      >
+          <ToppingChoice src={ImgToppingTapioca} onClick={incrementFlavor} />
+          <ToppingChoice src={ImgToppingGrassJelly} onClick={incrementFlavor} />
+          <ToppingChoice src={ImgToppingAloeVera} onClick={incrementFlavor} />
+          <ToppingChoice src={ImgToppingRedBean} onClick={incrementFlavor} />
+          <ToppingChoice src={ImgToppingPudding} onClick={incrementFlavor} />
+      </ToppingDisplay>
+      <Arrow dir="right" src={ImgChevron} />
+
   </Container>
 );
 
