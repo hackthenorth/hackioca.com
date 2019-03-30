@@ -10,7 +10,6 @@ import { useBobaContext } from "src/utils/context/boba";
 
 import BobaDisplay from "./BobaDisplay";
 import OptionPicker from "./OptionPicker";
-import PickerToolTip from "src/components/PickerToolTip";
 
 /* HELPERS */
 type ToppingOrFlavor = Topping | Flavor;
@@ -209,8 +208,6 @@ const BobaCustomizer: React.FC = () => {
         selectedOption={selectedTopping}
         tooltipOptions={copy.hero.toppings}
       />
-
-      <PickerToolTip type="light" />
     </Container>
   );
 };

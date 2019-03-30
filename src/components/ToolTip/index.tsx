@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ReactTooltip from "react-tooltip";
 
-const PickerTooltip = styled(ReactTooltip)`
+const ToolTip = styled(ReactTooltip)`
   font-family: Bubbleboddy;
   font-size: 16px;
   background: none !important;
@@ -13,4 +13,4 @@ const PickerTooltip = styled(ReactTooltip)`
   }
 `;
 
-export default PickerTooltip;
+export default ToolTip;

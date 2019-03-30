@@ -5,7 +5,6 @@ import media from "src/utils/media";
 
 import Title from "src/components/Title";
 import Anchor from "src/components/Anchor";
-import PickerToolTip from "src/components/PickerToolTip";
 
 const Wrapper = styled.div`
   display: grid;
@@ -69,7 +68,6 @@ const Sponsors = () => (
           src={`/images/sponsors/${company}.png`}
         />
       ))}
-      <PickerToolTip type="light" />
     </Wrapper>
   </div>
 );
