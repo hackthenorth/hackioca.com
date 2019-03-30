@@ -33,7 +33,6 @@ const Container = styled.form`
   margin: auto;
   position: relative;
 
-
   border-radius: 50px;
 
   font-family: Raleway;

@@ -18,6 +18,7 @@ import Workshops from "src/app/sections/Workshops";
 import About from "src/app/sections/About";
 import Background from "src/components/Background";
 import RouteNotFound from "src/app/sections/RouteNotFound";
+import Footer from "src/app/sections/Footer";
 
 const App: React.FC = () => (
   <BobaProvider>
@@ -26,20 +27,21 @@ const App: React.FC = () => (
           <Router>
               <Switch>
                   <Route
-            exact
-            path="/"
-            render={() => (
-              <QueryParamProvider ReactRouterRoute={Route}>
-                <NavBar />
-                <Hero />
-                <About />
-                <Schedule />
-                <Judges />
-                <Workshops />
-                <Activities />
-                <Sponsors />
-                <Prizes />
-                <FAQ />
+                      exact
+                      path="/"
+                      render={() => (
+                          <QueryParamProvider ReactRouterRoute={Route}>
+                              <NavBar />
+                              <Hero />
+                              <About />
+                              <Schedule />
+                              <Judges />
+                              <Workshops />
+                              <Activities />
+                              <Sponsors />
+                              <Prizes />
+                              <FAQ />
+                              <Footer />
               </QueryParamProvider>
             )}
           />
