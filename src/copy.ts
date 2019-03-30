@@ -69,7 +69,7 @@ export default {
         { title: "Lunch: Burritos and Boba", time: "2pm-3pm" },
         { title: "Snack: Mochi and Boba", time: "3pm-5pm" },
         { title: "Dinner: Boba w/ Parental Disappointment", time: "6pm-8pm," },
-        { title: "Activity: Do hw that’s due tomorrow", time: "10pm-12:00am" }
+        { title: "Activity: Do hw that’s due tomorrow", time: "10pm-12am" }
       ]
     },
     dayThree: {
