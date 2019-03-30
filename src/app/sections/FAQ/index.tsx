@@ -7,6 +7,7 @@ import Anchor from "src/components/Anchor";
 import Title from "src/components/Title";
 
 import Shapes from "src/components/Shapes";
+import Subtitle from 'src/components/Subtitle';
 
 const Wrapper = styled.div`
   position: relative;
@@ -38,14 +39,6 @@ const QuestionSet = styled.div`
   color: #51192c;
   margin-bottom: 32px;
 
-  h4 {
-    font-weight: 700;
-    line-height: 45px;
-    font-size: 32px;
-    margin-top: 0;
-    margin-bottom: 16px;
-  }
-
   p {
     font-weight: 500;
     font-size: 16px;
@@ -71,7 +64,7 @@ const Left = (
   <Column>
     {left.map(({ question, answer }) => (
       <QuestionSet key={question}>
-        <h4>{question}</h4>
+        <Subtitle>{question}</Subtitle>
         <p>{answer}</p>
       </QuestionSet>
     ))}
@@ -82,7 +75,7 @@ const Right = (
   <Column>
     {right.map(({ question, answer }) => (
       <QuestionSet key={question}>
-        <h4>{question}</h4>
+        <Subtitle>{question}</Subtitle>
         <p>{answer}</p>
       </QuestionSet>
     ))}

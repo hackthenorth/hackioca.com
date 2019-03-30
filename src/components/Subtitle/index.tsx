@@ -5,7 +5,7 @@ import media from "src/utils/media";
 const Subtitle: StyledComponent<"h2", {}> = styled.h2`
   font-weight: 700;
   line-height: 45px;
-  font-size: 22px;
+  font-size: 32px;
   margin-top: 0;
   margin-bottom: 10px;
   font-family: "Raleway";
@@ -13,6 +13,7 @@ const Subtitle: StyledComponent<"h2", {}> = styled.h2`
 
   ${media.phone`
     text-align: center;
+    font-size: 24px;
   `}
 `;
 
