@@ -96,17 +96,6 @@ const Container = styled.div`
   `}
 `;
 
-const PickerTooltip = styled(ReactTooltip)`
-  font-family: Bubbleboddy;
-  font-size: 16px;
-  background: none !important;
-
-  &:before,
-  &:after {
-    display: none;
-  }
-`;
-
 /* MAIN COMPONENT */
 const BobaCustomizer: React.FC = () => {
   const {
@@ -219,8 +208,6 @@ const BobaCustomizer: React.FC = () => {
         selectedOption={selectedTopping}
         tooltipOptions={copy.hero.toppings}
       />
-
-      <PickerTooltip type="light" />
     </Container>
   );
 };

@@ -14,12 +14,14 @@ import Activities from "src/app/sections/Activities";
 import Workshops from "src/app/sections/Workshops";
 import About from "src/app/sections/About";
 import Style from "src/components/Style";
+import ToolTip from "src/components/ToolTip";
 import RouteNotFound from "src/app/sections/RouteNotFound";
 import Footer from "src/app/sections/Footer";
 
 const App: React.FC = () => (
   <BobaProvider>
     <Style />
+    <ToolTip type="light" />
     <Router>
       <Switch>
         <Route
