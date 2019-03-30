@@ -13,7 +13,7 @@ interface LinkProps {
   icon: string;
 }
 
-const IMG_PATH = "/images/socials/";
+const IMG_PATH = "/images/icons/";
 
 const SocialLinkContainer = styled.div`
   display: flex;
