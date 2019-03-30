@@ -20,31 +20,22 @@ export default {
     }
   },
   nav: {
-    sections: [
-      "about",
-      "schedule",
-      "judges",
-      "workshops",
-      "sponsors",
-      "prizes",
-      "activities",
-      "faq"
-    ],
+    sections: ["about", "schedule", "judges", "workshops", "activities", "sponsors", "prizes", "faq"],
     socialLinks: [
       {
         name: "facebook",
         icon: "facebook.png",
-        link: "https://facebook.com"
+        link: "https://www.facebook.com/hackioca"
       },
       {
         name: "twitter",
         icon: "twitter.png",
-        link: "twitter.com"
+        link: "https://twitter.com/hackioca"
       },
       {
         name: "instagram",
         icon: "instagram.png",
-        link: "instagram.com"
+        link: "https://www.instagram.com/hackioca/"
       }
     ]
   },
