@@ -25,7 +25,7 @@ export default {
       {
         name: "facebook",
         icon: "facebook.png",
-        link: "https://facebook.com"
+        link: "https://www.facebook.com/hackioca"
       },
       {
         name: "twitter",
