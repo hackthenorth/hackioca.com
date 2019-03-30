@@ -7,6 +7,15 @@ import { Button } from "@hackthenorth/north";
 import Body from "src/components/Body";
 import TextInput from "src/components/TextInput";
 
+// Augment window to include HackerAPI definition
+declare global {
+  interface Window {
+    HackerAPI: any;
+  }
+}
+
+// Email validation logic, taken from
+// https://github.com/hackathon/hackthenorth.com/blob/master/src/components/StyledInput/index.jsx
 const validateEmailAddress = (email: string) => {
   const emailPrefix = '[A-Z0-9a-z]([A-Z0-9a-z._%+-]{0,30}[A-Z0-9a-z])?';
   const emailServer = '([A-Z0-9a-z]([A-Z0-9a-z-]{0,30}[A-Z0-9a-z])?\\.){1,5}';
@@ -57,30 +66,30 @@ const MailingListSignup: React.FC = () => {
   const [ signupState, updateSignupState ] = useState("ready");
   const [ email, updateEmail ] = useState("");
 
-  // const { HackerAPI } = window as any;
+  const { HackerAPI } = window;
   const signupForMailingList = useCallback(e => {
-    e.preventDefault();
+    e.preventDefault(); // stop page from refreshing onSubmit
 
     if(validateEmailAddress(email)) {
       updateSignupState("success");
-      // HackerAPI.Event.MailingListSignup.create(
-      //   new HackerAPI.Event({ slug: "ASK_BACKEND" }),
-      //   new HackerAPI.Event.MailingListSignup({ email })
-      // )
-      // .then(data => {
-      //   if (data && data.email) {
-      //     updateSignupState("success");
-      //   } else {
-      //     updateSignupState("error");
-      //   }
-      // })
-      // .catch(err => {
-      //   updateSignupState("error");
-      // })
-    } else {
+      HackerAPI.Event.MailingListSignup.create(
+        new HackerAPI.Event({ slug: "ASK_BACKEND" }), // TODO: replace this
+        new HackerAPI.Event.MailingListSignup({ email })
+      )
+      .then((data: { email: string }) => {
+        if (data && data.email) { // success
+          updateSignupState("success");
+        } else { // signup error
+          updateSignupState("error");
+        }
+      })
+      .catch(() => { // request error
+        updateSignupState("error");
+      })
+    } else { // email validation failed
       updateSignupState("invalid");
     }
-  }, [email]);
+  }, [email]); // only recreate this function if email changes
 
   return (
     <>
