@@ -119,14 +119,12 @@ const NavBar: React.FC = () => {
     if (circle) circle.classList.remove("expand");
     const el = document.getElementById(id);
     if (el) {
-      console.log(id);
       el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const openMenu = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    console.log("opening menu");
     toggleMobileMenu(true);
     const circle = document.getElementById("circle");
     if (circle) circle.className += " expand";
