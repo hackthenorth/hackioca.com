@@ -4,7 +4,11 @@ import copy from "src/copy";
 
 import { BobaContext } from "src/utils/context/boba";
 
-const Background = styled.img`
+interface BackgroundProps {
+  opacity: number;
+}
+
+const Background = styled.img<BackgroundProps>`
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -14,6 +18,7 @@ const Background = styled.img`
   -moz-transition: opacity 1s ease-out;
   -o-transition: opacity 1s ease-out;
   transition: opacity 1s ease-out;
+  opacity: ${props => props.opacity};
 `;
 
 const Waves = () => (
@@ -25,7 +30,7 @@ const Waves = () => (
             <Background
               src={image}
               key={bgFlavor}
-              style={{ opacity: flavor === bgFlavor ? 1 : 0 }}
+              opacity={flavor === bgFlavor ? 1 : 0}
             />
           ))}
         </div>
