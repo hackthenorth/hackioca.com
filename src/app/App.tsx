@@ -16,14 +16,14 @@ import Prizes from "src/app/sections/Prizes";
 import Activities from "src/app/sections/Activities";
 import Workshops from "src/app/sections/Workshops";
 import About from "src/app/sections/About";
-import Style from "src/components/Style";
+import BackgroundStyle from "src/components/BackgroundStyle";
 import RouteNotFound from "src/app/sections/RouteNotFound";
 import Footer from "src/app/sections/Footer";
 
 const App: React.FC = () => (
   <BobaProvider>
     <North themeDefinition={themeDef}>
-      <Style />
+      <BackgroundStyle />
       <Router>
         <Switch>
           <Route
