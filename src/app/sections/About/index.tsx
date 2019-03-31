@@ -26,6 +26,7 @@ const Section = styled.div`
 
 const Title = styled(BaseTitle)`
   text-align: left;
+  margin-bottom: 0;
   ${media.phone`
     text-align: center;
   `}

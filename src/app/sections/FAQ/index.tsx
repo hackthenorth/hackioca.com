@@ -7,7 +7,7 @@ import Anchor from "src/components/Anchor";
 import Title from "src/components/Title";
 
 import Shapes from "src/components/Shapes";
-import Subtitle from 'src/components/Subtitle';
+import Subtitle from "src/components/Subtitle";
 
 const Wrapper = styled.div`
   position: relative;
