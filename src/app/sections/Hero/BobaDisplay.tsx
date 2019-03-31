@@ -19,7 +19,6 @@ import ImgFlavorMango from "src/static/images/hero/display/flavors/mango.svg";
 import ImgFlavorMatcha from "src/static/images/hero/display/flavors/matcha.svg";
 import ImgFlavorTaro from "src/static/images/hero/display/flavors/taro.svg";
 
-
 const Container = styled.div`
   @keyframes pop {
     50% {
