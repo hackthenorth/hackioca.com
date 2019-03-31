@@ -5,9 +5,11 @@ import copy from "src/copy";
 import media from "src/utils/media";
 import Anchor from "src/components/Anchor";
 import Title from "src/components/Title";
-import Subtitle from 'src/components/Subtitle';
+import Subtitle from "src/components/Subtitle";
+import Shapes from "src/components/Shapes";
 
 const WorkshopContainer = styled.div`
+  position: relative;
   max-width: 1440px;
   margin: 0 auto;
 `;
@@ -55,6 +57,22 @@ const Body = (
 
 const Workshops: React.FC = () => (
   <WorkshopContainer>
+    <Shapes
+      shapes={[
+        { top: 12, left: 2, scale: 0.5, angle: 60 },
+        { top: 35, left: 1, scale: 0.65, angle: 120 },
+        { top: 60, left: 1, scale: 0.8, angle: 90 },
+        { top: 85, left: 1, scale: 0.5, angle: 120 }
+      ]}
+    />
+    <Shapes
+      shapes={[
+        { top: 10, left: 92, scale: 1, angle: 90 },
+        { top: 35, left: 95, scale: 0.75, angle: 10 },
+        { top: 63, left: 93, scale: 0.75, angle: 40 },
+        { top: 85, left: 95, scale: 0.5, angle: 80 }
+      ]}
+    />
     <Anchor id="workshops" />
     <Title>{copy.workshops.title}</Title>
     {Body}

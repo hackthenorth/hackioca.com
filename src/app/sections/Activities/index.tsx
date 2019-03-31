@@ -5,9 +5,11 @@ import copy from "src/copy";
 import media from "src/utils/media";
 import Anchor from "src/components/Anchor";
 import Title from "src/components/Title";
-import Subtitle from 'src/components/Subtitle';
+import Subtitle from "src/components/Subtitle";
+import Shapes from "src/components/Shapes";
 
 const ActivityContainer = styled.div`
+  position: relative;
   max-width: 1440px;
   margin: 0 auto;
 `;
@@ -58,6 +60,18 @@ const Body = (
 
 const Activities: React.FC = () => (
   <ActivityContainer>
+    <Shapes
+      shapes={[
+        { top: 25, left: -1, scale: 0.75, angle: 120 },
+        { top: 60, left: 1, scale: 0.65, angle: 90 }
+      ]}
+    />
+    <Shapes
+      shapes={[
+        { top: 35, left: 94, scale: 0.6, angle: 10 },
+        { top: 63, left: 93, scale: 0.75, angle: 40 }
+      ]}
+    />
     <Anchor id="activities" />
     <Title>{copy.activities.title}</Title>
     {Body}
