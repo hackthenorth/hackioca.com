@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import media from "src/utils/media";
+import copy from "src/copy";
+import { Button } from "@hackthenorth/north";
 
-// replace with mailinglist stuff
-const Container = styled.div`
-  // display: none;
+import Body from "src/components/Body";
+import TextInput from "src/components/TextInput";
+
+// Augment window to include HackerAPI definition
+declare global {
+  interface Window {
+    HackerAPI: any;
+  }
+}
+
+// Email validation logic, taken from
+// https://github.com/hackathon/hackthenorth.com/blob/master/src/components/StyledInput/index.jsx
+const validateEmailAddress = (email: string) => {
+  const emailPrefix = "[A-Z0-9a-z]([A-Z0-9a-z._%+-]{0,30}[A-Z0-9a-z])?";
+  const emailServer = "([A-Z0-9a-z]([A-Z0-9a-z-]{0,30}[A-Z0-9a-z])?\\.){1,5}";
+  const emailRegEx = `${emailPrefix}@${emailServer}[A-Za-z]{2,6}`;
+  if (email.match(emailRegEx)) {
+    return true;
+  }
+  return false;
+};
+
+const Container = styled.form`
   position: relative;
   width: 550px;
   height: 50px;
@@ -14,68 +36,80 @@ const Container = styled.div`
   border-radius: 50px;
 
   font-family: Raleway;
-  line-height: 50px;
+  line-height: 100%;
 
   overflow: hidden;
   background-color: white;
 
   ${media.phone`
-    width: 75vw;
+    width: 85vw;
+    height: 40px;
+    font-size: 14px;
   `}
 `;
 
-const SubmitInput = styled.input`
-  width: 380px;
-  height: 50px;
-  padding-left: 20px;
-
-  font-family: Raleway;
-  font-size: 16px;
-  line-height: 50px;
-
-  border-radius: 50px;
-  border: none;
-
-  &:focus {
-    outline: none;
-  }
-
-  ${media.phone`
-    width: 50vw;
-  `}
-`;
-
-const SubmitButton = styled.div`
-  position: absolute;
-  width: 170px;
-  height: 50px;
-  right: 0;
-  display: inline-block;
-
-  font-family: Raleway;
-  font-weight: 600;
-  color: white;
+const SubText = styled(Body)`
+  margin-top: 10px;
   text-align: center;
-  line-height: 50px;
-
-  cursor: pointer;
-
-  transition: background-color 200ms ease-in-out;
-  background-color: #51192c;
-  &:hover {
-    background-color: #37121e;
-  }
 
   ${media.phone`
-    width: 25vw;
+    width: 75vw;
+    margin: 10px auto;
+    font-size: 12px;
   `}
 `;
 
-const MailingListSignup: React.FC = () => (
-  <Container>
-    <SubmitInput placeholder="gimmemyboba@gmail.com" />
-    <SubmitButton>Order Now</SubmitButton>
-  </Container>
-);
+const MailingListSignup: React.FC = () => {
+  const [signupState, updateSignupState] = useState("ready");
+  const [email, updateEmail] = useState("");
+
+  const { HackerAPI } = window;
+  const signupForMailingList = useCallback(
+    e => {
+      e.preventDefault(); // stop page from refreshing onSubmit
+
+      if (validateEmailAddress(email)) {
+        updateSignupState("success");
+        HackerAPI.Event.MailingListSignup.create(
+          new HackerAPI.Event({ slug: "hackioca" }),
+          new HackerAPI.Event.MailingListSignup({ email })
+        )
+          .then((data: { email: string }) => {
+            if (data && data.email) {
+              // success
+              updateSignupState("success");
+            } else {
+              // signup error
+              updateSignupState("error");
+            }
+          })
+          .catch(() => {
+            // request error
+            updateSignupState("error");
+          });
+      } else {
+        // email validation failed
+        updateSignupState("invalid");
+      }
+    },
+    [email]
+  ); // only recreate this function if email changes
+
+  return (
+    <>
+      <Container onSubmit={e => signupForMailingList(e)}>
+        <TextInput
+          placeholder="gimmemyboba@gmail.com"
+          type="email"
+          onChange={(newEmail: string) => updateEmail(newEmail)}
+        />
+        <Button variant="hero" onClick={signupForMailingList}>
+          Order Now
+        </Button>
+      </Container>
+      <SubText>{copy.hero.signup[signupState]}</SubText>
+    </>
+  );
+};
 
 export default MailingListSignup;

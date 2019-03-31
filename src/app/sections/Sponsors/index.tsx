@@ -13,7 +13,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   display: grid;
-  margin: 0 auto;
+  margin: 0 auto 40px auto;
   max-width: 750px;
   justify-items: center;
   align-items: center;

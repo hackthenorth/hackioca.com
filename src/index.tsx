@@ -3,7 +3,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./app/App";
 import registerServiceWorker from "./registerServiceWorker";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 // Bugsnag
 import bugsnag from "@bugsnag/js";
 import bugsnagReact from "@bugsnag/plugin-react";

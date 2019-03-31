@@ -10,7 +10,8 @@ import BobaCustomizer from "./BobaCustomizer";
 import Shapes from "src/components/Shapes";
 
 const HeroWrapper = styled(SectionWrapper)`
-  margin: 75px auto;
+  min-height: 90%;
+  margin: 10% auto;
   position: relative;
 
   display: flex;
@@ -20,15 +21,18 @@ const HeroWrapper = styled(SectionWrapper)`
   & > * {
     margin: auto;
   }
+
+  ${media.phone`
+    margin-top: 0;
+  `}
 `;
 
 const HeroTitle = styled.h1`
-  margin: auto;
+  margin: 10px auto 0 auto;
 
   font-family: Bubbleboddy;
   font-weight: 800;
   font-size: 90px;
-  line-height: 100px;
   text-transform: lowercase;
   text-align: center;
   color: #51192c;
@@ -40,14 +44,13 @@ const HeroTitle = styled.h1`
 
 const HeroDesc = styled.div`
   font-family: Raleway;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
   text-align: center;
   margin-bottom: 1em;
 
   ${media.phone`
     margin-bottom: 1.5em;
-    font-size: 18px;
   `}
 
   & div.subtitle {
