@@ -13,11 +13,11 @@ export const animateInMenu = () => {
     lines[2].className += " rotate150";
   }, 70);
 
-  setTimeout(function(){
+  setTimeout(function() {
     lines[0].className += " rotate45";
     lines[2].className += " rotate135";
   }, 120);
-}
+};
 
 export const animateOutMenu = () => {
   const circle = document.getElementById("circle");
@@ -41,4 +41,4 @@ export const animateOutMenu = () => {
       lines[i].classList.toggle("collapse");
     }
   }, 70);
-}
+};

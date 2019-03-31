@@ -156,7 +156,11 @@ const NavBar: React.FC = () => {
       </LinksContainer>
       {showMobileMenu && (
         <MobileMenu>
-          <NavLinks sections={copy.nav.sections} clickHandler={scrollTo} />
+          <NavLinks
+            animate
+            sections={copy.nav.sections}
+            clickHandler={scrollTo}
+          />
           <SocialLinks links={copy.nav.socialLinks} />
         </MobileMenu>
       )}
