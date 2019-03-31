@@ -7,7 +7,7 @@ import copy from "src/copy";
 
 import NavLinks from "./NavLinks";
 import SocialLinks from "./SocialLinks";
-import CloseIcon from "./CloseIcon";
+import MenuIcon from "./MenuIcon";
 import { LogoContainer, LogoImg } from "src/components/Logo";
 
 const NavBarContainer = styled.nav`
@@ -45,10 +45,6 @@ const LinksContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
-`;
-
-const HamburgerMenu = styled.img`
-  width: 33px;
 `;
 
 const MobileMenu = styled.div`
@@ -110,7 +106,7 @@ const useWindowWidth = () => {
 };
 
 const NavBar: React.FC = () => {
-  const mobile = useWindowWidth() <= breakpoints.tablet;
+  const mobile = useWindowWidth() <= breakpoints.navbar;
   const [showMobileMenu, toggleMobileMenu] = useState(false);
 
   const scrollTo = (id: string) => {
@@ -119,21 +115,19 @@ const NavBar: React.FC = () => {
     if (circle) circle.classList.remove("expand");
     const el = document.getElementById(id);
     if (el) {
-      console.log(id);
       el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const openMenu = () => {
-    // e.preventDefault();
-    console.log("opening menu");
+  const openMenu = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
     toggleMobileMenu(true);
     const circle = document.getElementById("circle");
     if (circle) circle.className += " expand";
   };
 
-  const closeMenu = () => {
-    // e.preventDefault();
+  const closeMenu = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
     toggleMobileMenu(false);
     const circle = document.getElementById("circle");
     if (circle) circle.classList.remove("expand");
@@ -152,9 +146,7 @@ const NavBar: React.FC = () => {
       </a>
       <LinksContainer>
         {mobile ? (
-          <a href="#activity" onClick={openMenu}>
-            <HamburgerMenu src="/images/navbar/hamburger.svg" alt="menu" />
-          </a>
+          <MenuIcon isOpen={showMobileMenu} open={openMenu} close={closeMenu} />
         ) : (
           <>
             <NavLinks sections={copy.nav.sections} clickHandler={scrollTo} />
@@ -164,7 +156,6 @@ const NavBar: React.FC = () => {
       </LinksContainer>
       {showMobileMenu && (
         <MobileMenu>
-          <CloseIcon clickHandler={closeMenu} />
           <NavLinks sections={copy.nav.sections} clickHandler={scrollTo} />
           <SocialLinks links={copy.nav.socialLinks} />
         </MobileMenu>

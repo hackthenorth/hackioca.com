@@ -10,7 +10,8 @@ interface NavLinkProps {
 
 const NavLinksContainer = styled(LinksContainer)`
   margin-right: 32px;
-  ${media.tablet`
+
+  ${media.navbar`
     flex-direction: column;
     align-items: center;
     height: 375px;
@@ -21,7 +22,7 @@ const NavLinksContainer = styled(LinksContainer)`
 `;
 
 const NavLinkButton = styled(LinkButton)`
-  ${media.phone`
+  ${media.navbar`
     font-size: 32px;
   `}
 `;
