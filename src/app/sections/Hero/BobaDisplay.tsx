@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import media from "src/utils/media";
 import { toppings, Topping, Flavor } from "src/data";
@@ -74,13 +74,6 @@ const ToppingDisplay = styled(Slider)`
 
   -webkit-tap-highlight-color: transparent;
 
-  // This stuff targets the Carousel components, so the easiest
-  // way to style them is through this kinda ugly child selecting
-
-  & img {
-    display: block !important;
-  }
-
   ${media.phone`
     width: calc(100vw - ${getScrollbarWidth()}px) !important;
     max-height: 300px;
@@ -141,13 +134,13 @@ const Arrow = styled.img<{ dir: "left" | "right" }>`
   position: absolute;
   z-index: 2;
   top: 50%;
-  left: ${props => (props.dir === "left" ? "25px;" : "auto;")}
-  right: ${props => (props.dir === "left" ? "auto;" : "25px;")}
+  left: ${props => (props.dir === "left" ? "25px;" : "auto;")};
+  right: ${props => (props.dir === "left" ? "auto;" : "25px;")};
 
   margin: auto 0;
 
   transform: translateY(50%) ${props =>
-    props.dir === "left" ? "rotate(270deg);" : "rotate(90deg);"}
+    props.dir === "left" ? "rotate(270deg);" : "rotate(90deg);"};
 
   cursor: pointer;
   opacity: 0.6;
@@ -163,7 +156,8 @@ interface BobaDisplayProps {
   boopChanged: boolean;
   animationEndCallback: () => void;
   selectedFlavor: Flavor;
-  setTopping: (newTopping: Topping) => void;
+  selectedTopping: Topping;
+  updateTopping: (newTopping: Topping) => void;
   prevTopping: () => void;
   nextTopping: () => void;
   nextFlavor: () => void;
@@ -174,11 +168,25 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
   boopChanged,
   animationEndCallback,
   selectedFlavor,
+  selectedTopping,
   nextFlavor,
   prevTopping,
   nextTopping,
-  setTopping
+  updateTopping
 }) => {
+
+  const [ dragging, updateDragging ] = useState(false);
+
+  const incrementFlavor = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+    if (dragging) {
+      e.preventDefault();
+			e.stopPropagation();
+			return;
+		} else {
+			nextFlavor();
+		}
+  }
+
   return (
     <Container
       className={boopChanged ? "boop" : ""}
@@ -209,15 +217,20 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
       </FlavorDisplay>
       <ToppingDisplay
         ref={switcherRef}
+        initialSlide={toppings.indexOf(selectedTopping)}
         arrows={false}
         dots={false}
-        afterChange={(slideIndex: number) => setTopping(toppings[slideIndex])}
+        beforeChange={() => updateDragging(true)}
+        afterChange={(slideIndex: number) => {
+          updateTopping(toppings[slideIndex]);
+          updateDragging(false);
+        }}
       >
-        <ToppingChoice src={ImgToppingTapioca} onClick={nextFlavor} />
-        <ToppingChoice src={ImgToppingGrassJelly} onClick={nextFlavor} />
-        <ToppingChoice src={ImgToppingAloeVera} onClick={nextFlavor} />
-        <ToppingChoice src={ImgToppingRedBean} onClick={nextFlavor} />
-        <ToppingChoice src={ImgToppingPudding} onClick={nextFlavor} />
+        <ToppingChoice src={ImgToppingTapioca} onClick={incrementFlavor} />
+        <ToppingChoice src={ImgToppingGrassJelly} onClick={incrementFlavor} />
+        <ToppingChoice src={ImgToppingAloeVera} onClick={incrementFlavor} />
+        <ToppingChoice src={ImgToppingRedBean} onClick={incrementFlavor} />
+        <ToppingChoice src={ImgToppingPudding} onClick={incrementFlavor} />
       </ToppingDisplay>
       <Arrow dir="right" src={ImgChevron} onClick={nextTopping} />
     </Container>

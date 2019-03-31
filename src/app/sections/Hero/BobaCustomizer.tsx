@@ -23,8 +23,6 @@ const circleBgColors = {
   strawberry: "#F6B7B7"
 };
 
-const ENABLE_AUTO_FLAVOR_SWITCH = true;
-
 const isTopping = (option: ToppingOrFlavor): option is Topping =>
   toppings.indexOf(option as Topping) >= 0;
 
@@ -131,23 +129,25 @@ const BobaCustomizer: React.FC = () => {
   const shownToppings = filterShownOptions(selectedTopping) as Topping[];
   const switcherRef = useRef(null);
 
-  const nextTopping = () => {
-    if (switcherRef.current) (switcherRef.current as any).slickNext();
+
+  const nextTopping = () => changeTopping(shiftOptionBy(selectedTopping, 1) as Topping, false);
+  const prevTopping = () => changeTopping(shiftOptionBy(selectedTopping, -1) as Topping, false);
+  const changeTopping = (topping: Topping, fromParam: boolean) => {
+    if (topping !== selectedTopping) {
+      updateUserInteracted(true);
+    }
+    if(fromParam) {
+      updateTopping(topping);
+    }
+    if (switcherRef.current) (switcherRef.current as any).slickGoTo(toppings.indexOf(topping));
   };
-  const prevTopping = () => {
-    if (switcherRef.current) (switcherRef.current as any).slickPrev();
-  };
-  const goToTopping = (index: number) => {
-    if (switcherRef.current) (switcherRef.current as any).slickGoTo(index);
-  };
+  const nextFlavor = () => changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor);
+  const prevFlavor = () => changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor);
   const changeFlavor = (flavor: Flavor) => {
     if (flavor !== selectedFlavor) updateUserInteracted(true);
     updateFlavor(flavor);
   };
-  const changeTopping = (topping: Topping) => {
-    if (topping !== selectedTopping) updateUserInteracted(true);
-    goToTopping(toppings.indexOf(topping));
-  };
+  
 
   // Read the url params and update boba options if necessary
   useEffect(() => {
@@ -162,13 +162,13 @@ const BobaCustomizer: React.FC = () => {
       isTopping(paramTopping as Topping) &&
       paramTopping !== selectedTopping
     )
-      changeTopping(paramTopping as Topping);
+      changeTopping(paramTopping as Topping, true);
   }, []);
 
   // Randomly change flavor every 3 secs until user interaction occurs
   // If user interacted, then trigger the boop animation
   useEffect(() => {
-    if (!userInteracted && ENABLE_AUTO_FLAVOR_SWITCH) {
+    if (!userInteracted) {
       const flavorChangerId = setInterval(
         () => updateFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor),
         3000
@@ -200,12 +200,8 @@ const BobaCustomizer: React.FC = () => {
       circleColor={circleBgColors[selectedFlavor]}
     >
       <OptionPicker
-        incrementOption={() =>
-          changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
-        }
-        decrementOption={() =>
-          changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor)
-        }
+        incrementOption={nextFlavor}
+        decrementOption={prevFlavor}
         changeOption={changeFlavor}
         shownOptions={shownFlavors}
         selectedOption={selectedFlavor}
@@ -219,18 +215,17 @@ const BobaCustomizer: React.FC = () => {
         boopChanged={boopChanged}
         animationEndCallback={() => updateBoopChanged(false)}
         selectedFlavor={selectedFlavor}
-        setTopping={updateTopping}
+        selectedTopping={selectedTopping}
+        updateTopping={updateTopping}
         prevTopping={prevTopping}
         nextTopping={nextTopping}
-        nextFlavor={() =>
-          changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
-        }
+        nextFlavor={nextFlavor}
       />
 
       <OptionPicker
         incrementOption={nextTopping}
         decrementOption={prevTopping}
-        changeOption={changeTopping}
+        changeOption={(topping: Topping) => changeTopping(topping, false)}
         shownOptions={shownToppings}
         selectedOption={selectedTopping}
         tooltipOptions={copy.hero.toppings}
