@@ -104,21 +104,23 @@ const OptionPicker: React.FC<OptionPickerProps> = ({
   selectedOption,
   shownOptions,
   tooltipOptions
-}) => (
-  <Container className="optionPicker">
-    <PickerArrow src={ImgChevron} onClick={decrementOption} />
-    {shownOptions.map((option, i) => (
-      <PickerOption
-        key={i}
-        onClick={() => changeOption(option)}
-        selected={option === selectedOption}
-        data-tip={tooltipOptions[option]}
-      >
-        <img src={OPTION_IMAGES[option]} />
-      </PickerOption>
-    ))}
-    <PickerArrow src={ImgChevron} down onClick={incrementOption} />
-  </Container>
-);
+}) => {
+  return (
+    <Container className="optionPicker">
+      <PickerArrow src={ImgChevron} onClick={decrementOption} />
+      {shownOptions.map((option, i) => (
+        <PickerOption
+          key={i}
+          onClick={() => changeOption(option)}
+          selected={option === selectedOption}
+          data-tip={tooltipOptions[option]}
+        >
+          <img src={OPTION_IMAGES[option]} />
+        </PickerOption>
+      ))}
+      <PickerArrow src={ImgChevron} down onClick={incrementOption} />
+    </Container>
+  )
+};
 
 export default OptionPicker;
