@@ -13,7 +13,7 @@ interface LinkProps {
   icon: string;
 }
 
-const IMG_PATH = "/images/socials/";
+const IMG_PATH = "/images/icons/";
 
 const SocialLinkContainer = styled.div`
   display: flex;
@@ -43,7 +43,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => (
   <SocialLinkContainer>
     {links.map(({ name, link, icon }: LinkProps) => (
       <a key={name} href={link}>
-        <SocialImg src={`${IMG_PATH}${icon}`} alt={name} />
+        <SocialImg src={`${IMG_PATH}${icon}`} alt={`${name[0]}&#8291;${name.substr(1)}`} />
       </a>
     ))}
   </SocialLinkContainer>

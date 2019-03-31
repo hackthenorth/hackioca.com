@@ -17,38 +17,38 @@ import Activities from "src/app/sections/Activities";
 import Workshops from "src/app/sections/Workshops";
 import About from "src/app/sections/About";
 import BackgroundStyle from "src/components/BackgroundStyle";
+import ToolTip from "src/components/ToolTip";
 import RouteNotFound from "src/app/sections/RouteNotFound";
 import Footer from "src/app/sections/Footer";
 
 const App: React.FC = () => (
   <BobaProvider>
-    <North themeDefinition={themeDef}>
-      <BackgroundStyle />
-      <Router>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <QueryParamProvider ReactRouterRoute={Route}>
-                <NavBar />
-                <Hero />
-                <About />
-                <Schedule />
-                <Judges />
-                <Workshops />
-                <Activities />
-                <Sponsors />
-                <Prizes />
-                <FAQ />
-                <Footer />
-              </QueryParamProvider>
-            )}
-          />
-          <Route component={RouteNotFound} />
-        </Switch>
-      </Router>
-    </North>
+    <BackgroundStyle />
+    <ToolTip type="light" />
+    <Router>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <QueryParamProvider ReactRouterRoute={Route}>
+              <NavBar />
+              <Hero />
+              <About />
+              <Schedule />
+              <Judges />
+              <Workshops />
+              <Activities />
+              <Sponsors />
+              <Prizes />
+              <FAQ />
+              <Footer />
+            </QueryParamProvider>
+          )}
+        />
+        <Route component={RouteNotFound} />
+      </Switch>
+    </Router>
   </BobaProvider>
 );
 

@@ -47,19 +47,16 @@ const Judges = () => (
     />
     <Wrapper>
       <Judge
-        bgPath="judge_cups_matcha.svg"
         photoPath="barack_bobama.png"
         name={copy.judges.barack.name}
         quote={copy.judges.barack.quote}
       />
       <Judge
-        bgPath="judge_cups_milktea.svg"
         photoPath="boba_fett.png"
         name={copy.judges.boba.name}
         quote={copy.judges.boba.quote}
       />
       <Judge
-        bgPath="judge_cups_strawberry.svg"
         photoPath="matcha_zuckerberg.png"
         name={copy.judges.mark.name}
         quote={copy.judges.mark.quote}
@@ -67,13 +64,11 @@ const Judges = () => (
     </Wrapper>
     <Wrapper>
       <Judge
-        bgPath="judge_cups_taro.svg"
         photoPath="michael_buble_tea.png"
         name={copy.judges.michael.name}
         quote={copy.judges.michael.quote}
       />
       <Judge
-        bgPath="judge_cups-mango.svg"
         photoPath="oolong_musk.png"
         name={copy.judges.elon.name}
         quote={copy.judges.elon.quote}

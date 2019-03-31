@@ -14,6 +14,8 @@ const Wrapper = styled.div`
 `;
 
 const Chalkboard = styled.div`
+  position: relative;
+  z-index: 1;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;

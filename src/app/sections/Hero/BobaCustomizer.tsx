@@ -112,17 +112,6 @@ const Container = styled.div<{ circleColor: string }>`
   `}
 `;
 
-const PickerTooltip = styled(ReactTooltip)`
-  font-family: Bubbleboddy;
-  font-size: 16px;
-  background: none !important;
-
-  &:before,
-  &:after {
-    display: none;
-  }
-`;
-
 /* MAIN COMPONENT */
 const BobaCustomizer: React.FC = () => {
   const {
@@ -189,7 +178,7 @@ const BobaCustomizer: React.FC = () => {
       updateBoopChanged(true);
     }
 
-    return () => {};
+    return () => { };
   }, [userInteracted, selectedFlavor]);
 
   // Update the url params if user changes options
@@ -246,8 +235,6 @@ const BobaCustomizer: React.FC = () => {
         selectedOption={selectedTopping}
         tooltipOptions={copy.hero.toppings}
       />
-
-      <PickerTooltip id="optionTooltips" type="light" />
     </Container>
   );
 };

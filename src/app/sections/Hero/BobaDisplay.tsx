@@ -37,7 +37,7 @@ const Container = styled.div`
 
   animation: none;
   &.boop {
-    animation: pop 100ms ease-out 1;
+    animation: pop 150ms ease-in-out 1;
   }
 
   ${media.phone`
