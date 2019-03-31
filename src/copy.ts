@@ -142,7 +142,7 @@ export default {
       {
         question: "Who can attend?",
         answer:
-          "First time boba drinkers, second time boba drinks, N times boba drinkers."
+          "First time boba drinkers, second time boba drinks, Nth time boba drinkers."
       },
       {
         question: "Will there be boba?",
