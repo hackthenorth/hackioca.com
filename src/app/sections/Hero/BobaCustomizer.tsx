@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import ReactTooltip from "react-tooltip";
 import { useQueryParams, StringParam } from "use-query-params";
@@ -140,14 +140,24 @@ const BobaCustomizer: React.FC = () => {
   const [boopChanged, updateBoopChanged] = useState(false);
   const shownFlavors = filterShownOptions(selectedFlavor) as Flavor[];
   const shownToppings = filterShownOptions(selectedTopping) as Topping[];
+  const switcherRef = useRef(null);
 
+  const nextTopping = () => {
+    if (switcherRef.current) (switcherRef.current as any).slickNext();
+  };
+  const prevTopping = () => {
+    if (switcherRef.current) (switcherRef.current as any).slickPrev();
+  };
+  const goToTopping = (index: number) => {
+    if (switcherRef.current) (switcherRef.current as any).slickGoTo(index);
+  };
   const changeFlavor = (flavor: Flavor) => {
     if (flavor !== selectedFlavor) updateUserInteracted(true);
     updateFlavor(flavor);
   };
   const changeTopping = (topping: Topping) => {
     if (topping !== selectedTopping) updateUserInteracted(true);
-    updateTopping(topping);
+    goToTopping(toppings.indexOf(topping));
   };
 
   // Read the url params and update boba options if necessary
@@ -213,27 +223,22 @@ const BobaCustomizer: React.FC = () => {
       <div className="circleBg" />
 
       <BobaDisplay
+        switcherRef={switcherRef}
         boopChanged={boopChanged}
         animationEndCallback={() => updateBoopChanged(false)}
         selectedFlavor={selectedFlavor}
         selectedTopping={selectedTopping}
-        setTopping={changeTopping}
-        incrementTopping={() =>
-          changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)}
-        decrementTopping={() =>
-          changeTopping(shiftOptionBy(selectedTopping, -1) as Topping)}
+        setTopping={updateTopping}
+        prevTopping={prevTopping}
+        nextTopping={nextTopping}
         incrementFlavor={() =>
           changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
         }
       />
 
       <OptionPicker
-        incrementOption={() =>
-          changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)
-        }
-        decrementOption={() =>
-          changeTopping(shiftOptionBy(selectedTopping, -1) as Topping)
-        }
+        incrementOption={nextTopping}
+        decrementOption={prevTopping}
         changeOption={changeTopping}
         shownOptions={shownToppings}
         selectedOption={selectedTopping}
