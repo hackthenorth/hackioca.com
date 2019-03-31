@@ -9,18 +9,18 @@ import Anchor from "src/components/Anchor";
 const Wrapper = styled.div`
   display: grid;
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 750px;
   justify-items: center;
   align-items: center;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: 50% 45%;
-  grid-gap: 20px 0;
+  grid-gap: 40px 0;
 
   ${media.phone`
     max-width: 350px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-gap: 15px;
+    grid-gap: 20px;
     `}
 `;
 
