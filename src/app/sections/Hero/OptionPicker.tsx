@@ -105,14 +105,15 @@ const OptionPicker: React.FC<OptionPickerProps> = ({
   shownOptions,
   tooltipOptions
 }) => (
-  <Container>
+  <Container className="optionPicker">
     <PickerArrow src={ImgChevron} onClick={decrementOption} />
-    {shownOptions.map((option, i) => (
+    {shownOptions.map(option => (
       <PickerOption
-        key={i}
+        key={option}
         onClick={() => changeOption(option)}
         selected={option === selectedOption}
         data-tip={tooltipOptions[option]}
+        data-for="optionTooltips"
       >
         <img src={OPTION_IMAGES[option]} />
       </PickerOption>

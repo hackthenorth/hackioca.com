@@ -196,7 +196,7 @@ const BobaCustomizer: React.FC = () => {
   useEffect(() => ReactTooltip.rebuild(), [selectedFlavor, selectedTopping]);
 
   return (
-    <Container circleColor={circleBgColors[selectedFlavor]}>
+    <Container className="optionPicker" circleColor={circleBgColors[selectedFlavor]}>
       <OptionPicker
         incrementOption={() =>
           changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
@@ -240,7 +240,7 @@ const BobaCustomizer: React.FC = () => {
         tooltipOptions={copy.hero.toppings}
       />
 
-      <PickerTooltip type="light" />
+      <PickerTooltip id="optionTooltips" type="light" />
     </Container>
   );
 };
