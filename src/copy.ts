@@ -180,13 +180,13 @@ export default {
   sponsors: {
     title: "sponsors",
     companies: [
-      "aliboba",
-      "chatime",
-      "coco",
-      "ibm",
-      "lactaid",
-      "t-combinator",
-      "tea-mobile"
+      { name: "aliboba", path: "aliboba" },
+      { name: "chatime", path: "chatime" },
+      { name: "coco", path: "coco" },
+      { name: "international boba machines", path: "ibm" },
+      { name: "lactaid", path: "lactaid" },
+      { name: "t-combinator", path: "t-combinator" },
+      { name: "tea-mobile", path: "tea-mobile" }
     ]
   },
   prizes: {
