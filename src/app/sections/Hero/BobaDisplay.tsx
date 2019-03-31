@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import media from "src/utils/media";
-import { toppings, Topping, Flavor } from "src/data";
+import { Flavor } from "src/flavor";
+import { Topping, toppings } from "src/topping";
 import { getScrollbarWidth } from "src/utils/scroll-bar-width";
 import Slider from "react-slick";
 

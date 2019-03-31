@@ -3,7 +3,8 @@ import styled from "styled-components";
 import media from "src/utils/media";
 
 import ImgChevron from "src/static/images/chevron_up.svg";
-import { Flavor, Topping } from "src/data";
+import { Flavor } from "src/flavor";
+import { Topping } from "src/topping";
 
 import ImgToppingOptionGrassJelly from "src/static/images/hero/options/toppings/grass_jelly.svg";
 import ImgToppingOptionTapioca from "src/static/images/hero/options/toppings/tapioca.svg";
