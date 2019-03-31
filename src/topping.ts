@@ -1,18 +1,10 @@
-export type Flavor = "strawberry" | "mango" | "milk" | "matcha" | "taro";
-export const flavors: ReadonlyArray<Flavor> = [
-  "milk",
-  "matcha",
-  "taro",
-  "mango",
-  "strawberry"
-];
-
 export type Topping =
   | "tapioca"
   | "grass_jelly"
   | "aloe_vera"
   | "red_bean"
   | "pudding";
+
 export const toppings: ReadonlyArray<Topping> = [
   "tapioca",
   "grass_jelly",
@@ -20,3 +12,7 @@ export const toppings: ReadonlyArray<Topping> = [
   "red_bean",
   "pudding"
 ];
+
+export const isTopping = (topping: unknown): topping is Topping => {
+  return typeof topping === "string" && toppings.indexOf(topping as Topping) >= 0;
+}

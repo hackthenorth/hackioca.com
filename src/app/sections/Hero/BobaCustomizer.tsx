@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import ReactTooltip from "react-tooltip";
-import { useQueryParams, StringParam } from "use-query-params";
 import { getScrollbarWidth } from "src/utils/scroll-bar-width";
 
 import media from "src/utils/media";
 import copy from "src/copy";
-import { flavors, toppings, Flavor, Topping } from "src/data";
+import { flavors, Flavor } from "src/flavor";
+import { toppings, Topping, isTopping } from "src/topping";
 import { useBobaContext } from "src/utils/context/boba";
 
 import BobaDisplay from "./BobaDisplay";
@@ -22,12 +22,6 @@ const circleBgColors = {
   taro: "#E7C8D8",
   strawberry: "#F6B7B7"
 };
-
-const isTopping = (option: ToppingOrFlavor): option is Topping =>
-  toppings.indexOf(option as Topping) >= 0;
-
-const isFlavor = (option: ToppingOrFlavor): option is Flavor =>
-  flavors.indexOf(option as Flavor) >= 0;
 
 // https://stackoverflow.com/questions/50924952/typescript-has-no-compatible-call-signatures
 // Since the picker only displays 3 options for each, find the range of -1, +1 options based
@@ -113,64 +107,47 @@ const Container = styled.div<{ circleColor: string }>`
 /* MAIN COMPONENT */
 const BobaCustomizer: React.FC = () => {
   const {
-    flavor: selectedFlavor,
-    topping: selectedTopping,
+    flavor,
+    topping,
     updateFlavor,
     updateTopping
   } = useBobaContext();
-  const [query, setQuery] = useQueryParams({
-    flavor: StringParam,
-    topping: StringParam
-  });
-  const { flavor: paramFlavor, topping: paramTopping } = query;
+
   const [userInteracted, updateUserInteracted] = useState(false);
   const [boopChanged, updateBoopChanged] = useState(false);
-  const shownFlavors = filterShownOptions(selectedFlavor) as Flavor[];
-  const shownToppings = filterShownOptions(selectedTopping) as Topping[];
+  const shownFlavors = filterShownOptions(flavor) as Flavor[];
+  const shownToppings = filterShownOptions(topping) as Topping[];
   const switcherRef = useRef(null);
 
 
-  const nextTopping = () => changeTopping(shiftOptionBy(selectedTopping, 1) as Topping, false);
-  const prevTopping = () => changeTopping(shiftOptionBy(selectedTopping, -1) as Topping, false);
-  const changeTopping = (topping: Topping, fromParam: boolean) => {
-    if (topping !== selectedTopping) {
+  const nextTopping = () => changeTopping(shiftOptionBy(topping, 1) as Topping, false);
+  const prevTopping = () => changeTopping(shiftOptionBy(topping, -1) as Topping, false);
+  const changeTopping = (newTopping: Topping, fromParam: boolean) => {
+    if (newTopping !== topping) {
       updateUserInteracted(true);
     }
-    if(fromParam) {
-      updateTopping(topping);
+    if (fromParam) {
+      updateTopping(newTopping, userInteracted);
     }
-    if (switcherRef.current) (switcherRef.current as any).slickGoTo(toppings.indexOf(topping));
+    if (switcherRef.current) {
+      (switcherRef.current as any).slickGoTo(toppings.indexOf(newTopping));
+    }
   };
-  const nextFlavor = () => changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor);
-  const prevFlavor = () => changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor);
-  const changeFlavor = (flavor: Flavor) => {
-    if (flavor !== selectedFlavor) updateUserInteracted(true);
-    updateFlavor(flavor);
+  const nextFlavor = () => changeFlavor(shiftOptionBy(flavor, 1) as Flavor);
+  const prevFlavor = () => changeFlavor(shiftOptionBy(flavor, -1) as Flavor);
+  const changeFlavor = (newFlavor: Flavor) => {
+    if (newFlavor !== flavor) {
+      updateUserInteracted(true);
+    }
+    updateFlavor(newFlavor, userInteracted);
   };
-  
-
-  // Read the url params and update boba options if necessary
-  useEffect(() => {
-    if (
-      paramFlavor &&
-      isFlavor(paramFlavor as Flavor) &&
-      paramFlavor !== selectedFlavor
-    )
-      changeFlavor(paramFlavor as Flavor);
-    if (
-      paramTopping &&
-      isTopping(paramTopping as Topping) &&
-      paramTopping !== selectedTopping
-    )
-      changeTopping(paramTopping as Topping, true);
-  }, []);
 
   // Randomly change flavor every 3 secs until user interaction occurs
   // If user interacted, then trigger the boop animation
   useEffect(() => {
     if (!userInteracted) {
       const flavorChangerId = setInterval(
-        () => updateFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor),
+        () => updateFlavor(shiftOptionBy(flavor, 1) as Flavor, false),
         3000
       );
       return () => clearTimeout(flavorChangerId);
@@ -179,32 +156,22 @@ const BobaCustomizer: React.FC = () => {
     }
 
     return () => { };
-  }, [userInteracted, selectedFlavor]);
-
-  // Update the url params if user changes options
-  useEffect(() => {
-    if (userInteracted) {
-      setQuery({
-        flavor: selectedFlavor,
-        topping: selectedTopping
-      });
-    }
-  }, [userInteracted, selectedFlavor, selectedTopping]);
+  }, [userInteracted, flavor]);
 
   // Update the tooltips after flavor/topping selection changed
-  useEffect(() => ReactTooltip.rebuild(), [selectedFlavor, selectedTopping]);
+  useEffect(() => ReactTooltip.rebuild(), [flavor, topping]);
 
   return (
     <Container
       className="optionPicker"
-      circleColor={circleBgColors[selectedFlavor]}
+      circleColor={circleBgColors[flavor]}
     >
       <OptionPicker
         incrementOption={nextFlavor}
         decrementOption={prevFlavor}
         changeOption={changeFlavor}
         shownOptions={shownFlavors}
-        selectedOption={selectedFlavor}
+        selectedOption={flavor}
         tooltipOptions={copy.hero.flavors}
       />
 
@@ -214,9 +181,9 @@ const BobaCustomizer: React.FC = () => {
         switcherRef={switcherRef}
         boopChanged={boopChanged}
         animationEndCallback={() => updateBoopChanged(false)}
-        selectedFlavor={selectedFlavor}
-        selectedTopping={selectedTopping}
-        updateTopping={updateTopping}
+        selectedFlavor={flavor}
+        selectedTopping={topping}
+        updateTopping={(topping) => updateTopping(topping, userInteracted)}
         prevTopping={prevTopping}
         nextTopping={nextTopping}
         nextFlavor={nextFlavor}
@@ -227,7 +194,7 @@ const BobaCustomizer: React.FC = () => {
         decrementOption={prevTopping}
         changeOption={(topping: Topping) => changeTopping(topping, false)}
         shownOptions={shownToppings}
-        selectedOption={selectedTopping}
+        selectedOption={topping}
         tooltipOptions={copy.hero.toppings}
       />
     </Container>
