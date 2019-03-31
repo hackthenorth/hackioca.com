@@ -105,50 +105,8 @@ const Line3 = styled(HamburgerLine)`
 
 const MenuIcon: React.FC<CloseIconProps> = ({ isOpen, open, close }) => {
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    const lines = document.getElementsByClassName("line");
-    console.log(lines)
-    if (isOpen) {
-      close(e);
-      lines[0].classList.remove("rotate45");
-      lines[0].className += " rotate30";
-
-      lines[2].classList.remove("rotate135");
-      lines[2].className += " rotate150";
-
-      setTimeout(function() {
-        lines[0].classList.remove("rotate30");
-        lines[2].classList.remove("rotate150");
-      }, 50);
-  
-      setTimeout(function() {
-        lines[1].classList.toggle("hide");
-        for (let i = 0; i < lines.length; i++) {
-          lines[i].classList.toggle("collapse");
-        }
-      }, 70);
-    } else {
-      open(e);
-
-      for (let i = 0; i < lines.length; i++) {
-        lines[i].classList.toggle("collapse");
-      }
-
-      setTimeout(function() {
-        lines[1].classList.toggle("hide");
-        lines[0].className += " rotate30";
-        lines[2].className += " rotate150";
-      }, 70);
-  
-      setTimeout(function(){
-        lines[0].className += " rotate45";
-        lines[2].className += " rotate135";
-      }, 120);
-    }
-  };
-
   return (
-    <MenuContainer onClick={e => handleClick(e)}>
+    <MenuContainer onClick={e => { isOpen ? close(e) : open(e)}}>
       <Line1 className="line x" />
       <Line2 className="line y" />
       <Line3 className="line z" />

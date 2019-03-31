@@ -9,6 +9,7 @@ import NavLinks from "./NavLinks";
 import SocialLinks from "./SocialLinks";
 import MenuIcon from "./MenuIcon";
 import { LogoContainer, LogoImg } from "src/components/Logo";
+import { animateInMenu, animateOutMenu } from "./animations";
 
 const NavBarContainer = styled.nav`
   font-family: "Bubbleboddy";
@@ -111,8 +112,7 @@ const NavBar: React.FC = () => {
 
   const scrollTo = (id: string) => {
     toggleMobileMenu(false);
-    const circle = document.getElementById("circle");
-    if (circle) circle.classList.remove("expand");
+    animateOutMenu();
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
@@ -122,8 +122,7 @@ const NavBar: React.FC = () => {
   const openMenu = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     toggleMobileMenu(true);
-    const circle = document.getElementById("circle");
-    if (circle) circle.className += " expand";
+    animateInMenu();
   };
 
   const closeMenu = (e: React.MouseEvent<HTMLElement>) => {
@@ -131,6 +130,7 @@ const NavBar: React.FC = () => {
     toggleMobileMenu(false);
     const circle = document.getElementById("circle");
     if (circle) circle.classList.remove("expand");
+    animateOutMenu();
   };
 
   useEffect(() => {
