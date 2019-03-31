@@ -56,9 +56,9 @@ const Sponsors = () => (
     <Wrapper>
       {copy.sponsors.companies.map(company => (
         <Item
-          data-tip={company}
-          key={company}
-          src={`/images/supporters/${company}.png`}
+          data-tip={company.name}
+          key={company.path}
+          src={`/images/supporters/${company.path}.png`}
         />
       ))}
     </Wrapper>
