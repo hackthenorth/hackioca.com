@@ -9,11 +9,12 @@ import Anchor from "src/components/Anchor";
 const Wrapper = styled.div`
   display: grid;
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 750px;
   justify-items: center;
   align-items: center;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: 50% 45%;
+  grid-gap: 40px 0;
 
   ${media.phone`
     max-width: 350px;
@@ -34,24 +35,16 @@ const Item = styled.img<ItemProps>`
 
   &:nth-child(5) {
     grid-column: 2 / span 2;
-    margin-top: -50px;
-  }
-
-  &:nth-child(7) {
-    margin-top: -50px;
   }
 
   ${media.phone`
     grid-column: span 1;
-    margin-top: 0;
 
     &:nth-child(5) {
         grid-column: span 1;
-        margin-top: 0;
     }
     &:nth-child(7) {
         grid-column: span 2;
-        margin-top: 0;
     }
     `}
 `;
@@ -65,7 +58,7 @@ const Sponsors = () => (
         <Item
           data-tip={company}
           key={company}
-          src={`/images/sponsors/${company}.png`}
+          src={`/images/supporters/${company}.png`}
         />
       ))}
     </Wrapper>
