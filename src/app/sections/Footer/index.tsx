@@ -58,6 +58,7 @@ const LeftContainer = styled.div`
   align-items: center;
   height: 75px;
   margin-right: auto;
+  z-index: 1;
 
   ${media.smallPhone`
     align-items: flex-end;
@@ -88,6 +89,7 @@ const RightContainer = styled.div`
   flex-direction: column;
   align-items: flex-end;
   height: 115px;
+  z-index: 1;
 `;
 
 const FlexWrapContainer = styled.div`
