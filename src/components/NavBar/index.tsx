@@ -3,6 +3,7 @@ import styled from "styled-components";
 import smoothscroll from "smoothscroll-polyfill";
 
 import media, { sizes as breakpoints } from "src/utils/media";
+import useWindowWidth from "src/utils/hooks/useWindowWidth";
 import copy from "src/copy";
 
 import NavLinks from "./NavLinks";
@@ -87,24 +88,6 @@ const Circle = styled.div`
     transition: all 400ms cubic-bezier(0, 0.995, 0.99, 1);
   }
 `;
-
-const useWindowWidth = () => {
-  const [width, setWidth] = useState(window.innerWidth);
-
-  const handleWindowResize = () => {
-    setWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  });
-
-  return width;
-};
 
 const NavBar: React.FC = () => {
   const mobile = useWindowWidth() <= breakpoints.navbar;

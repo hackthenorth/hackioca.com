@@ -5,11 +5,12 @@ import Body from "src/components/Body";
 import SocialLinks from "src/components/NavBar/SocialLinks";
 import copy from "src/copy";
 
-import media from "src/utils/media";
+import media, { sizes as breakpoints } from "src/utils/media";
 import Waves from "./Waves";
 import { LogoContainer, LogoImg } from "src/components/Logo";
 import { LinksContainer, LinkButton } from "src/components/Link";
-// import MailingListSignup from 'src/components/MailingListSignup';
+import MailingListSignup from "src/components/MailingListSignup";
+import useWindowWidth from "src/utils/hooks/useWindowWidth";
 
 const FooterContainer = styled.div`
   margin-top: 75px;
@@ -27,6 +28,24 @@ const FooterContainer = styled.div`
   ${media.phone`
     height: 316px;
     padding: 18px;
+  `}
+  ${media.phone`
+    flex-direction: column;
+    justify-content: flex-end;
+  `}
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  ${media.phone`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 10px;
   `}
 `;
 
@@ -89,8 +108,8 @@ const RightContainer = styled.div`
   justify-content: flex-end;
   flex-direction: column;
   align-items: flex-end;
-  height: 115px;
   z-index: 1;
+  height: 175px;
 `;
 
 const FlexWrapContainer = styled.div`
@@ -162,21 +181,25 @@ const FooterLinks = (
 );
 
 const Footer: React.FC = () => {
+  const mobile = useWindowWidth() <= breakpoints.phone;
   return (
     <FooterContainer>
       <Waves />
-      <LeftContainer>
-        {Logo}
-        <TextContainer>
-          <FooterTitle>{copy.footer.logoText.title}</FooterTitle>
-          <FooterBody>{copy.footer.logoText.copyright}</FooterBody>
-        </TextContainer>
-      </LeftContainer>
-      <RightContainer>
-        <SocialLinks links={copy.nav.socialLinks} />
-        <FlexWrapContainer>{FooterLinks}</FlexWrapContainer>
-        {/* <MailingListSignup /> */}
-      </RightContainer>
+      <FlexContainer>
+        <LeftContainer>
+          {Logo}
+          <TextContainer>
+            <FooterTitle>{copy.footer.logoText.title}</FooterTitle>
+            <FooterBody>{copy.footer.logoText.copyright}</FooterBody>
+          </TextContainer>
+        </LeftContainer>
+        <RightContainer>
+          <SocialLinks links={copy.nav.socialLinks} />
+          <FlexWrapContainer>{FooterLinks}</FlexWrapContainer>
+          {!mobile && <MailingListSignup />}
+        </RightContainer>
+      </FlexContainer>
+      {mobile && <MailingListSignup />}
     </FooterContainer>
   );
 };
