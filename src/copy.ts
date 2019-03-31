@@ -20,7 +20,16 @@ export default {
     }
   },
   nav: {
-    sections: ["about", "schedule", "judges", "workshops", "activities", "sponsors", "prizes", "faq"],
+    sections: [
+      "about",
+      "schedule",
+      "judges",
+      "workshops",
+      "activities",
+      "sponsors",
+      "prizes",
+      "faq"
+    ],
     socialLinks: [
       {
         name: "facebook",
@@ -72,7 +81,7 @@ export default {
         { title: "Lunch: Burritos and Boba", time: "12pm-2pm" },
         { title: "Activity: Bubble Soccer", time: "2pm-3pm" },
         { title: "Snack: Mochi and Boba", time: "3pm-5pm" },
-        { title: "Dinner: Boba w/ Parental Disappointment", time: "6pm-8pm," },
+        { title: "Dinner: Boba w/ Parental Disappointment", time: "6pm-8pm" },
         { title: "Activity: Do hw that’s due tomorrow", time: "10pm-12am" }
       ]
     },
