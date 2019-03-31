@@ -12,6 +12,7 @@ import { LinksContainer, LinkButton } from "src/components/Link";
 // import MailingListSignup from 'src/components/MailingListSignup';
 
 const FooterContainer = styled.div`
+  margin-top: 75px;
   position: relative;
   height: 500px;
   padding: 23px 45px 75px 45px;
