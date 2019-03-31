@@ -37,6 +37,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  @supports (-ms-accelerator: true) { /* Edge only */ justify-content: space-around; }
   margin: 20px auto;
 
   ${media.phone`
