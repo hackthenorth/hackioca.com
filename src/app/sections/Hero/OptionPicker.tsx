@@ -113,7 +113,6 @@ const OptionPicker: React.FC<OptionPickerProps> = ({
         onClick={() => changeOption(option)}
         selected={option === selectedOption}
         data-tip={tooltipOptions[option]}
-        data-for="optionTooltips"
       >
         <img src={OPTION_IMAGES[option]} />
       </PickerOption>
