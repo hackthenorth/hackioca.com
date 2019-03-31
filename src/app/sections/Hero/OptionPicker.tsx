@@ -36,7 +36,7 @@ const OPTION_IMAGES = {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin: 20px auto;
 
   ${media.phone`
@@ -105,7 +105,7 @@ const OptionPicker: React.FC<OptionPickerProps> = ({
   shownOptions,
   tooltipOptions
 }) => (
-  <Container>
+  <Container className="optionPicker">
     <PickerArrow src={ImgChevron} onClick={decrementOption} />
     {shownOptions.map((option, i) => (
       <PickerOption
@@ -113,6 +113,7 @@ const OptionPicker: React.FC<OptionPickerProps> = ({
         onClick={() => changeOption(option)}
         selected={option === selectedOption}
         data-tip={tooltipOptions[option]}
+        data-for="optionTooltips"
       >
         <img src={OPTION_IMAGES[option]} />
       </PickerOption>

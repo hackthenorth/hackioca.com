@@ -1,6 +1,4 @@
-import React from "react";
-import { createGlobalStyle } from "styled-components";
-import BackgroundStyle from "src/components/BackgroundStyle";
+import { createGlobalStyle } from "@hackthenorth/north";
 
 import FontBubbleBoddy from "src/static/fonts/Bubbleboddy-FatTrial.ttf";
 import FontRalewayLight from "src/static/fonts/Raleway-Light.ttf";
@@ -9,7 +7,7 @@ import FontRalewayMedium from "src/static/fonts/Raleway-Medium.ttf";
 import FontRalewaySemibold from "src/static/fonts/Raleway-SemiBold.ttf";
 import FontRalewayBold from "src/static/fonts/Raleway-Bold.ttf";
 
-const GlobalStyle = createGlobalStyle`
+const globalStyles = createGlobalStyle`
   @font-face {
     font-family: "Bubbleboddy";
     font-weight: 700;
@@ -62,9 +60,4 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default React.memo(() => (
-  <>
-    <GlobalStyle />
-    <BackgroundStyle />
-  </>
-));
+export default globalStyles;

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import ReactTooltip from "react-tooltip";
 import { useQueryParams, StringParam } from "use-query-params";
+import { getScrollbarWidth } from "src/utils/scroll-bar-width";
 
 import media from "src/utils/media";
 import copy from "src/copy";
@@ -13,6 +14,14 @@ import OptionPicker from "./OptionPicker";
 
 /* HELPERS */
 type ToppingOrFlavor = Topping | Flavor;
+
+const circleBgColors = {
+  mango: "#F8E399",
+  milk: "#F2E1CF",
+  matcha: "#E3E8B7",
+  taro: "#E7C8D8",
+  strawberry: "#F6B7B7"
+};
 
 const ENABLE_AUTO_FLAVOR_SWITCH = true;
 
@@ -68,7 +77,7 @@ const shiftOptionBy = (selected: ToppingOrFlavor, shiftBy: number) => {
 };
 
 /* STYLED COMPONENTS */
-const Container = styled.div`
+const Container = styled.div<{ circleColor: string }>`
   width: 550px;
   height: 375px;
   position: relative;
@@ -86,13 +95,20 @@ const Container = styled.div`
     left: 50%;
     transform: translateX(-50%);
 
-    background-color: #f2e1cf;
+    transition: background-color 500ms ease-out;
+    background-color: ${props => props.circleColor};
     border-radius: 50%;
   }
 
   ${media.phone`
-    width: 100vw;
-    height: 400px;
+    width: calc(100vw - ${getScrollbarWidth()}px);
+    height: auto;
+
+    & div.circleBg {
+      width: 250px;
+      height: 250px;
+      bottom: 30px;
+    }
   `}
 `;
 
@@ -113,14 +129,24 @@ const BobaCustomizer: React.FC = () => {
   const [boopChanged, updateBoopChanged] = useState(false);
   const shownFlavors = filterShownOptions(selectedFlavor) as Flavor[];
   const shownToppings = filterShownOptions(selectedTopping) as Topping[];
+  const switcherRef = useRef(null);
 
+  const nextTopping = () => {
+    if (switcherRef.current) (switcherRef.current as any).slickNext();
+  };
+  const prevTopping = () => {
+    if (switcherRef.current) (switcherRef.current as any).slickPrev();
+  };
+  const goToTopping = (index: number) => {
+    if (switcherRef.current) (switcherRef.current as any).slickGoTo(index);
+  };
   const changeFlavor = (flavor: Flavor) => {
     if (flavor !== selectedFlavor) updateUserInteracted(true);
     updateFlavor(flavor);
   };
   const changeTopping = (topping: Topping) => {
     if (topping !== selectedTopping) updateUserInteracted(true);
-    updateTopping(topping);
+    goToTopping(toppings.indexOf(topping));
   };
 
   // Read the url params and update boba options if necessary
@@ -152,7 +178,7 @@ const BobaCustomizer: React.FC = () => {
       updateBoopChanged(true);
     }
 
-    return () => {};
+    return () => { };
   }, [userInteracted, selectedFlavor]);
 
   // Update the url params if user changes options
@@ -169,7 +195,10 @@ const BobaCustomizer: React.FC = () => {
   useEffect(() => ReactTooltip.rebuild(), [selectedFlavor, selectedTopping]);
 
   return (
-    <Container>
+    <Container
+      className="optionPicker"
+      circleColor={circleBgColors[selectedFlavor]}
+    >
       <OptionPicker
         incrementOption={() =>
           changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
@@ -186,23 +215,21 @@ const BobaCustomizer: React.FC = () => {
       <div className="circleBg" />
 
       <BobaDisplay
+        switcherRef={switcherRef}
         boopChanged={boopChanged}
         animationEndCallback={() => updateBoopChanged(false)}
         selectedFlavor={selectedFlavor}
-        selectedTopping={selectedTopping}
-        setTopping={changeTopping}
-        incrementFlavor={() =>
+        setTopping={updateTopping}
+        prevTopping={prevTopping}
+        nextTopping={nextTopping}
+        nextFlavor={() =>
           changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
         }
       />
 
       <OptionPicker
-        incrementOption={() =>
-          changeTopping(shiftOptionBy(selectedTopping, 1) as Topping)
-        }
-        decrementOption={() =>
-          changeTopping(shiftOptionBy(selectedTopping, -1) as Topping)
-        }
+        incrementOption={nextTopping}
+        decrementOption={prevTopping}
         changeOption={changeTopping}
         shownOptions={shownToppings}
         selectedOption={selectedTopping}

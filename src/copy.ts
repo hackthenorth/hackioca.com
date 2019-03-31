@@ -2,21 +2,27 @@ export default {
   hero: {
     title: "Hackioca",
     subtitle: "A Qualitea Hackathon",
-    eventDate: "April 28 - 30, 2019",
+    eventDate: "July 26 - 28, 2019",
     eventLoc: "Taipei 101",
     toppings: {
-      tapioca: "Tapioca",
-      red_bean: "Red Bean", // eslint-disable-line @typescript-eslint/camelcase
-      grass_jelly: "Grass Jelly", // eslint-disable-line @typescript-eslint/camelcase
-      pudding: "Pudding",
-      aloe_vera: "Aloe Vera" // eslint-disable-line @typescript-eslint/camelcase
+      tapioca: "tapioca",
+      red_bean: "red bean", // eslint-disable-line @typescript-eslint/camelcase
+      grass_jelly: "grass jelly", // eslint-disable-line @typescript-eslint/camelcase
+      pudding: "pudding",
+      aloe_vera: "aloe vera" // eslint-disable-line @typescript-eslint/camelcase
     },
     flavors: {
-      mango: "Mango",
-      milk: "Milk Tea",
-      matcha: "Matcha",
-      taro: "Taro",
-      strawberry: "Strawberry"
+      mango: "mango",
+      milk: "milk tea",
+      matcha: "matcha",
+      taro: "taro",
+      strawberry: "strawberry"
+    },
+    signup: {
+      ready: "Sign up to hear the latest updates from Hackioca",
+      success: "Thanks for expressing your interest!",
+      error: "There was a problem signing you up - try again.",
+      invalid: "Please make sure your email address is valid."
     }
   },
   nav: {
@@ -277,7 +283,7 @@ export default {
   footer: {
     logoText: {
       title: "hackioca",
-      copyright: "Copyright © hackioca 2019"
+      copyright: "Copyright © Hackioca 2019"
     },
     backgrounds: [
       {
