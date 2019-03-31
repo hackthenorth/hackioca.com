@@ -13,6 +13,7 @@ const BaseBackground = styled.div`
   -moz-transition: opacity 1s ease-out;
   -o-transition: opacity 1s ease-out;
   transition: opacity 1s ease-out;
+  -webkit-transform: translate3d(0, 0, 0);
 `;
 
 const MilkBackground = styled(BaseBackground)``;
