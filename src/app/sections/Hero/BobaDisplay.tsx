@@ -19,6 +19,7 @@ import ImgFlavorMango from "src/static/images/hero/display/flavors/mango.svg";
 import ImgFlavorMatcha from "src/static/images/hero/display/flavors/matcha.svg";
 import ImgFlavorTaro from "src/static/images/hero/display/flavors/taro.svg";
 
+
 const Container = styled.div`
   @keyframes pop {
     50% {
@@ -74,13 +75,6 @@ const ToppingDisplay = styled(Slider)`
 
   -webkit-tap-highlight-color: transparent;
 
-  // This stuff targets the Carousel components, so the easiest
-  // way to style them is through this kinda ugly child selecting
-
-  & img {
-    display: block !important;
-  }
-
   ${media.phone`
     width: calc(100vw - ${getScrollbarWidth()}px) !important;
     max-height: 300px;
@@ -117,6 +111,7 @@ const ToppingChoice = styled.img`
   max-height: 350px;
   margin: auto;
   position: relative;
+  display: block !important;
 
   -webkit-user-drag: none;
   -moz-user-drag: none;
@@ -229,16 +224,15 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
         dots={false}
         beforeChange={() => updateDragging(true)}
         afterChange={(slideIndex: number) => {
-          console.log('changed to', slideIndex)
           updateTopping(toppings[slideIndex]);
           updateDragging(false);
         }}
       >
-        <ToppingChoice src={ImgToppingTapioca} onClick={e => incrementFlavor(e)} />
-        <ToppingChoice src={ImgToppingGrassJelly} onClick={e => incrementFlavor(e)} />
-        <ToppingChoice src={ImgToppingAloeVera} onClick={e => incrementFlavor(e)} />
-        <ToppingChoice src={ImgToppingRedBean} onClick={e => incrementFlavor(e)} />
-        <ToppingChoice src={ImgToppingPudding} onClick={e => incrementFlavor(e)} />
+        <ToppingChoice src={ImgToppingTapioca} onClick={incrementFlavor} />
+        <ToppingChoice src={ImgToppingGrassJelly} onClick={incrementFlavor} />
+        <ToppingChoice src={ImgToppingAloeVera} onClick={incrementFlavor} />
+        <ToppingChoice src={ImgToppingRedBean} onClick={incrementFlavor} />
+        <ToppingChoice src={ImgToppingPudding} onClick={incrementFlavor} />
       </ToppingDisplay>
       <Arrow dir="right" src={ImgChevron} onClick={nextTopping} />
     </Container>

@@ -10,7 +10,7 @@ import BobaCustomizer from "./BobaCustomizer";
 import Shapes from "src/components/Shapes";
 
 const HeroWrapper = styled(SectionWrapper)`
-  margin: 5% auto;
+  margin: 40px auto;
   position: relative;
 
   display: flex;
@@ -20,10 +20,6 @@ const HeroWrapper = styled(SectionWrapper)`
   & > * {
     margin: auto;
   }
-
-  ${media.phone`
-    margin-top: 0;
-  `}
 `;
 
 const HeroTitle = styled.h1`

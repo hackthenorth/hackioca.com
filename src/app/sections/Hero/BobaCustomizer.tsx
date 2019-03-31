@@ -133,7 +133,7 @@ const BobaCustomizer: React.FC = () => {
   const nextTopping = () => changeTopping(shiftOptionBy(selectedTopping, 1) as Topping, false);
   const prevTopping = () => changeTopping(shiftOptionBy(selectedTopping, -1) as Topping, false);
   const changeTopping = (topping: Topping, fromParam: boolean) => {
-    if (topping !== selectedTopping && !fromParam) {
+    if (topping !== selectedTopping) {
       updateUserInteracted(true);
     }
     if(fromParam) {
