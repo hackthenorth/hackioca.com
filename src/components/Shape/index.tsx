@@ -22,7 +22,7 @@ interface WrapperProps {
 
 const Wrapper = styled.div<WrapperProps>`
   position: absolute;
-  z-index: -1;
+  z-index: 0;
 
   ${media.tablet`
     display: none;
