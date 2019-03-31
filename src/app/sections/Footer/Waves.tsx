@@ -3,6 +3,7 @@ import styled from "styled-components";
 import copy from "src/copy";
 
 import { BobaContext } from "src/utils/context/boba";
+import media from "src/utils/media";
 
 interface BackgroundProps {
   opacity: number;
@@ -19,6 +20,14 @@ const Background = styled.img<BackgroundProps>`
   -o-transition: opacity 1s ease-out;
   transition: opacity 1s ease-out;
   opacity: ${props => props.opacity};
+  ${media.phone`
+    transform: scale(1.6);
+    bottom: 25px;
+  `}
+  ${media.smallPhone`
+    transform: scale(1.9);
+    bottom: 55px;
+  `}
 `;
 
 const Waves = () => (

@@ -16,7 +16,7 @@ const FooterContainer = styled.div`
   margin-top: 75px;
   position: relative;
   height: 500px;
-  padding: 23px 45px 75px 45px;
+  padding: 23px 45px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -27,11 +27,10 @@ const FooterContainer = styled.div`
 
   ${media.phone`
     height: 316px;
-    padding: 18px;
-  `}
-  ${media.phone`
+    padding: 0 18px;
     flex-direction: column;
     justify-content: flex-end;
+    overflow: hidden;
   `}
 `;
 
@@ -80,7 +79,7 @@ const LeftContainer = styled.div`
   margin-right: auto;
   z-index: 1;
 
-  ${media.smallPhone`
+  ${media.phone`
     align-items: flex-end;
     padding-bottom: 5px;
   `}
@@ -109,13 +108,17 @@ const RightContainer = styled.div`
   flex-direction: column;
   align-items: flex-end;
   z-index: 1;
-  height: 175px;
+  height: 192px;
 `;
 
 const FlexWrapContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
+  margin-bottom: 20px;
+  ${media.phone`
+    margin-bottom: 0;
+  `}
 `;
 
 const FooterLinksContainer = styled(LinksContainer)`
@@ -196,10 +199,10 @@ const Footer: React.FC = () => {
         <RightContainer>
           <SocialLinks links={copy.nav.socialLinks} />
           <FlexWrapContainer>{FooterLinks}</FlexWrapContainer>
-          {!mobile && <MailingListSignup />}
+          {!mobile && <MailingListSignup isFooter />}
         </RightContainer>
       </FlexContainer>
-      {mobile && <MailingListSignup />}
+      {mobile && <MailingListSignup isFooter />}
     </FooterContainer>
   );
 };
