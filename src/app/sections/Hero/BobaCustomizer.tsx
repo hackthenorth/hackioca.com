@@ -189,7 +189,7 @@ const BobaCustomizer: React.FC = () => {
       updateBoopChanged(true);
     }
 
-    return () => { };
+    return () => {};
   }, [userInteracted, selectedFlavor]);
 
   // Update the url params if user changes options
@@ -206,7 +206,10 @@ const BobaCustomizer: React.FC = () => {
   useEffect(() => ReactTooltip.rebuild(), [selectedFlavor, selectedTopping]);
 
   return (
-    <Container className="optionPicker" circleColor={circleBgColors[selectedFlavor]}>
+    <Container
+      className="optionPicker"
+      circleColor={circleBgColors[selectedFlavor]}
+    >
       <OptionPicker
         incrementOption={() =>
           changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
@@ -227,11 +230,10 @@ const BobaCustomizer: React.FC = () => {
         boopChanged={boopChanged}
         animationEndCallback={() => updateBoopChanged(false)}
         selectedFlavor={selectedFlavor}
-        selectedTopping={selectedTopping}
         setTopping={updateTopping}
         prevTopping={prevTopping}
         nextTopping={nextTopping}
-        incrementFlavor={() =>
+        nextFlavor={() =>
           changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor)
         }
       />

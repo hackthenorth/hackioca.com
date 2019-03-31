@@ -163,11 +163,10 @@ interface BobaDisplayProps {
   boopChanged: boolean;
   animationEndCallback: () => void;
   selectedFlavor: Flavor;
-  selectedTopping: Topping;
   setTopping: (newTopping: Topping) => void;
   prevTopping: () => void;
   nextTopping: () => void;
-  incrementFlavor: () => void;
+  nextFlavor: () => void;
 }
 
 const BobaDisplay: React.FC<BobaDisplayProps> = ({
@@ -175,56 +174,54 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
   boopChanged,
   animationEndCallback,
   selectedFlavor,
-  selectedTopping,
+  nextFlavor,
   prevTopping,
   nextTopping,
-  setTopping,
-  incrementFlavor
+  setTopping
 }) => {
-
   return (
-      <Container
-          className={boopChanged ? "boop" : ""}
-          onAnimationEnd={animationEndCallback}
+    <Container
+      className={boopChanged ? "boop" : ""}
+      onAnimationEnd={animationEndCallback}
+    >
+      <Arrow dir="left" src={ImgChevron} onClick={prevTopping} />
+      <FlavorDisplay className="flavor">
+        <FlavorChoice
+          src={ImgFlavorMilk}
+          className={selectedFlavor === "milk" ? "show" : ""}
+        />
+        <FlavorChoice
+          src={ImgFlavorStrawberry}
+          className={selectedFlavor === "strawberry" ? "show" : ""}
+        />
+        <FlavorChoice
+          src={ImgFlavorMango}
+          className={selectedFlavor === "mango" ? "show" : ""}
+        />
+        <FlavorChoice
+          src={ImgFlavorMatcha}
+          className={selectedFlavor === "matcha" ? "show" : ""}
+        />
+        <FlavorChoice
+          src={ImgFlavorTaro}
+          className={selectedFlavor === "taro" ? "show" : ""}
+        />
+      </FlavorDisplay>
+      <ToppingDisplay
+        ref={switcherRef}
+        arrows={false}
+        dots={false}
+        afterChange={(slideIndex: number) => setTopping(toppings[slideIndex])}
       >
-          <Arrow dir="left" src={ImgChevron} onClick={prevTopping} />
-          <FlavorDisplay className="flavor">
-              <FlavorChoice
-                  src={ImgFlavorMilk}
-                  className={selectedFlavor === "milk" ? "show" : ""}
-              />
-              <FlavorChoice
-                  src={ImgFlavorStrawberry}
-                  className={selectedFlavor === "strawberry" ? "show" : ""}
-              />
-              <FlavorChoice
-                  src={ImgFlavorMango}
-                  className={selectedFlavor === "mango" ? "show" : ""}
-              />
-              <FlavorChoice
-                  src={ImgFlavorMatcha}
-                  className={selectedFlavor === "matcha" ? "show" : ""}
-              />
-              <FlavorChoice
-                  src={ImgFlavorTaro}
-                  className={selectedFlavor === "taro" ? "show" : ""}
-              />
-          </FlavorDisplay>
-          <ToppingDisplay
-              ref={switcherRef}
-              arrows={false}
-              dots={false}
-              afterChange={(slideIndex: any) => setTopping(toppings[slideIndex])}
-          >
-              <ToppingChoice src={ImgToppingTapioca} onClick={incrementFlavor} />
-              <ToppingChoice src={ImgToppingGrassJelly} onClick={incrementFlavor} />
-              <ToppingChoice src={ImgToppingAloeVera} onClick={incrementFlavor} />
-              <ToppingChoice src={ImgToppingRedBean} onClick={incrementFlavor} />
-              <ToppingChoice src={ImgToppingPudding} onClick={incrementFlavor} />
-          </ToppingDisplay>
-          <Arrow dir="right" src={ImgChevron} onClick={nextTopping} />
-      </Container>
-    );
+        <ToppingChoice src={ImgToppingTapioca} onClick={nextFlavor} />
+        <ToppingChoice src={ImgToppingGrassJelly} onClick={nextFlavor} />
+        <ToppingChoice src={ImgToppingAloeVera} onClick={nextFlavor} />
+        <ToppingChoice src={ImgToppingRedBean} onClick={nextFlavor} />
+        <ToppingChoice src={ImgToppingPudding} onClick={nextFlavor} />
+      </ToppingDisplay>
+      <Arrow dir="right" src={ImgChevron} onClick={nextTopping} />
+    </Container>
+  );
 };
 
 export default BobaDisplay;
