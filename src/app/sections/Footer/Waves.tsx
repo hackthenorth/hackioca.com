@@ -10,6 +10,10 @@ const Background = styled.img`
   bottom: 0;
   left: 0;
   z-index: 0;
+  -webkit-transition: opacity 1s ease-out;
+  -moz-transition: opacity 1s ease-out;
+  -o-transition: opacity 1s ease-out;
+  transition: opacity 1s ease-out;
 `;
 
 const Waves = () => (
@@ -21,7 +25,7 @@ const Waves = () => (
             <Background
               src={image}
               key={bgFlavor}
-              style={{ visibility: flavor === bgFlavor ? "visible" : "hidden" }}
+              style={{ opacity: flavor === bgFlavor ? 1 : 0 }}
             />
           ))}
         </div>
