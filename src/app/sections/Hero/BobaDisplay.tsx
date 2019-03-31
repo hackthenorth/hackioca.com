@@ -110,7 +110,6 @@ const ToppingChoice = styled.img`
   max-height: 350px;
   margin: auto;
   position: relative;
-  display: block !important;
 
   -webkit-user-drag: none;
   -moz-user-drag: none;
