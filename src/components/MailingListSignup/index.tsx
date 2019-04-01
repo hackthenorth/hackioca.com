@@ -26,11 +26,15 @@ const validateEmailAddress = (email: string) => {
   return false;
 };
 
-const Container = styled.form`
+interface FormProps {
+  width: string;
+}
+
+const Container = styled.form<FormProps>`
   position: relative;
-  width: 550px;
+  width: ${props => props.width};
   height: 50px;
-  margin: auto;
+  margin: 0 auto;
   position: relative;
 
   border-radius: 50px;
@@ -51,6 +55,8 @@ const Container = styled.form`
 const SubText = styled(Body)`
   margin-top: 10px;
   text-align: center;
+  z-index: 1;
+  color: ${props => props.color}
 
   ${media.phone`
     width: 75vw;
@@ -59,7 +65,11 @@ const SubText = styled(Body)`
   `}
 `;
 
-const MailingListSignup: React.FC = () => {
+interface MailingListProps {
+  isFooter?: boolean;
+}
+
+const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
   const [signupState, updateSignupState] = useState("ready");
   const [email, updateEmail] = useState("");
 
@@ -97,7 +107,7 @@ const MailingListSignup: React.FC = () => {
 
   return (
     <>
-      <Container onSubmit={e => signupForMailingList(e)}>
+      <Container width={isFooter ? "100%" : "550px"} onSubmit={e => signupForMailingList(e)}>
         <TextInput
           placeholder="gimmemyboba@gmail.com"
           type="email"
@@ -107,7 +117,7 @@ const MailingListSignup: React.FC = () => {
           Order Now
         </Button>
       </Container>
-      <SubText>{copy.hero.signup[signupState]}</SubText>
+      <SubText color={isFooter ? "#fff" : ""}>{copy.hero.signup[signupState]}</SubText>
     </>
   );
 };
