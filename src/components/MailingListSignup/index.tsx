@@ -41,12 +41,8 @@ const Container = styled.form<FormProps>`
   margin: 0 auto;
   position: relative;
 
-  border-radius: 50px;
-
   font-family: Raleway;
   line-height: 100%;
-
-  overflow: hidden;
 
   ${media.phone`
     width: 85vw;
@@ -131,6 +127,7 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
         toggleShake(true);
       }
 
+      // Go back to default ready state after 2s
       setTimeout(() => updateSignupState("ready"), 2000);
     },
     [email]
@@ -138,9 +135,9 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
 
   let buttonVariant;
   switch(signupState) {
-    case "ready": buttonVariant = ""; break;
+    case "ready": break;
     case "success": buttonVariant = "success"; break;
-    default: buttonVariant = "error";
+    default: buttonVariant = "error"; // all other states are error
   }
 
   return (

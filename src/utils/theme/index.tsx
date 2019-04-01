@@ -20,6 +20,9 @@ const theme: ThemeDefinition = {
       text-align: center;
       line-height: 100%;
 
+      border-top-right-radius: 9999px;
+      border-bottom-right-radius: 9999px;
+
       cursor: pointer;
       background-color: #51192c;
 
