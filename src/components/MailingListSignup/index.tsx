@@ -33,10 +33,13 @@ const Container = styled.form`
   margin: auto;
   position: relative;
 
+  border-radius: 50px;
+
   font-family: Raleway;
   line-height: 100%;
 
   overflow: hidden;
+  background-color: white;
 
   ${media.phone`
     width: 85vw;
@@ -59,7 +62,6 @@ const SubText = styled(Body)`
 const MailingListSignup: React.FC = () => {
   const [signupState, updateSignupState] = useState("ready");
   const [email, updateEmail] = useState("");
-  const [signups, updateSignups] = useState(0);
 
   const { HackerAPI } = window;
   const signupForMailingList = useCallback(
@@ -76,8 +78,6 @@ const MailingListSignup: React.FC = () => {
             if (data && data.email) {
               // success
               updateSignupState("success");
-              updateEmail("");
-              updateSignups(signups + 1);
             } else {
               // signup error
               updateSignupState("error");
@@ -90,7 +90,6 @@ const MailingListSignup: React.FC = () => {
       } else {
         // email validation failed
         updateSignupState("invalid");
-        updateEmail("");
       }
     },
     [email]
@@ -100,9 +99,8 @@ const MailingListSignup: React.FC = () => {
     <>
       <Container onSubmit={e => signupForMailingList(e)}>
         <TextInput
-          placeholder={`gimmemyboba${signups !== 0 ? signups + 1 : ""}@gmail.com`}
+          placeholder="gimmemyboba@gmail.com"
           type="email"
-          value={email}
           onChange={(newEmail: string) => updateEmail(newEmail)}
         />
         <Button variant="hero" onClick={signupForMailingList}>
