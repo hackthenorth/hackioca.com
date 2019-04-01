@@ -104,16 +104,17 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
         )
           .then((data: { email: string, already_signed_up: boolean }) => {
             if (data && 'email' in data) {
+              // TODO: uncomment when HackerAPI is updated
+              // if(data.already_signed_up) {
+              //   updateSignupState("dupe");
+              //   toggleShake(true);
+              // } else {}
+
               // success
               updateSignupState("success");
               updateEmail("");
               updatePlaceholder("morebobapls@gmail.com");
-            } 
-            else if (data === {}) {
-              // empty object returned 
-              updateSignupState("dupe");
-            } 
-            else {
+            } else {
               // signup error
               updateSignupState("error");
               toggleShake(true);
