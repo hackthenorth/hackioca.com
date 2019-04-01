@@ -35,7 +35,7 @@ const Wrapper = styled.div<WrapperProps>`
 
 const AnimImage = posed.img({
   show: { opacity: 1, duration: 500 },
-  hide: { opacity: 0, duration: 500 }
+  hide: { opacity: 0, duration: 500 },
 });
 
 const Image = styled(AnimImage)<ImageProps>`
