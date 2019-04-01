@@ -8,13 +8,17 @@ export interface BobaState {
   topping: Topping;
   updateFlavor: (newFlavor: Flavor, updateQueryParam?: boolean) => void;
   updateTopping: (newTopping: Topping, updateQueryParam?: boolean) => void;
+  showBg: boolean;
+  updateShowBg: (show: boolean) => void;
 }
 
 export const BobaContext: React.Context<BobaState> = createContext({
   flavor: flavors[0],
   topping: toppings[0],
   updateFlavor: () => {},
-  updateTopping: () => {}
+  updateTopping: () => {},
+  showBg: true,
+  updateShowBg: () => {}
 });
 
 export const useBobaContext = () => useContext(BobaContext);
@@ -27,6 +31,7 @@ export const BobaProvider: React.FC= ({
 }) => {
   const [stateFlavor, updateStateFlavor] = useState<Flavor>();
   const [stateTopping, updateStateTopping] = useState<Topping>();
+  const [showBg, updateShowBg] = useState(true);
 
   const [queryParamFlavor, updateQueryParamFlavor] = useQueryParam("flavor", StringParam);
   const [queryParamTopping, updateQueryParamTopping] = useQueryParam("topping", StringParam);
@@ -52,7 +57,9 @@ export const BobaProvider: React.FC= ({
     flavor,
     topping,
     updateFlavor,
-    updateTopping
+    updateTopping,
+    showBg,
+    updateShowBg
   };
 
   return (

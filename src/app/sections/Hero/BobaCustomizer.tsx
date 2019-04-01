@@ -110,7 +110,8 @@ const BobaCustomizer: React.FC = () => {
     flavor,
     topping,
     updateFlavor,
-    updateTopping
+    updateTopping,
+    updateShowBg,
   } = useBobaContext();
 
   const [userInteracted, updateUserInteracted] = useState(false);
@@ -125,6 +126,8 @@ const BobaCustomizer: React.FC = () => {
   const changeTopping = (newTopping: Topping, fromParam: boolean) => {
     if (newTopping !== topping) {
       updateUserInteracted(true);
+      updateShowBg(false);
+      setTimeout(() => updateShowBg(true), 1000);
     }
     if (fromParam) {
       updateTopping(newTopping, userInteracted);
