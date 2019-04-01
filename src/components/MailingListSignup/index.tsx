@@ -30,6 +30,10 @@ interface FormProps {
   width: string;
 }
 
+interface MailingListProps {
+  isFooter?: boolean;
+};
+
 const Container = styled.form<FormProps>`
   position: relative;
   width: ${props => props.width};
@@ -43,7 +47,6 @@ const Container = styled.form<FormProps>`
   line-height: 100%;
 
   overflow: hidden;
-  background-color: white;
 
   ${media.phone`
     width: 85vw;
@@ -56,7 +59,7 @@ const SubText = styled(Body)`
   margin-top: 10px;
   text-align: center;
   z-index: 1;
-  color: ${props => props.color}
+  color: ${props => props.color};
 
   ${media.phone`
     width: 75vw;
@@ -65,14 +68,29 @@ const SubText = styled(Body)`
   `}
 `;
 
-interface MailingListProps {
-  isFooter?: boolean;
-}
+
+const AnimSpan = styled.span`
+  @keyframes shake {
+    0% { transform: translate(4px, 0); }
+    50% { transform: translate(-4px, 0); }
+    100% { transform: translate(0, 0); }
+  }
+
+  position: absolute;
+  right: 0;
+  width: 170px;
+  height: 100%;
+
+  &.shake {
+    animation: shake 200ms 2 linear;
+  }
+`;
 
 const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
   const [signupState, updateSignupState] = useState("ready");
   const [email, updateEmail] = useState("");
-
+  const [placeholder, updatePlaceholder] = useState("gimmemyboba@gmail.com");
+  const [shouldShake, toggleShake] = useState(false);
   const { HackerAPI } = window;
   const signupForMailingList = useCallback(
     e => {
@@ -84,38 +102,57 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
           new HackerAPI.Event({ slug: "hackioca" }),
           new HackerAPI.Event.MailingListSignup({ email })
         )
-          .then((data: { email: string }) => {
-            if (data && data.email) {
+          .then((data: { email: string, already_signed_up: boolean }) => {
+            if (data && 'email' in data) {
               // success
               updateSignupState("success");
-            } else {
+              updateEmail("");
+              updatePlaceholder("morebobapls@gmail.com");
+            } 
+            else if (data === {}) {
+              // empty object returned 
+              updateSignupState("dupe");
+            } 
+            else {
               // signup error
               updateSignupState("error");
+              toggleShake(true);
             }
           })
           .catch(() => {
             // request error
             updateSignupState("error");
+            toggleShake(true);
           });
       } else {
         // email validation failed
         updateSignupState("invalid");
+        toggleShake(true);
       }
     },
     [email]
   ); // only recreate this function if email changes
 
+  let buttonVariant;
+  switch(signupState) {
+    case "ready": buttonVariant = ""; break;
+    case "success": buttonVariant = "success"; break;
+    default: buttonVariant = "error";
+  }
+
   return (
     <>
       <Container width={isFooter ? "100%" : "550px"} onSubmit={e => signupForMailingList(e)}>
         <TextInput
-          placeholder="gimmemyboba@gmail.com"
+          placeholder={placeholder}
           type="email"
           onChange={(newEmail: string) => updateEmail(newEmail)}
         />
-        <Button variant="hero" onClick={signupForMailingList}>
-          Order Now
-        </Button>
+        <AnimSpan className={shouldShake ? "shake" : ""} onAnimationEnd={() => toggleShake(false)}>
+          <Button variant={buttonVariant} onClick={signupForMailingList}>
+            Order Now
+          </Button>
+        </AnimSpan>
       </Container>
       <SubText color={isFooter ? "#fff" : ""}>{copy.hero.signup[signupState]}</SubText>
     </>
