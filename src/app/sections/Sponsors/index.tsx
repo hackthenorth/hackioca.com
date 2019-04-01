@@ -5,6 +5,11 @@ import media from "src/utils/media";
 
 import Title from "src/components/Title";
 import Anchor from "src/components/Anchor";
+import Shapes from "src/components/Shapes";
+
+const Container = styled.div`
+  position: relative;
+`;
 
 const Wrapper = styled.div`
   display: grid;
@@ -50,19 +55,34 @@ const Item = styled.img<ItemProps>`
 `;
 
 const Sponsors = () => (
-  <div>
+  <Container>
+    <Shapes
+      shapes={[
+        { top: 12, left: 2, scale: 0.5, angle: 60 },
+        { top: 30, left: 4, scale: 0.65, angle: 120 },
+        { top: 60, left: 1, scale: 0.8, angle: 90 },
+        { top: 90, left: 1, scale: 0.5, angle: 120 }
+      ]}
+    />
+    <Shapes
+      shapes={[
+        { top: 12, left: 95, scale: 0.75, angle: 10 },
+        { top: 43, left: 93, scale: 0.75, angle: 40 },
+        { top: 85, left: 95, scale: 0.5, angle: 80 }
+      ]}
+    />
     <Anchor id="sponsors" />
     <Title>{copy.sponsors.title}</Title>
     <Wrapper>
       {copy.sponsors.companies.map(company => (
         <Item
-          data-tip={company}
-          key={company}
-          src={`/images/supporters/${company}.png`}
+          data-tip={company.name}
+          key={company.path}
+          src={`/images/supporters/${company.path}.png`}
         />
       ))}
     </Wrapper>
-  </div>
+  </Container>
 );
 
 export default React.memo(Sponsors);

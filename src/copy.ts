@@ -52,11 +52,7 @@ export default {
         icon: "camera.png",
         link: "https://www.instagram.com/hackioca/"
       }
-    ],
-    menus: {
-      hamburger: "/images/navbar/hamburger.svg",
-      close: "/images/navbar/cross.svg"
-    }
+    ]
   },
   about: {
     title: "about",
@@ -106,7 +102,7 @@ export default {
   },
   judges: {
     title: "judges",
-    suffix: "is my favourite.",
+    prefix: "Favorite boba:",
     barack: {
       name: "Barack Bobama",
       quote: "Classic Roasted Milk Tea"
@@ -142,7 +138,7 @@ export default {
       {
         question: "Who can attend?",
         answer:
-          "First time boba drinkers, second time boba drinks, N times boba drinkers."
+          "First time boba drinkers, second time boba drinks, Nth time boba drinkers."
       },
       {
         question: "Will there be boba?",
@@ -180,13 +176,13 @@ export default {
   sponsors: {
     title: "sponsors",
     companies: [
-      "aliboba",
-      "chatime",
-      "coco",
-      "ibm",
-      "lactaid",
-      "t-combinator",
-      "tea-mobile"
+      { name: "aliboba", path: "aliboba" },
+      { name: "chatime", path: "chatime" },
+      { name: "coco", path: "coco" },
+      { name: "international boba machines", path: "ibm" },
+      { name: "lactaid", path: "lactaid" },
+      { name: "t-combinator", path: "t-combinator" },
+      { name: "tea-mobile", path: "tea-mobile" }
     ]
   },
   prizes: {

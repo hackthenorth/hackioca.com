@@ -44,7 +44,7 @@ const Judge = (props: JudgeProps) => (
     <Photo src={`/images/judges/${props.photoPath}`} />
     <Name>{props.name}</Name>
     <Quote>
-      &quot;{props.quote} {copy.judges.suffix}&quot;
+      &quot;{copy.judges.prefix} {props.quote}&quot;
     </Quote>
   </Wrapper>
 );
