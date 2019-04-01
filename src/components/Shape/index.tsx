@@ -25,7 +25,6 @@ const Wrapper = styled.div<WrapperProps>`
   position: absolute;
   z-index: 0;
 
-  will-change: transform;
   transition: transform 400ms ease-out;
 
   ${media.tablet`
