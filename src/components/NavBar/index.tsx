@@ -95,7 +95,7 @@ const NavBar: React.FC = () => {
 
   const scrollTo = (id: string) => {
     toggleMobileMenu(false);
-    animateOutMenu();
+    if (showMobileMenu) animateOutMenu();
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
