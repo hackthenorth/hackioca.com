@@ -6,13 +6,17 @@ export interface BobaState {
   topping: Topping;
   updateFlavor: (newFlavor: Flavor) => void;
   updateTopping: (newTopping: Topping) => void;
+  showBg: boolean;
+  updateShowBg: (show: boolean) => void;
 }
 
 export const BobaContext: React.Context<BobaState> = createContext({
   flavor: flavors[0],
   topping: toppings[0],
   updateFlavor: () => {},
-  updateTopping: () => {}
+  updateTopping: () => {},
+  showBg: true,
+  updateShowBg: () => {}
 });
 
 export const useBobaContext = () => useContext(BobaContext);
@@ -25,12 +29,15 @@ export const BobaProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [flavor, updateFlavor] = useState(randomFlavor);
   const [topping, updateTopping] = useState(randomTopping);
+  const [showBg, updateShowBg] = useState(true);
 
   const bobaState: BobaState = {
     flavor,
     topping,
     updateFlavor,
-    updateTopping
+    updateTopping,
+    showBg,
+    updateShowBg
   };
 
   return (

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import media from "src/utils/media";
-
 import ImgChevron from "src/static/images/chevron_up.svg";
 import { Flavor, Topping } from "src/data";
 

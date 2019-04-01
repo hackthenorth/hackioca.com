@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { BobaContext } from "src/utils/context/boba";
 import media from "src/utils/media";
+import posed from "react-pose";
 
 export interface ShapeProps {
   top?: number;
@@ -31,7 +32,13 @@ const Wrapper = styled.div<WrapperProps>`
   `}
 `;
 
-const Image = styled.img<ImageProps>`
+
+const AnimImage = posed.img({
+  show: { opacity: 1, duration: 500 },
+  hide: { opacity: 0, duration: 500 }
+});
+
+const Image = styled(AnimImage)<ImageProps>`
   width: ${props => props.size}px;
 `;
 
@@ -120,7 +127,7 @@ class Shape extends React.PureComponent<ShapeProps> {
     const { top, left, angle } = this.props;
     return (
       <BobaContext.Consumer>
-        {({ topping }) => (
+        {({ topping, showBg }) => (
           <Wrapper
             ref={this.attachRef}
             style={{
@@ -129,7 +136,9 @@ class Shape extends React.PureComponent<ShapeProps> {
               transform: `rotate(${angle}deg)`
             }}
           >
+            
             <Image
+              pose={showBg ? "show" : "hide"}
               size={this.size}
               src={`/images/bg/${topping}/${topping}_${this.randomNum}.svg`}
             />

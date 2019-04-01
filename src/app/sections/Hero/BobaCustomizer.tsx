@@ -118,7 +118,8 @@ const BobaCustomizer: React.FC = () => {
     flavor: selectedFlavor,
     topping: selectedTopping,
     updateFlavor,
-    updateTopping
+    updateTopping,
+    updateShowBg,
   } = useBobaContext();
   const [query, setQuery] = useQueryParams({
     flavor: StringParam,
@@ -145,7 +146,11 @@ const BobaCustomizer: React.FC = () => {
     updateFlavor(flavor);
   };
   const changeTopping = (topping: Topping) => {
-    if (topping !== selectedTopping) updateUserInteracted(true);
+    if (topping !== selectedTopping) {
+      updateUserInteracted(true);
+      updateShowBg(false);
+      setTimeout(() => updateShowBg(true), 700);
+    }
     goToTopping(toppings.indexOf(topping));
   };
 

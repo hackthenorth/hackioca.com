@@ -7,8 +7,8 @@ interface ShapesProps {
 }
 
 const Item = posed.div({
-  enter: { opacity: 1, duration: 1000 },
-  exit: { opacity: 0, duration: 1000 }
+  enter: { opacity: 1, duration: 700, delay: 400 },
+  exit: { opacity: 0, duration: 700, delay: 400 }
 });
 
 const Shapes = ({ shapes }: ShapesProps) => (
