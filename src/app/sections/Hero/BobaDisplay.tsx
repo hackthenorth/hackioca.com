@@ -117,6 +117,8 @@ const ToppingChoice = styled.img`
   user-drag: none;
   cursor: pointer;
 
+  display: block !important;
+
   &:active,
   &:focus {
     outline: none;
