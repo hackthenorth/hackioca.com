@@ -84,14 +84,24 @@ const AnimSpan = styled.span`
 
 const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
   const [signupState, updateSignupState] = useState("ready");
+  const [canSubmit, updateCanSubmit] = useState(true);
   const [email, updateEmail] = useState("");
-  const [placeholder, updatePlaceholder] = useState("gimmemyboba@gmail.com");
+  const [placeholder, updatePlaceholder] = useState("gimmemyboba@gmail.com"); // easter egg credits: michal :0
   const [shouldShake, toggleShake] = useState(false);
   const { HackerAPI } = window;
+
+  const triggerError = () => {
+    updateCanSubmit(true);
+    toggleShake(true);
+  }
   const signupForMailingList = useCallback(
     e => {
       e.preventDefault(); // stop page from refreshing onSubmit
+      
+      if(!canSubmit) return; // stop submission if they've submitted in the last 2 seconds
 
+      updateCanSubmit(false); // prevent duplicate submissions while making API request
+      
       if (validateEmailAddress(email)) {
         updateSignupState("success");
         HackerAPI.Event.MailingListSignup.create(
@@ -113,24 +123,27 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
             } else {
               // signup error
               updateSignupState("error");
-              toggleShake(true);
+              triggerError();
             }
           })
           .catch(() => {
             // request error
             updateSignupState("error");
-            toggleShake(true);
+            triggerError();
           });
       } else {
         // email validation failed
         updateSignupState("invalid");
-        toggleShake(true);
+        triggerError();
       }
 
       // Go back to default ready state after 2s
-      setTimeout(() => updateSignupState("ready"), 2000);
+      setTimeout(() => {
+        updateSignupState("ready");
+        updateCanSubmit(true);
+      }, 2000);
     },
-    [email]
+    [email, canSubmit]
   ); // only recreate this function if email changes
 
   let buttonVariant;
