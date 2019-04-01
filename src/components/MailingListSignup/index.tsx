@@ -26,9 +26,13 @@ const validateEmailAddress = (email: string) => {
   return false;
 };
 
-const Container = styled.form`
+interface FormProps {
+  width: string;
+}
+
+const Container = styled.form<FormProps>`
   position: relative;
-  width: 550px;
+  width: ${props => props.width};
   height: 50px;
   margin: 0 auto;
   position: relative;
@@ -103,7 +107,7 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
 
   return (
     <>
-      <Container onSubmit={e => signupForMailingList(e)}>
+      <Container width={isFooter ? "100%" : "550px"} onSubmit={e => signupForMailingList(e)}>
         <TextInput
           placeholder="gimmemyboba@gmail.com"
           type="email"
