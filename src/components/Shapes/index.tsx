@@ -14,6 +14,8 @@ const Wrapper = styled(AnimWrapper)`
   position: absolute;
   top: ${props => props.top}%;
   left: ${props => props.left}%;
+
+  will-change: transform;
 `;
 
 interface ShapesProps {

@@ -5,6 +5,7 @@ import { Flavor } from "src/flavor";
 import { Topping, toppings } from "src/topping";
 import { getScrollbarWidth } from "src/utils/scroll-bar-width";
 import Slider from "react-slick";
+import { useBobaContext } from "src/utils/context/boba";
 
 import ImgChevron from "src/static/images/chevron_up.svg";
 
@@ -179,6 +180,7 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
 }) => {
 
   const [ dragging, updateDragging ] = useState(false);
+  const { updateShowBg } = useBobaContext();
 
   const incrementFlavor = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
     if (dragging) {
@@ -223,7 +225,11 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
         initialSlide={toppings.indexOf(selectedTopping)}
         arrows={false}
         dots={false}
-        beforeChange={() => updateDragging(true)}
+        beforeChange={() => {
+          updateDragging(true);
+          updateShowBg(false);
+          setTimeout(() => updateShowBg(true), 1000);
+        }}
         afterChange={(slideIndex: number) => {
           updateTopping(toppings[slideIndex]);
           updateDragging(false);
