@@ -7,12 +7,12 @@ interface ShapesProps {
 }
 
 const Item = posed.div({
-  enter: { opacity: 1 },
-  exit: { opacity: 0 }
+  enter: { opacity: 1, duration: 1000 },
+  exit: { opacity: 0, duration: 1000 }
 });
 
 const Shapes = ({ shapes }: ShapesProps) => (
-  <PoseGroup>
+  <PoseGroup animateOnMount={true}>
     {shapes.map(({ top, left, scale, angle }) => (
       <Item key={`${top}-${left}-${scale}-${angle}`}>
         <Shape
