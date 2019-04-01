@@ -129,6 +129,8 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
         updateSignupState("invalid");
         toggleShake(true);
       }
+
+      setTimeout(() => updateSignupState("ready"), 2000);
     },
     [email]
   ); // only recreate this function if email changes
@@ -146,6 +148,7 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
         <TextInput
           placeholder={placeholder}
           type="email"
+          value={email}
           onChange={(newEmail: string) => updateEmail(newEmail)}
         />
         <AnimSpan className={shouldShake ? "shake" : ""} onAnimationEnd={() => toggleShake(false)}>

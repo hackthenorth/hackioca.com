@@ -31,6 +31,7 @@ interface InputProps {
   | "week"
   | "datetime";
   onChange?: (newVal: string) => void;
+  value?: string;
 }
 
 const Input = styled.input`
@@ -58,11 +59,13 @@ const Input = styled.input`
 const TextInput: React.FC<InputProps> = ({
   placeholder,
   type = "text",
-  onChange = () => {}
+  onChange = () => {},
+  value
 }) => (
   <Input
     placeholder={placeholder}
     type={type}
+    value={value}
     onChange={e => onChange(e.target.value)}
   />
 );
