@@ -127,7 +127,7 @@ const BobaCustomizer: React.FC = () => {
     if (newTopping !== topping) {
       updateUserInteracted(true);
       updateShowBg(false);
-      setTimeout(() => updateShowBg(true), 700);
+      setTimeout(() => updateShowBg(true), 1000);
     }
     if (fromParam) {
       updateTopping(newTopping, userInteracted);
