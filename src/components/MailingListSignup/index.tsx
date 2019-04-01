@@ -10,7 +10,7 @@ import TextInput from "src/components/TextInput";
 // Augment window to include HackerAPI definition
 declare global {
   interface Window {
-    HackerAPI: any;
+    HackerAPI: any; // eslint-disable-line
   }
 }
 

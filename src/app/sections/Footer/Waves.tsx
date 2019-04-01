@@ -26,7 +26,7 @@ const Waves = () => (
     {({ flavor }) => {
       return (
         <div>
-          {copy.footer.backgrounds.map(({ flavor: bgFlavor, image }: any) => (
+          {copy.footer.backgrounds.map(({ flavor: bgFlavor, image }) => (
             <Background
               src={image}
               key={bgFlavor}

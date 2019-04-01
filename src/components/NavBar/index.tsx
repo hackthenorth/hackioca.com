@@ -139,7 +139,7 @@ const NavBar: React.FC = () => {
 
   return (
     <NavBarContainer>
-      <a href="#" onClick={() => scrollTo("#home")}>
+      <a href="#home" onClick={() => scrollTo("#home")}>
         <NavLogoContainer>
           <NavLogoImg src="/images/navbar/logo_dark.svg" />
         </NavLogoContainer>

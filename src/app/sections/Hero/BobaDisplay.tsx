@@ -139,8 +139,8 @@ const Arrow = styled.img<{ dir: "left" | "right" }>`
 
   margin: auto 0;
 
-  transform: translateY(50%) ${props =>
-    props.dir === "left" ? "rotate(270deg);" : "rotate(90deg);"};
+  transform: translateY(50%)
+    ${props => (props.dir === "left" ? "rotate(270deg);" : "rotate(90deg);")};
 
   cursor: pointer;
   opacity: 0.6;
@@ -174,18 +174,19 @@ const BobaDisplay: React.FC<BobaDisplayProps> = ({
   nextTopping,
   updateTopping
 }) => {
+  const [dragging, updateDragging] = useState(false);
 
-  const [ dragging, updateDragging ] = useState(false);
-
-  const incrementFlavor = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+  const incrementFlavor = (
+    e: React.MouseEvent<HTMLImageElement, MouseEvent>
+  ) => {
     if (dragging) {
       e.preventDefault();
-			e.stopPropagation();
-			return;
-		} else {
-			nextFlavor();
-		}
-  }
+      e.stopPropagation();
+      return;
+    } else {
+      nextFlavor();
+    }
+  };
 
   return (
     <Container

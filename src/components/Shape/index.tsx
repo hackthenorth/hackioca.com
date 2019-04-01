@@ -35,12 +35,12 @@ const Image = styled.img<ImageProps>`
 
 class Shape extends React.PureComponent<ShapeProps> {
   public move: (scrollTop: number) => void;
-  public ref: any;
+  public ref: HTMLDivElement;
   public top: number;
   public containerTop: number;
   public moveScale: number;
   public recalculate: (scrollTop: number) => void;
-  public attachRef: (e: any) => void;
+  public attachRef: (e: HTMLDivElement) => void;
   public static windowHeight: number;
   public static shapeList: Shape[];
   public static getScrollTop: () => number;
@@ -66,7 +66,7 @@ class Shape extends React.PureComponent<ShapeProps> {
       }
     };
     this.recalculate = scrollTop => {
-      if (this.ref) {
+      if (this.ref && this.ref.parentElement) {
         this.top = this.ref.getBoundingClientRect().top + scrollTop;
         this.containerTop =
           this.ref.parentElement.getBoundingClientRect().top + scrollTop;

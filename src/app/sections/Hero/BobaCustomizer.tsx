@@ -129,25 +129,30 @@ const BobaCustomizer: React.FC = () => {
   const shownToppings = filterShownOptions(selectedTopping) as Topping[];
   const switcherRef = useRef(null);
 
-
-  const nextTopping = () => changeTopping(shiftOptionBy(selectedTopping, 1) as Topping, false);
-  const prevTopping = () => changeTopping(shiftOptionBy(selectedTopping, -1) as Topping, false);
   const changeTopping = (topping: Topping, fromParam: boolean) => {
     if (topping !== selectedTopping) {
       updateUserInteracted(true);
     }
-    if(fromParam) {
+    if (fromParam) {
       updateTopping(topping);
     }
-    if (switcherRef.current) (switcherRef.current as any).slickGoTo(toppings.indexOf(topping));
+    if (switcherRef.current)
+      // eslint-disable-next-line
+      (switcherRef.current as any).slickGoTo(toppings.indexOf(topping));
   };
-  const nextFlavor = () => changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor);
-  const prevFlavor = () => changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor);
+  const nextTopping = () =>
+    changeTopping(shiftOptionBy(selectedTopping, 1) as Topping, false);
+  const prevTopping = () =>
+    changeTopping(shiftOptionBy(selectedTopping, -1) as Topping, false);
+
   const changeFlavor = (flavor: Flavor) => {
     if (flavor !== selectedFlavor) updateUserInteracted(true);
     updateFlavor(flavor);
   };
-  
+  const nextFlavor = () =>
+    changeFlavor(shiftOptionBy(selectedFlavor, 1) as Flavor);
+  const prevFlavor = () =>
+    changeFlavor(shiftOptionBy(selectedFlavor, -1) as Flavor);
 
   // Read the url params and update boba options if necessary
   useEffect(() => {
@@ -178,7 +183,7 @@ const BobaCustomizer: React.FC = () => {
       updateBoopChanged(true);
     }
 
-    return () => { };
+    return () => {};
   }, [userInteracted, selectedFlavor]);
 
   // Update the url params if user changes options

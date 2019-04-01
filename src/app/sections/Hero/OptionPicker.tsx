@@ -114,7 +114,7 @@ const OptionPicker: React.FC<OptionPickerProps> = ({
         selected={option === selectedOption}
         data-tip={tooltipOptions[option]}
       >
-        <img src={OPTION_IMAGES[option]} />
+        <img src={OPTION_IMAGES[option]} alt={option} />
       </PickerOption>
     ))}
     <PickerArrow src={ImgChevron} down onClick={incrementOption} />
