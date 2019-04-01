@@ -18,8 +18,6 @@ const theme: ThemeDefinition = {
         height: 100%;
         right: 0;
         display: inline-block;
-        border-top-right-radius: 999px;
-        border-bottom-right-radius: 999px;
 
         color: white;
         text-align: center;
