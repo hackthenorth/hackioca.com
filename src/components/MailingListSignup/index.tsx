@@ -97,7 +97,6 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
     // Go back to default ready state after 2s
     setTimeout(() => {
       updateSignupState("ready");
-      updateCanSubmit(true);
     }, 2500);
   }
   const signupForMailingList = useCallback(
@@ -109,7 +108,6 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
       updateCanSubmit(false); // prevent duplicate submissions while making API request
       
       if (validateEmailAddress(email)) {
-        updateSignupState("success");
         HackerAPI.Event.MailingListSignup.create(
           new HackerAPI.Event({ slug: "hackioca" }),
           new HackerAPI.Event.MailingListSignup({ email })
@@ -138,6 +136,10 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
         // email validation failed
         triggerError("invalid");
       }
+
+      setTimeout(() => {
+        updateCanSubmit(true);
+      }, 2500);
     },
     [email, canSubmit]
   ); // only recreate this function if email changes
