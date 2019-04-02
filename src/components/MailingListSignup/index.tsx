@@ -97,7 +97,7 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
     updateSignupState(newState);
     updateCanSubmit(true);
     toggleShake(true);
-    // Go back to default ready state after 2s
+    // Go back to default ready state after set period of time
     setTimeout(() => {
       updateSignupState("ready");
     }, REVERT_STATE_TIME);
@@ -139,6 +139,8 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
         triggerError("invalid");
       }
 
+      // allow submissions after API request has resolved and
+      // a period of time has passed
       setTimeout(() => {
         updateCanSubmit(true);
       }, REVERT_STATE_TIME);
