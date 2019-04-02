@@ -86,13 +86,19 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
   const [signupState, updateSignupState] = useState("ready");
   const [canSubmit, updateCanSubmit] = useState(true);
   const [email, updateEmail] = useState("");
-  const [placeholder, updatePlaceholder] = useState("gimmemyboba@gmail.com"); // easter egg credits: michal :0
+  const [placeholder, updatePlaceholder] = useState("gimmemyboba@gmail.com"); // easter egg credits michal :0
   const [shouldShake, toggleShake] = useState(false);
   const { HackerAPI } = window;
 
-  const triggerError = () => {
+  const triggerError = (newState: string) => {
+    updateSignupState(newState);
     updateCanSubmit(true);
     toggleShake(true);
+    // Go back to default ready state after 2s
+    setTimeout(() => {
+      updateSignupState("ready");
+      updateCanSubmit(true);
+    }, 2500);
   }
   const signupForMailingList = useCallback(
     e => {
@@ -108,40 +114,30 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
           new HackerAPI.Event({ slug: "hackioca" }),
           new HackerAPI.Event.MailingListSignup({ email })
         )
-          .then((data: { email: string, already_signed_up: boolean }) => {
+          .then((data: { email: string, alreadySignedUp: boolean }) => {
             if (data && 'email' in data) {
-              // TODO: uncomment when HackerAPI is updated
-              // if(data.already_signed_up) {
-              //   updateSignupState("dupe");
-              //   toggleShake(true);
-              // } else {}
-
-              // success
-              updateSignupState("success");
-              updateEmail("");
-              updatePlaceholder("morebobapls@gmail.com");
+              if(data.alreadySignedUp) {
+                updateSignupState("dupe");
+                toggleShake(true);
+              } else {
+                // success
+                updateSignupState("success");
+                updateEmail("");
+                updatePlaceholder("morebobapls@gmail.com");
+              }              
             } else {
               // signup error
-              updateSignupState("error");
-              triggerError();
+              triggerError("error");
             }
           })
           .catch(() => {
             // request error
-            updateSignupState("error");
-            triggerError();
+            triggerError("error");
           });
       } else {
         // email validation failed
-        updateSignupState("invalid");
-        triggerError();
+        triggerError("invalid");
       }
-
-      // Go back to default ready state after 2s
-      setTimeout(() => {
-        updateSignupState("ready");
-        updateCanSubmit(true);
-      }, 2000);
     },
     [email, canSubmit]
   ); // only recreate this function if email changes
@@ -156,17 +152,20 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
   return (
     <>
       <Container width={isFooter ? "100%" : "550px"} onSubmit={e => signupForMailingList(e)}>
+
         <TextInput
           placeholder={placeholder}
           type="email"
           value={email}
           onChange={(newEmail: string) => updateEmail(newEmail)}
         />
+
         <AnimSpan className={shouldShake ? "shake" : ""} onAnimationEnd={() => toggleShake(false)}>
           <Button variant={buttonVariant} onClick={signupForMailingList}>
-            Order Now
+            {copy.hero.button[signupState]}
           </Button>
         </AnimSpan>
+
       </Container>
       <SubText color={isFooter ? "#fff" : ""}>{copy.hero.signup[signupState]}</SubText>
     </>

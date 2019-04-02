@@ -27,8 +27,7 @@ const theme: ThemeDefinition = {
       background-color: #51192c;
 
       transition: all 200ms ease-in-out;
-      &:hover,
-      &:focus {
+      &:hover {
         color: #cccccc;
       }
 

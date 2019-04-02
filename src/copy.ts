@@ -18,6 +18,13 @@ export default {
       taro: "taro",
       strawberry: "strawberry"
     },
+    button: {
+      ready: "Order Now",
+      success: "Order More",
+      error: "Order Now",
+      invalid: "Order Now",
+      dupe: "Order Now"
+    },
     signup: {
       ready: "Sign up to hear the latest updates from Hackioca!",
       success: "Thanks for expressing your interest!",
