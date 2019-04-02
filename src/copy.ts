@@ -25,6 +25,13 @@ export default {
       invalid: "Order Now",
       dupe: "Order Now"
     },
+    signupPlaceholder: {
+      ready: "gimmemyboba@gmail.com",
+      success: "morebobapls@gmail.com",
+      error: "gimmemyboba@gmail.com",
+      invalid: "gimmemyboba@gmail.com",
+      dupe: "gimmemyboba@gmail.com"
+    },
     signup: {
       ready: "Sign up to hear the latest updates from Hackioca!",
       success: "Thanks for expressing your interest!",
