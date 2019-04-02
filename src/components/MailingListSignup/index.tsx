@@ -30,6 +30,10 @@ interface FormProps {
   width: string;
 }
 
+interface MailingListProps {
+  isFooter?: boolean;
+};
+
 const Container = styled.form<FormProps>`
   position: relative;
   width: ${props => props.width};
@@ -37,13 +41,8 @@ const Container = styled.form<FormProps>`
   margin: 0 auto;
   position: relative;
 
-  border-radius: 50px;
-
   font-family: Raleway;
   line-height: 100%;
-
-  overflow: hidden;
-  background-color: white;
 
   ${media.phone`
     width: 85vw;
@@ -56,7 +55,7 @@ const SubText = styled(Body)`
   margin-top: 10px;
   text-align: center;
   z-index: 1;
-  color: ${props => props.color}
+  color: ${props => props.color};
 
   ${media.phone`
     width: 75vw;
@@ -65,57 +64,109 @@ const SubText = styled(Body)`
   `}
 `;
 
-interface MailingListProps {
-  isFooter?: boolean;
-}
+
+const AnimSpan = styled.span`
+  @keyframes shake {
+    0% { transform: translate(4px, 0); }
+    50% { transform: translate(-4px, 0); }
+    100% { transform: translate(0, 0); }
+  }
+
+  position: absolute;
+  right: 0;
+  width: 170px;
+  height: 100%;
+
+  &.shake {
+    animation: shake 200ms 2 linear;
+  }
+`;
 
 const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
   const [signupState, updateSignupState] = useState("ready");
+  const [canSubmit, updateCanSubmit] = useState(true);
   const [email, updateEmail] = useState("");
-
+  const [placeholder, updatePlaceholder] = useState("gimmemyboba@gmail.com"); // easter egg credits: michal :0
+  const [shouldShake, toggleShake] = useState(false);
   const { HackerAPI } = window;
+
+  const triggerError = () => {
+    updateCanSubmit(true);
+    toggleShake(true);
+  }
   const signupForMailingList = useCallback(
     e => {
       e.preventDefault(); // stop page from refreshing onSubmit
+      
+      if(!canSubmit) return; // stop submission if they've submitted in the last 2 seconds
 
+      updateCanSubmit(false); // prevent duplicate submissions while making API request
+      
       if (validateEmailAddress(email)) {
         updateSignupState("success");
         HackerAPI.Event.MailingListSignup.create(
           new HackerAPI.Event({ slug: "hackioca" }),
           new HackerAPI.Event.MailingListSignup({ email })
         )
-          .then((data: { email: string }) => {
-            if (data && data.email) {
+          .then((data: { email: string, already_signed_up: boolean }) => {
+            if (data && 'email' in data) {
+              // TODO: uncomment when HackerAPI is updated
+              // if(data.already_signed_up) {
+              //   updateSignupState("dupe");
+              //   toggleShake(true);
+              // } else {}
+
               // success
               updateSignupState("success");
+              updateEmail("");
+              updatePlaceholder("morebobapls@gmail.com");
             } else {
               // signup error
               updateSignupState("error");
+              triggerError();
             }
           })
           .catch(() => {
             // request error
             updateSignupState("error");
+            triggerError();
           });
       } else {
         // email validation failed
         updateSignupState("invalid");
+        triggerError();
       }
+
+      // Go back to default ready state after 2s
+      setTimeout(() => {
+        updateSignupState("ready");
+        updateCanSubmit(true);
+      }, 2000);
     },
-    [email]
+    [email, canSubmit]
   ); // only recreate this function if email changes
+
+  let buttonVariant;
+  switch(signupState) {
+    case "ready": break;
+    case "success": buttonVariant = "success"; break;
+    default: buttonVariant = "error"; // all other states are error
+  }
 
   return (
     <>
       <Container width={isFooter ? "100%" : "550px"} onSubmit={e => signupForMailingList(e)}>
         <TextInput
-          placeholder="gimmemyboba@gmail.com"
+          placeholder={placeholder}
           type="email"
+          value={email}
           onChange={(newEmail: string) => updateEmail(newEmail)}
         />
-        <Button variant="hero" onClick={signupForMailingList}>
-          Order Now
-        </Button>
+        <AnimSpan className={shouldShake ? "shake" : ""} onAnimationEnd={() => toggleShake(false)}>
+          <Button variant={buttonVariant} onClick={signupForMailingList}>
+            Order Now
+          </Button>
+        </AnimSpan>
       </Container>
       <SubText color={isFooter ? "#fff" : ""}>{copy.hero.signup[signupState]}</SubText>
     </>

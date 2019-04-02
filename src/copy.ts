@@ -19,10 +19,11 @@ export default {
       strawberry: "strawberry"
     },
     signup: {
-      ready: "Sign up to hear the latest updates from Hackioca",
+      ready: "Sign up to hear the latest updates from Hackioca!",
       success: "Thanks for expressing your interest!",
       error: "There was a problem signing you up - try again.",
-      invalid: "Please make sure your email address is valid."
+      invalid: "Please make sure your email address is valid.",
+      dupe: "You've already signed up!"
     }
   },
   nav: {
