@@ -52,7 +52,7 @@ const Input = styled.input`
   }
 
   ${media.phone`
-    width: 55vw;
+    width: 60vw;
     padding-left: 15px;
   `}
 `;
