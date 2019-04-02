@@ -14,6 +14,17 @@ declare global {
   }
 }
 
+interface FormProps {
+  width: string;
+}
+
+interface MailingListProps {
+  isFooter?: boolean;
+};
+
+// duration before state reverts back to ready
+const REVERT_STATE_TIME = 2500;
+
 // Email validation logic, taken from
 // https://github.com/hackathon/hackthenorth.com/blob/master/src/components/StyledInput/index.jsx
 const validateEmailAddress = (email: string) => {
@@ -26,13 +37,6 @@ const validateEmailAddress = (email: string) => {
   return false;
 };
 
-interface FormProps {
-  width: string;
-}
-
-interface MailingListProps {
-  isFooter?: boolean;
-};
 
 const Container = styled.form<FormProps>`
   position: relative;
@@ -86,13 +90,17 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
   const [signupState, updateSignupState] = useState("ready");
   const [canSubmit, updateCanSubmit] = useState(true);
   const [email, updateEmail] = useState("");
-  const [placeholder, updatePlaceholder] = useState("gimmemyboba@gmail.com"); // easter egg credits: michal :0
   const [shouldShake, toggleShake] = useState(false);
   const { HackerAPI } = window;
 
-  const triggerError = () => {
+  const triggerError = (newState: string) => {
+    updateSignupState(newState);
     updateCanSubmit(true);
     toggleShake(true);
+    // Go back to default ready state after set period of time
+    setTimeout(() => {
+      updateSignupState("ready");
+    }, REVERT_STATE_TIME);
   }
   const signupForMailingList = useCallback(
     e => {
@@ -103,45 +111,39 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
       updateCanSubmit(false); // prevent duplicate submissions while making API request
       
       if (validateEmailAddress(email)) {
-        updateSignupState("success");
-        HackerAPI.Event.MailingListSignup.create(
+        HackerAPI.Event.MailingListSignup.create( 
           new HackerAPI.Event({ slug: "hackioca" }),
           new HackerAPI.Event.MailingListSignup({ email })
         )
-          .then((data: { email: string, already_signed_up: boolean }) => {
+          .then((data: { email: string, alreadySignedUp: boolean }) => {
             if (data && 'email' in data) {
-              // TODO: uncomment when HackerAPI is updated
-              // if(data.already_signed_up) {
-              //   updateSignupState("dupe");
-              //   toggleShake(true);
-              // } else {}
-
-              // success
-              updateSignupState("success");
-              updateEmail("");
-              updatePlaceholder("morebobapls@gmail.com");
+              if(data.alreadySignedUp) {
+                updateSignupState("dupe");
+                toggleShake(true);
+              } else {
+                // success
+                updateSignupState("success");
+                updateEmail("");
+              }              
             } else {
               // signup error
-              updateSignupState("error");
-              triggerError();
+              triggerError("error");
             }
           })
           .catch(() => {
             // request error
-            updateSignupState("error");
-            triggerError();
+            triggerError("error");
           });
       } else {
         // email validation failed
-        updateSignupState("invalid");
-        triggerError();
+        triggerError("invalid");
       }
 
-      // Go back to default ready state after 2s
+      // allow submissions after API request has resolved and
+      // a period of time has passed
       setTimeout(() => {
-        updateSignupState("ready");
         updateCanSubmit(true);
-      }, 2000);
+      }, REVERT_STATE_TIME);
     },
     [email, canSubmit]
   ); // only recreate this function if email changes
@@ -157,14 +159,14 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
     <>
       <Container width={isFooter ? "100%" : "550px"} onSubmit={e => signupForMailingList(e)}>
         <TextInput
-          placeholder={placeholder}
+          placeholder={copy.hero.signupPlaceholder[signupState]}
           type="email"
           value={email}
           onChange={(newEmail: string) => updateEmail(newEmail)}
         />
         <AnimSpan className={shouldShake ? "shake" : ""} onAnimationEnd={() => toggleShake(false)}>
           <Button variant={buttonVariant} onClick={signupForMailingList}>
-            Order Now
+            {copy.hero.button[signupState]}
           </Button>
         </AnimSpan>
       </Container>
