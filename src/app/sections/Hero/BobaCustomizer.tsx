@@ -111,7 +111,7 @@ const BobaCustomizer: React.FC = () => {
     topping,
     updateFlavor,
     updateTopping,
-    updateShowBg,
+    updateShowBg
   } = useBobaContext();
 
   const [userInteracted, updateUserInteracted] = useState(false);
@@ -120,9 +120,6 @@ const BobaCustomizer: React.FC = () => {
   const shownToppings = filterShownOptions(topping) as Topping[];
   const switcherRef = useRef(null);
 
-
-  const nextTopping = () => changeTopping(shiftOptionBy(topping, 1) as Topping, false);
-  const prevTopping = () => changeTopping(shiftOptionBy(topping, -1) as Topping, false);
   const changeTopping = (newTopping: Topping, fromParam: boolean) => {
     if (newTopping !== topping) {
       updateUserInteracted(true);
@@ -133,17 +130,23 @@ const BobaCustomizer: React.FC = () => {
       updateTopping(newTopping, userInteracted);
     }
     if (switcherRef.current) {
+      // eslint-disable-next-line
       (switcherRef.current as any).slickGoTo(toppings.indexOf(newTopping));
     }
   };
-  const nextFlavor = () => changeFlavor(shiftOptionBy(flavor, 1) as Flavor);
-  const prevFlavor = () => changeFlavor(shiftOptionBy(flavor, -1) as Flavor);
+  const nextTopping = () =>
+    changeTopping(shiftOptionBy(topping, 1) as Topping, false);
+  const prevTopping = () =>
+    changeTopping(shiftOptionBy(topping, -1) as Topping, false);
+
   const changeFlavor = (newFlavor: Flavor) => {
     if (newFlavor !== flavor) {
       updateUserInteracted(true);
     }
     updateFlavor(newFlavor, userInteracted);
   };
+  const nextFlavor = () => changeFlavor(shiftOptionBy(flavor, 1) as Flavor);
+  const prevFlavor = () => changeFlavor(shiftOptionBy(flavor, -1) as Flavor);
 
   // Randomly change flavor every 3 secs until user interaction occurs
   // If user interacted, then trigger the boop animation
@@ -158,17 +161,14 @@ const BobaCustomizer: React.FC = () => {
       updateBoopChanged(true);
     }
 
-    return () => { };
+    return () => {};
   }, [userInteracted, flavor]);
 
   // Update the tooltips after flavor/topping selection changed
   useEffect(() => ReactTooltip.rebuild(), [flavor, topping]);
 
   return (
-    <Container
-      className="optionPicker"
-      circleColor={circleBgColors[flavor]}
-    >
+    <Container className="optionPicker" circleColor={circleBgColors[flavor]}>
       <OptionPicker
         incrementOption={nextFlavor}
         decrementOption={prevFlavor}
@@ -186,7 +186,7 @@ const BobaCustomizer: React.FC = () => {
         animationEndCallback={() => updateBoopChanged(false)}
         selectedFlavor={flavor}
         selectedTopping={topping}
-        updateTopping={(topping) => updateTopping(topping, userInteracted)}
+        updateTopping={topping => updateTopping(topping, userInteracted)}
         prevTopping={prevTopping}
         nextTopping={nextTopping}
         nextFlavor={nextFlavor}

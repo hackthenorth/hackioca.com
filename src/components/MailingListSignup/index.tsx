@@ -10,6 +10,7 @@ import TextInput from "src/components/TextInput";
 // Augment window to include HackerAPI definition
 declare global {
   interface Window {
+    // eslint-disable-next-line
     HackerAPI: any;
   }
 }
@@ -20,7 +21,7 @@ interface FormProps {
 
 interface MailingListProps {
   isFooter?: boolean;
-};
+}
 
 // duration before state reverts back to ready
 const REVERT_STATE_TIME = 2500;
@@ -36,7 +37,6 @@ const validateEmailAddress = (email: string) => {
   }
   return false;
 };
-
 
 const Container = styled.form<FormProps>`
   position: relative;
@@ -68,12 +68,17 @@ const SubText = styled(Body)`
   `}
 `;
 
-
 const AnimSpan = styled.span`
   @keyframes shake {
-    0% { transform: translate(4px, 0); }
-    50% { transform: translate(-4px, 0); }
-    100% { transform: translate(0, 0); }
+    0% {
+      transform: translate(4px, 0);
+    }
+    50% {
+      transform: translate(-4px, 0);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
   }
 
   position: absolute;
@@ -101,30 +106,30 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
     setTimeout(() => {
       updateSignupState("ready");
     }, REVERT_STATE_TIME);
-  }
+  };
   const signupForMailingList = useCallback(
     e => {
       e.preventDefault(); // stop page from refreshing onSubmit
-      
-      if(!canSubmit) return; // stop submission if they've submitted in the last 2 seconds
+
+      if (!canSubmit) return; // stop submission if they've submitted in the last 2 seconds
 
       updateCanSubmit(false); // prevent duplicate submissions while making API request
-      
+
       if (validateEmailAddress(email)) {
-        HackerAPI.Event.MailingListSignup.create( 
+        HackerAPI.Event.MailingListSignup.create(
           new HackerAPI.Event({ slug: "hackioca" }),
           new HackerAPI.Event.MailingListSignup({ email })
         )
-          .then((data: { email: string, alreadySignedUp: boolean }) => {
-            if (data && 'email' in data) {
-              if(data.alreadySignedUp) {
+          .then((data: { email: string; alreadySignedUp: boolean }) => {
+            if (data && "email" in data) {
+              if (data.alreadySignedUp) {
                 updateSignupState("dupe");
                 toggleShake(true);
               } else {
                 // success
                 updateSignupState("success");
                 updateEmail("");
-              }              
+              }
             } else {
               // signup error
               triggerError("error");
@@ -149,28 +154,40 @@ const MailingListSignup: React.FC<MailingListProps> = ({ isFooter }) => {
   ); // only recreate this function if email changes
 
   let buttonVariant;
-  switch(signupState) {
-    case "ready": break;
-    case "success": buttonVariant = "success"; break;
-    default: buttonVariant = "error"; // all other states are error
+  switch (signupState) {
+    case "ready":
+      break;
+    case "success":
+      buttonVariant = "success";
+      break;
+    default:
+      buttonVariant = "error"; // all other states are error
   }
 
   return (
     <>
-      <Container width={isFooter ? "100%" : "550px"} onSubmit={e => signupForMailingList(e)}>
+      <Container
+        width={isFooter ? "100%" : "550px"}
+        onSubmit={e => signupForMailingList(e)}
+      >
         <TextInput
           placeholder={copy.hero.signupPlaceholder[signupState]}
           type="email"
           value={email}
           onChange={(newEmail: string) => updateEmail(newEmail)}
         />
-        <AnimSpan className={shouldShake ? "shake" : ""} onAnimationEnd={() => toggleShake(false)}>
+        <AnimSpan
+          className={shouldShake ? "shake" : ""}
+          onAnimationEnd={() => toggleShake(false)}
+        >
           <Button variant={buttonVariant} onClick={signupForMailingList}>
             {copy.hero.button[signupState]}
           </Button>
         </AnimSpan>
       </Container>
-      <SubText color={isFooter ? "#fff" : ""}>{copy.hero.signup[signupState]}</SubText>
+      <SubText color={isFooter ? "#fff" : ""}>
+        {copy.hero.signup[signupState]}
+      </SubText>
     </>
   );
 };

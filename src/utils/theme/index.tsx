@@ -37,11 +37,11 @@ const theme: ThemeDefinition = {
     `,
     variants: {
       error: css`
-        background-color: #ED6E6F;
+        background-color: #ed6e6f;
       `,
       success: css`
         background-color: #5eac0f;
-      `,
+      `
     }
   }
 };

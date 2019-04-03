@@ -10,4 +10,4 @@ export const flavors: ReadonlyArray<Flavor> = [
 
 export const isFlavor = (flavor: unknown): flavor is Flavor => {
   return typeof flavor === "string" && flavors.indexOf(flavor as Flavor) >= 0;
-}
+};
