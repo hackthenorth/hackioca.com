@@ -7,7 +7,7 @@ import media from "src/utils/media";
 import copy from "src/copy";
 import { flavors, Flavor } from "src/flavor";
 import { toppings, Topping, isTopping } from "src/topping";
-import { useBobaContext } from "src/utils/context/boba";
+import { useBobaContext } from "src/contexts/boba";
 
 import BobaDisplay from "./BobaDisplay";
 import OptionPicker from "./OptionPicker";

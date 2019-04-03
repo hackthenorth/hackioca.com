@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import copy from "src/copy";
 
-import { BobaContext } from "src/utils/context/boba";
+import { BobaContext } from "src/contexts/boba";
 import media from "src/utils/media";
 
 interface BackgroundProps {

@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import Title from "src/components/Title";
 import copy from "src/copy";
-import Prize from "./prize";
+import Prize from "./Prize";
 import media from "src/utils/media";
 import Anchor from "src/components/Anchor";
 

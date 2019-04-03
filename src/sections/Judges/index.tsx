@@ -4,9 +4,10 @@ import copy from "src/copy";
 import media from "src/utils/media";
 
 import Shapes from "src/components/Shapes";
-import Judge from "src/components/Judge";
 import Anchor from "src/components/Anchor";
 import Title from "src/components/Title";
+
+import Judge from "./Judge";
 
 const Container = styled.div`
   position: relative;

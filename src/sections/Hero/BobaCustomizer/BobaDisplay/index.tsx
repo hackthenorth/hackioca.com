@@ -5,7 +5,7 @@ import { Flavor } from "src/flavor";
 import { Topping, toppings } from "src/topping";
 import { getScrollbarWidth } from "src/utils/scroll-bar-width";
 import Slider from "react-slick";
-import { useBobaContext } from "src/utils/context/boba";
+import { useBobaContext } from "src/contexts/boba";
 
 import ImgChevron from "src/static/images/chevron_up.svg";
 

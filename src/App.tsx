@@ -3,23 +3,23 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 import { North } from "@hackthenorth/north";
 
-import { BobaProvider } from "src/utils/context/boba";
-import themeDef from "src/utils/theme";
+import { BobaProvider } from "src/contexts/boba";
+import themeDef from "src/theme";
 
 import NavBar from "src/components/NavBar";
-import Hero from "src/app/sections/Hero";
-import Schedule from "src/app/sections/Schedule";
-import Judges from "src/app/sections/Judges";
-import FAQ from "src/app/sections/FAQ";
-import Sponsors from "src/app/sections/Sponsors";
-import Prizes from "src/app/sections/Prizes";
-import Activities from "src/app/sections/Activities";
-import Workshops from "src/app/sections/Workshops";
-import About from "src/app/sections/About";
+import Hero from "src/sections/Hero";
+import Schedule from "src/sections/Schedule";
+import Judges from "src/sections/Judges";
+import FAQ from "src/sections/FAQ";
+import Sponsors from "src/sections/Sponsors";
+import Prizes from "src/sections/Prizes";
+import Activities from "src/sections/Activities";
+import Workshops from "src/sections/Workshops";
+import About from "src/sections/About";
 import BackgroundStyle from "src/components/BackgroundStyle";
 import ToolTip from "src/components/ToolTip";
-import RouteNotFound from "src/app/sections/RouteNotFound";
-import Footer from "src/app/sections/Footer";
+import RouteNotFound from "src/sections/RouteNotFound";
+import Footer from "src/sections/Footer";
 
 const App: React.FC = () => (
   <North themeDefinition={themeDef}>
