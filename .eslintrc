@@ -1,10 +1,11 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "plugin:react/recommended",
+    "eslint:recommended",
+    "react-app",
+    "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:prettier/recommended"
   ],
   "env": {
     "browser": true,
@@ -21,10 +22,11 @@
     "prettier/prettier": "error",
     "indent": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/indent": ["error", 2],
     "react/jsx-uses-react": 1,
     "react/display-name": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
     "react": {
@@ -33,6 +35,7 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "prettier"
+    "react",
+    "react-hooks"
   ]
 }

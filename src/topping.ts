@@ -14,5 +14,7 @@ export const toppings: ReadonlyArray<Topping> = [
 ];
 
 export const isTopping = (topping: unknown): topping is Topping => {
-  return typeof topping === "string" && toppings.indexOf(topping as Topping) >= 0;
-}
+  return (
+    typeof topping === "string" && toppings.indexOf(topping as Topping) >= 0
+  );
+};
