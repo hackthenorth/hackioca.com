@@ -9,17 +9,11 @@ Hack the North created and branded a hackathon as an April Fools prank. A part o
 - Navbar & footer
 
 ## Setup
-First, clone the repo:
-
 ```
 git clone https://github.com/hackathon/hackioca.com.git
-```
-
-Then, run it by:
-```
 cd hackioca.com
 npm install
-npm run
+npm start
 ```
 
 It should open automatically, but if not access the site at: http://localhost:3000/
