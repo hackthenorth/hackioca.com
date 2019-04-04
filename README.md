@@ -1,22 +1,25 @@
-# HTN STARTER
+# Hackioca - Hack the North's 2019 April Fools Site
+![cover photo](https://i.imgur.com/VeMTQda.png)
 
-### Includes
- - Create React App w/ TypeScript
- - Jest & Enzyme for docs & testing if we need it
- - `styled-components` for styling
- - Linting with eslint, stylelint, prettier
+## Introduction
+Hack the North created and branded a hackathon as an April Fools prank. A part of that process was creating a site that has:
+- Interactive "Build-Your-Boba" (change flavors and toppings on cup)
+- Background changes toppings & moves on scroll
+- About, schedule, judges, workshops, activities, sponsors, prizes, FAQ sections
+- Navbar & footer
 
-### To set up:
- - Storybook for docs and testing if we need it
- - Context API w/ reducer for global state
- - CircleCI config
- - react-helmet
+## Setup
+First, clone the repo:
 
-### Setup
- 1. `git clone` this repository
- 2. `npm install`
- 3. Done lol
+```
+git clone https://github.com/hackathon/hackioca.com.git
+```
 
-### Development
- - Execute:
-   - `npm run test`
+Then, run it by:
+```
+cd hackioca.com
+npm install
+npm run
+```
+
+It should open automatically, but if not access the site at: http://localhost:3000/
