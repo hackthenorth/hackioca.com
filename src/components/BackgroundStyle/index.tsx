@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BobaContext } from "src/utils/context/boba";
+import { BobaContext } from "src/contexts/boba";
 
 const BaseBackground = styled.div`
   position: fixed;

@@ -4,7 +4,7 @@ import media from "src/utils/media";
 import styled from "styled-components";
 
 import Shapes from "src/components/Shapes";
-import Activity from "src/components/Activity";
+import Activity from "./Activity";
 import Anchor from "src/components/Anchor";
 import Title from "src/components/Title";
 
