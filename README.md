@@ -20,6 +20,7 @@
 - [Netlify](https://www.netlify.com/) to serve live pull request branch previews and host [hackioca.com](https://hackioca.com)
 - [TypeScript](https://www.typescriptlang.org/) to write typesafe code
 - [Styled Components](https://www.styled-components.com/) to style our React components
+- [North](https://www.npmjs.com/package/@hackthenorth/north) to test-run our in-development, re-usable, themeable component library (open source coming soon!)
 
 ### Playing around locally
 
