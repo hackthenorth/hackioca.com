@@ -4,7 +4,7 @@
 
 ### Introduction
 
-[Hackioca](https://hackioca.com) was built as an April Fools' 2019 joke by Hack the North. Feel free to poke around or open an issue to ask a question!
+[Hackioca](https://hackioca.com) was built as an April Fools' 2019 joke by [Hack the North](https://hackthenorth.com). Feel free to poke around or open an issue to ask a question!
 
 ### Notable features
 
@@ -28,7 +28,7 @@
 
 2. Clone the repo and navigate into it
 ```
-$ git clone https://github.com/hackathon/hackioca.com.git
+$ git clone https://github.com/hackthenorth/hackioca.com.git
 $ cd hackioca.com
 ```
 
