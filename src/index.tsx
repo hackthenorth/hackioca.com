@@ -1,7 +1,7 @@
 import "react-app-polyfill/ie11";
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./app/App";
+import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

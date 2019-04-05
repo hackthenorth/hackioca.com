@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BobaContext } from "src/utils/context/boba";
+import { BobaContext } from "src/contexts/boba";
 import media from "src/utils/media";
 import posed from "react-pose";
 
