@@ -11,11 +11,11 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("/hackioca/workbox-v3.6.3/workbox-sw.js");
-workbox.setConfig({modulePathPrefix: "/hackioca/workbox-v3.6.3"});
+importScripts("/hackioca.com/workbox-v3.6.3/workbox-sw.js");
+workbox.setConfig({modulePathPrefix: "/hackioca.com/workbox-v3.6.3"});
 
 importScripts(
-  "/hackioca/precache-manifest.f230d270f89b0d7603b35fda4b778f85.js"
+  "/hackioca.com/precache-manifest.5c5fcf8cca9e34f5845be99e0a2fbbb8.js"
 );
 
 workbox.clientsClaim();
@@ -29,7 +29,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/hackioca/index.html", {
+workbox.routing.registerNavigationRoute("/hackioca.com/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
