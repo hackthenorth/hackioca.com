@@ -10,7 +10,7 @@
     "lint:css": "stylelint src",
     "test": "jest --config jestconfig.json --watch",
     "build": "react-scripts-ts build",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && cp CNAME build/CNAME",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts-ts eject"
   },
