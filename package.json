@@ -58,7 +58,7 @@
     "prettier": "1.16.4",
     "react-app-polyfill": "^0.2.2",
     "react-test-renderer": "^16.8.4",
-    "stylelint": "^9.10.1",
+    "stylelint": "^15.10.1",
     "stylelint-config-recommended": "^2.1.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.5.2",
